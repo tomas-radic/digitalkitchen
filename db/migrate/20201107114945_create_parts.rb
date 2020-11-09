@@ -3,7 +3,8 @@ class CreateParts < ActiveRecord::Migration[6.0]
     create_table :parts, id: :uuid do |t|
       t.string :name, null: false
       t.references :food, type: :uuid, null: false, foreign_key: { on_delete: :restrict }
-      t.integer :sequence, null: false
+      t.integer :position, null: false
+      t.string :description, null: false
 
       t.timestamps
     end

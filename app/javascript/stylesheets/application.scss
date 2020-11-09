@@ -3,4 +3,15 @@
 
 // You can add your own custom components/styles here
 
+@import "colors";
 @import "tailwindcss/utilities";
+
+.cover-food {
+  image {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+  }
+}

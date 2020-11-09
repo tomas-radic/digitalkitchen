@@ -1,4 +1,4 @@
-class FoodsController < ApplicationController
+class Users::FoodsController < Users::BaseController
 
   before_action :load_record, only: [:show]
 
@@ -6,6 +6,8 @@ class FoodsController < ApplicationController
   end
 
   def show
+    @user_raw_ids = current_user.raws.ids
+    @record_raw_ids = @record.raws.ids
   end
 
 

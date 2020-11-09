@@ -1,10 +1,10 @@
 class Part < ApplicationRecord
 
   belongs_to :food
-  has_many :steps, dependent: :destroy
   has_many :ingredients, dependent: :destroy
+  has_many :raws, through: :ingredients
 
 
-  validates :name, :sequence,
+  validates :name, :position, :description,
             presence: true
 end

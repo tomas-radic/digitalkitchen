@@ -1,0 +1,2 @@
+$("div[data=raw-<%= @raw.id %>]")
+    .html("<%= escape_javascript(render "users/foods/raw_checkbox", raw: @raw) %>");

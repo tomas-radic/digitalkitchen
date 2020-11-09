@@ -1,0 +1,9 @@
+<div class="md:flex">
+  <label class="block text-yellow-800">
+    <%= check_box_tag :raw, '1', @user_raw_ids.include?(raw.id),
+                      class: "user-raw mr-2 leading-tight", data: { id: raw.id } %>
+    <span class="text-sm">
+              <%= raw.name %>
+            </span>
+  </label>
+</div>

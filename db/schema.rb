@@ -59,7 +59,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
   create_table "parts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.uuid "food_id", null: false
-    t.integer "sequence", null: false
+    t.integer "position", null: false
+    t.string "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_parts_on_food_id"
@@ -70,15 +71,6 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
     t.integer "regular_expiration_days"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "steps", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "part_id", null: false
-    t.integer "position", null: false
-    t.string "description", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["part_id"], name: "index_steps_on_part_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -94,5 +86,4 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
   add_foreign_key "ownerships", "raws", on_delete: :restrict
   add_foreign_key "ownerships", "users", on_delete: :restrict
   add_foreign_key "parts", "foods", on_delete: :restrict
-  add_foreign_key "steps", "parts", on_delete: :restrict
 end

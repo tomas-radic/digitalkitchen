@@ -1,0 +1,94 @@
+<div class="container mx-auto">
+  <div class="cover-food">
+    <h1 class="text-6xl tracking-wider py-8 text-center">
+      <%= @record.name %>
+    </h1>
+    <%= image_tag "sample_food.jpg", class: "cover-image" %>
+  </div>
+
+
+  <%# 4.times do %>
+<!--    <div class="flex flex-wrap pb-4">-->
+<!--      <div class="w-full md:w-1/4 p-2">-->
+<!--        <p class="text-xl text-center text-orange-900 border-b border-yellow-800">-->
+          <%#= Faker::Lorem.word.capitalize %>
+<!--        </p>-->
+
+
+        <%# rand(3..10).times do %>
+<!--          <div class="md:flex">-->
+<!--            <label class="block text-yellow-800">-->
+<!--              <input class="mr-2 leading-tight" type="checkbox">-->
+<!--              <span class="text-sm">-->
+          <%#= Faker::Lorem.words(number: 1..3).join(' ') %>
+<!--        </span>-->
+<!--            </label>-->
+<!--          </div>-->
+        <%# end %>
+<!--      </div>-->
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->
+
+  <div class="flex flex-wrap pb-4">
+    <% @record.raws.group_by(&:category).each do |category, raws| %>
+      <div class="w-full md:w-1/4 p-2">
+        <p class="text-xl text-center text-orange-900 border-b border-yellow-800">
+          <%= category&.name || "Všeobecné suroviny" %>
+        </p>
+        <% raws.each do |raw| %>
+          <span data-raw-<%= raw.id %>>
+            <%= render "users/foods/raw_checkbox", raw: raw %>
+          </span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<% @record.parts.includes(:raws).each do |part| %>
+  <div class="bg-gray-200 px-2 text-justify border-t-2 border-white">
+    <div class="container mx-auto py-8 text-center">
+      <h2 class="text-4xl text-center tracking-wide"><%= "#{part.position}. #{part.name}" %></h2>
+      <% if part.ingredients.any? %>
+        <p class="text-xs font-light tracking-wider pt-2 border-b-2 border-yellow-800 inline-block">
+          <i><%= part.ingredients.map(&:name).join(', ') %></i>
+
+        </p>
+      <% end %>
+      <p class="pt-6">
+        <%= part.description %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function() {
+
+    $('.user-raw').change(function() {
+      // this will contain a reference to the checkbox
+      if (this.checked) {
+        $.ajax({
+          url: '<%= users_ownerships_path %>',
+          dataType: 'json',
+          type: 'post',
+          contentType: 'application/json',
+          data: JSON.stringify({ "raw_id": $(this).data("id"), "food_id": "<%= @record.id %>" }),
+        });
+      } else {
+        $.ajax({
+          url: '<%= users_ownership_path %>',
+          dataType: 'json',
+          type: 'delete',
+          contentType: 'application/json',
+          data: JSON.stringify({ "raw_id": $(this).data("id"), "food_id": "<%= @record.id %>" }),
+        });
+      }
+    });
+
+  });
+
+</script>
