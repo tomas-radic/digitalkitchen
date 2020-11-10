@@ -5,7 +5,7 @@ class AvailableFoods < ApplicationQuery
   end
 
   def call
-    foods = Food.where("owner_id = ? or owner_private is false", @user.id).sample(1000)
+    foods = Pundit.policy_scope!(@user, Food).sample(1000)
 
     available_food_ids = foods.map do |food|
       food.id if food.ingredients.all? do |ingredient|

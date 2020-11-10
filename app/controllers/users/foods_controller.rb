@@ -3,6 +3,7 @@ class Users::FoodsController < Users::BaseController
   before_action :load_record, only: [:show]
 
   def index
+    @records = policy_scope(Food)
   end
 
   def show
