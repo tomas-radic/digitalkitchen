@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    acts_as_list (1.0.2)
+      activerecord (>= 4.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     bindex (0.8.1)
@@ -77,6 +79,11 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.9.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     faker (2.13.0)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
@@ -224,9 +231,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  factory_bot_rails
   faker
   jbuilder (~> 2.7)
   listen (~> 3.2)

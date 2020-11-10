@@ -24,6 +24,7 @@ end
 puts "\nCreating foods..."
 Food.create!(
     name: "Kung Pao",
+    owner: User.all.sample,
     parts: [
         Part.new(
             name: "Príprava mäsa",

@@ -5,6 +5,11 @@ class Part < ApplicationRecord
   has_many :raws, through: :ingredients
 
 
-  validates :name, :position, :description,
+  validates :name, :description,
             presence: true
+  validates :position,
+            presence: true, uniqueness: { scope: :food }
+
+
+  acts_as_list scope: :food
 end

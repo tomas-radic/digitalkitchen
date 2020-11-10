@@ -34,8 +34,11 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   create_table "foods", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.uuid "owner_id"
+    t.boolean "owner_private", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_foods_on_owner_id"
   end
 
   create_table "ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -82,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   add_foreign_key "alternatives", "ingredients", on_delete: :restrict
   add_foreign_key "alternatives", "raws", on_delete: :restrict
+  add_foreign_key "foods", "users", column: "owner_id"
   add_foreign_key "ingredients", "parts", on_delete: :restrict
   add_foreign_key "ownerships", "raws", on_delete: :restrict
   add_foreign_key "ownerships", "users", on_delete: :restrict

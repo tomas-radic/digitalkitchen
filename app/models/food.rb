@@ -1,5 +1,6 @@
 class Food < ApplicationRecord
 
+  belongs_to :owner, class_name: "User", optional: true
   belongs_to :category, polymorphic: true, optional: true
   has_many :parts, dependent: :destroy
   has_many :ingredients, through: :parts
@@ -7,5 +8,8 @@ class Food < ApplicationRecord
 
 
   validates :name, presence: true
+
+
+  scope :for_all, -> { where(owner_private: false) }
 
 end
