@@ -11,12 +11,12 @@ default: &default
 
 development:
   <<: *default
-  database: homefood_development
+  database: digitalkitchen_development
 
 test:
   <<: *default
-  database: homefood_test
+  database: digitalkitchen_test
 
 production:
   <<: *default
-  database: homefood_production
+  database: digitalkitchen_production

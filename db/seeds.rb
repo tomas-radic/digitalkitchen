@@ -6,11 +6,11 @@ puts "\nCreating users..."
 User.create(email: "tomas.radic@gmail.com", name: "dino")
 
 
-# puts "\nCreating categories..."
-# names = ["Koreniny", "Dochucovadlá", "Zelenina"]
-# names.uniq.each do |name|
-#   Category.create!(name: name)
-# end
+puts "\nCreating categories..."
+names = ["Ázijská kuchyňa", "Koreniny", "Dochucovadlá", "Zelenina", "Ovocie"]
+names.uniq.each do |name|
+  Category.create!(name: name)
+end
 
 
 puts "\nCreating raws..."
@@ -24,6 +24,7 @@ end
 puts "\nCreating foods..."
 Food.create!(
     name: "Kung Pao",
+    category: Category.find_by!(name: "Ázijská kuchyňa"),
     owner: User.all.sample,
     parts: [
         Part.new(

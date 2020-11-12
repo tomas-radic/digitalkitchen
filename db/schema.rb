@@ -27,17 +27,18 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "foods", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.uuid "owner_id"
+    t.uuid "owner_id", null: false
+    t.uuid "category_id", null: false
     t.boolean "owner_private", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_foods_on_category_id"
     t.index ["owner_id"], name: "index_foods_on_owner_id"
   end
 
@@ -72,8 +73,10 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
   create_table "raws", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.integer "regular_expiration_days"
+    t.uuid "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_raws_on_category_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -85,9 +88,11 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   add_foreign_key "alternatives", "ingredients", on_delete: :restrict
   add_foreign_key "alternatives", "raws", on_delete: :restrict
+  add_foreign_key "foods", "categories", on_delete: :restrict
   add_foreign_key "foods", "users", column: "owner_id"
   add_foreign_key "ingredients", "parts", on_delete: :restrict
   add_foreign_key "ownerships", "raws", on_delete: :restrict
   add_foreign_key "ownerships", "users", on_delete: :restrict
   add_foreign_key "parts", "foods", on_delete: :restrict
+  add_foreign_key "raws", "categories"
 end

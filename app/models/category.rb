@@ -1,8 +1,7 @@
 class Category < ApplicationRecord
 
-  has_many :categorizables, as: :category, dependent: :nullify
+  has_many :foods, dependent: :restrict_with_error
+  has_many :raws, dependent: :nullify
 
-
-  validates :name, :type,
-            presence: true
+  validates :name, presence: true
 end
