@@ -5,6 +5,9 @@ class Ingredient < ApplicationRecord
   has_many :raws, through: :alternatives
 
 
+  scope :must_have, -> { where(optional: false) }
+
+
   def name
     self.raws.map(&:name).join(" alebo ")
   end

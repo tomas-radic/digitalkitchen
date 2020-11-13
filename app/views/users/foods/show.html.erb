@@ -1,21 +1,22 @@
-<div class="container mx-auto">
-  <div class="cover-food">
-    <h1 class="text-6xl tracking-wider py-8 text-center">
-      <%= @record.name %>
-    </h1>
-    <%= image_tag "sample_food.jpg", class: "cover-image" %>
-  </div>
+<div class="container-fluid">
+  <h1 class="h1 dark-carrot text-center display-1 py-8">
+    <%= @record.name %>
+  </h1>
+</div>
 
-  <div class="flex flex-wrap pb-4">
+<%= content_tag :div, '', class: "cover-food md:bg-fixed", style: "background-image: url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);" %>
+
+<div class="container-fluid py-2">
+  <div class="row">
     <% @record.raws.uniq.group_by(&:category).each do |category, raws| %>
-      <div class="w-full md:w-1/4 p-2">
-        <p class="text-xl text-center text-orange-900 border-b border-yellow-800">
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <p class="text-l text-center dark-carrot border-b border-yellow-800 mb-1">
           <%= category&.name || "Všeobecné suroviny" %>
         </p>
         <% raws.each do |raw| %>
-          <span data-raw-<%= raw.id %>>
-            <%= render "users/foods/raw_checkbox", raw: raw %>
-          </span>
+            <span data-raw-<%= raw.id %>>
+              <%= render "users/foods/raw_checkbox", raw: raw %>
+            </span>
         <% end %>
       </div>
     <% end %>

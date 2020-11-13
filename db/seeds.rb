@@ -7,16 +7,35 @@ User.create(email: "tomas.radic@gmail.com", name: "dino")
 
 
 puts "\nCreating categories..."
-names = ["Ázijská kuchyňa", "Koreniny", "Dochucovadlá", "Zelenina", "Ovocie"]
-names.uniq.each do |name|
-  Category.create!(name: name)
+food_categories = ["Ázijská kuchyňa"]
+raw_categories = ["Mäso", "Koreniny", "Dochucovadlá", "Zelenina", "Ovocie"]
+food_categories.each do |name|
+  FoodCategory.create!(name: name)
+end
+raw_categories.each do |name|
+  RawCategory.create!(name: name)
 end
 
 
 puts "\nCreating raws..."
-raws = ["kuracie prsia", "morčacie prsia", "arašidy", "vajcia", "škrobová múčka", "kurací vývar",
-        "sojová omáčka", "dezertné víno", "chilli papričky", "olej", "soľ", "cukor", "sezam", "ryža"]
-raws.uniq.each do |name|
+meats = ["kuracie prsia", "morčacie prsia"]
+vegetables = ["chilli papričky"]
+peppers = ["čierne korenie", "zelené korenie", "rasca"]
+general = ["arašidy", "vajcia", "škrobová múčka", "kurací vývar",
+           "sojová omáčka", "dezertné víno", "olej", "soľ", "cukor", "sezam", "ryža"]
+meat_category = RawCategory.find_by!(name: "Mäso")
+meats.uniq.each do |name|
+  meat_category.raws.create!(name: name)
+end
+vegetable_category = RawCategory.find_by!(name: "Zelenina")
+vegetables.uniq.each do |name|
+  vegetable_category.raws.create!(name: name)
+end
+pepper_category = RawCategory.find_by!(name: "Koreniny")
+peppers.uniq.each do |name|
+  pepper_category.raws.create!(name: name)
+end
+general.uniq.each do |name|
   Raw.create!(name: name)
 end
 
@@ -24,7 +43,7 @@ end
 puts "\nCreating foods..."
 Food.create!(
     name: "Kung Pao",
-    category: Category.find_by!(name: "Ázijská kuchyňa"),
+    category: FoodCategory.find_by!(name: "Ázijská kuchyňa"),
     owner: User.all.sample,
     parts: [
         Part.new(

@@ -1,5 +1,10 @@
-$carrot: #ed9121;
+$light-carrot: #ed9121;
+$dark-carrot: #975a16;
 
-.bg-carrot {
-  background-color: $carrot;
+.bg-light-carrot {
+  background-color: $light-carrot;
+}
+
+.dark-carrot {
+  color: $dark-carrot;
 }

@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
   create_table "ownerships", force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "raw_id", null: false
+    t.boolean "need_buy", default: false, null: false
     t.date "expiration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -8,9 +8,9 @@ class AvailableFoods < ApplicationQuery
     foods = Pundit.policy_scope!(@user, Food).sample(1000)
 
     available_food_ids = foods.map do |food|
-      food.id if food.ingredients.all? do |ingredient|
+      food.id if food.ingredients.must_have.all? do |ingredient|
         ingredient.raws.find do |raw|
-          @user.raws.include? raw
+          @user.raws_having.include? raw
         end
       end
     end.compact

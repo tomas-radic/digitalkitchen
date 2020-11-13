@@ -1,17 +1,32 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
 
 // You can add your own custom components/styles here
 
-@import "colors";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+$font-family-base: 'Montserrat', sans-serif;
+@import "~bootstrap";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "colors";
+
 
 .cover-food {
-  image {
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    background-size: cover;
-    width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  //max-width: 1200px;
+  margin: 0 auto;
+  height: 600px;
+  //overflow: hidden;
+  //img {
+  //  vertical-align: middle;
+  //}
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
   }
 }
