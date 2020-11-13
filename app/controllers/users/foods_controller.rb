@@ -32,6 +32,10 @@ DESCRIPTION
       end
     elsif list_mine?
       @heading = "Tvoje jedlá"
+      @description = <<DESCRIPTION
+Na tejto stránke sú jedlá, ktoré si sem pridal ty sám. Čím viac jedál tu bude, tým menej
+hladní budeme! :-P
+DESCRIPTION
     else
       @heading = "Všetky jedlá"
       @description = <<DESCRIPTION

@@ -24,12 +24,12 @@
       <div class="tw-container tw-mx-auto">
         <p class="text-center tw-py-8">
           Žiaľ, v tejto chvíli si nemôžeš pripraviť nič, pretože ti chýbajú potraviny, ale
-          <%= link_to "pozri si všetky možné jedlá", users_foods_path, class: "underline" %>
+          <b><%= link_to "pozri si všetky možné jedlá", users_foods_path, class: "tw-underline" %></b>
           a pridaj si suroviny, ktoré potrebuješ, do nákupného zoznamu.
         </p>
       </div>
     </div>
   <% else %>
-    Nie sú tu žiadne jedlá.
+    <p class="text-center tw-py-8">Nie sú tu žiadne jedlá.</p>
   <% end %>
 </div>
