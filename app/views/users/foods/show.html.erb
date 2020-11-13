@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <h1 class="h1 dark-carrot text-center display-1 py-8">
+  <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
     <%= @record.name %>
   </h1>
 </div>
@@ -14,7 +14,7 @@
           <%= category&.name || "Všeobecné suroviny" %>
         </p>
         <% raws.each do |raw| %>
-            <span data-raw-<%= raw.id %>>
+            <span id="raw-wrapper-<%= raw.id %>">
               <%= render "users/foods/raw_checkbox", raw: raw %>
             </span>
         <% end %>
