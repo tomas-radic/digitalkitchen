@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AvailableFoods, type: :model do
-  subject { described_class.call(user) }
+  subject { described_class.call(user: user, foods: Food.all) }
 
   let!(:raw1) { create(:raw) }
   let!(:raw2) { create(:raw) }

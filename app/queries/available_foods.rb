@@ -1,13 +1,12 @@
 class AvailableFoods < ApplicationQuery
 
-  def initialize(user)
+  def initialize(user:, foods: Food.all)
     @user = user
+    @foods = Pundit.policy_scope!(@user, foods)
   end
 
   def call
-    foods = Pundit.policy_scope!(@user, Food).sample(1000)
-
-    available_food_ids = foods.map do |food|
+    available_food_ids = @foods.map do |food|
       food.id if food.ingredients.must_have.all? do |ingredient|
         ingredient.raws.find do |raw|
           @user.raws_having.include? raw
