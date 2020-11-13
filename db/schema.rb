@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   create_table "foods", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.string "description"
     t.uuid "owner_id", null: false
     t.uuid "category_id", null: false
     t.boolean "owner_private", default: false, null: false

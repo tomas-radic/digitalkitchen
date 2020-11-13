@@ -1,8 +1,8 @@
 class AvailableFoods < ApplicationQuery
 
-  def initialize(user:, foods: Food.all)
+  def initialize(user:, foods:)
     @user = user
-    @foods = Pundit.policy_scope!(@user, foods)
+    @foods = foods
   end
 
   def call

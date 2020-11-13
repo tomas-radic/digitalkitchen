@@ -1,2 +1,35 @@
-<% f = Food.first %>
-<%= link_to "food-detail", f ? users_food_path(f) : "#" %>
+<div class="container-fluid">
+  <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
+    <%= @heading %>
+  </h1>
+</div>
+<% if @description %>
+  <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
+    <div class="tw-container tw-mx-auto">
+      <p class="text-center tw-py-8">
+        <%= @description %>
+      </p>
+    </div>
+  </div>
+<% end %>
+<div class="container-fluid tw-mt-2 tw-py-2">
+  <% if @records.any? %>
+    <div class="row">
+      <% @records.each do |record| %>
+        <%= render "tile", record: record %>
+      <% end %>
+    </div>
+  <% elsif list_available? %>
+    <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
+      <div class="tw-container tw-mx-auto">
+        <p class="text-center tw-py-8">
+          Žiaľ, v tejto chvíli si nemôžeš pripraviť nič, pretože ti chýbajú potraviny, ale
+          <%= link_to "pozri si všetky možné jedlá", users_foods_path, class: "underline" %>
+          a pridaj si suroviny, ktoré potrebuješ, do nákupného zoznamu.
+        </p>
+      </div>
+    </div>
+  <% else %>
+    Nie sú tu žiadne jedlá.
+  <% end %>
+</div>

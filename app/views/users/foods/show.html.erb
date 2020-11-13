@@ -4,13 +4,13 @@
   </h1>
 </div>
 
-<%= content_tag :div, '', class: "cover-food md:bg-fixed", style: "background-image: url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);" %>
+<%= content_tag :div, '', class: "cover-food md:tw-bg-fixed", style: "background-image: url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);" %>
 
 <div class="container-fluid py-2">
   <div class="row">
     <% @record.raws.uniq.group_by(&:category).each do |category, raws| %>
       <div class="col-md-6 col-lg-4 col-xl-3">
-        <p class="text-l text-center dark-carrot border-b border-yellow-800 mb-1">
+        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
           <%= category&.name || "Všeobecné suroviny" %>
         </p>
         <% raws.each do |raw| %>
@@ -24,16 +24,16 @@
 </div>
 
 <% @record.parts.includes(:raws).each do |part| %>
-  <div class="bg-gray-200 px-2 text-justify border-t-2 border-white">
-    <div class="container mx-auto py-8 text-center">
-      <h2 class="text-4xl text-center tracking-wide"><%= "#{part.position}. #{part.name}" %></h2>
+  <div class="tw-bg-gray-200 tw-px-2 text-justify tw-border-t-2 tw-border-white">
+    <div class="tw-container tw-mx-auto tw-py-8 text-center">
+      <h2 class="tw-text-4xl text-center tw-tracking-wide"><%= "#{part.position}. #{part.name}" %></h2>
       <% if part.ingredients.any? %>
-        <p class="text-xs font-light tracking-wider pt-2 border-b-2 border-yellow-800 inline-block">
+        <p class="tw-text-xs tw-font-light tw-tracking-wider pt-2 tw-border-b-2 tw-border-yellow-800 tw-inline-block">
           <i><%= part.ingredients.map(&:name).join(', ') %></i>
 
         </p>
       <% end %>
-      <p class="pt-6">
+      <p class="tw-pt-6">
         <%= part.description %>
       </p>
     </div>
