@@ -15,7 +15,7 @@
         </p>
         <% raws.each do |raw| %>
             <span id="raw-wrapper-<%= raw.id %>">
-              <%= render "users/foods/raw_checkbox", raw: raw %>
+              <%= render "users/ownerships/checkbox", raw: raw %>
             </span>
         <% end %>
       </div>
@@ -30,7 +30,6 @@
       <% if part.ingredients.any? %>
         <p class="tw-text-xs tw-font-light tw-tracking-wider pt-2 tw-border-b-2 tw-border-yellow-800 tw-inline-block">
           <i><%= part.ingredients.map(&:name).join(', ') %></i>
-
         </p>
       <% end %>
       <p class="tw-pt-6">
@@ -55,7 +54,7 @@
 
       $.ajax({
         url: targetPath,
-        dataType: 'json',
+        dataType: 'script',
         type: method,
         contentType: 'application/json',
         data: JSON.stringify({ "raw_id": $(this).data("id"), "food_id": "<%= @record.id %>" }),

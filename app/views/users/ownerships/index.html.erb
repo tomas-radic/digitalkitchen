@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
+    Chladnička
+  </h1>
+</div>
+
+<div class="tw-bg-gray-200 tw-px-2 tw-py-8">
+  <div class="tw-container tw-mx-auto">
+    <p class="text-center tw-py-8">
+      TODO: text o chladnicke...
+    </p>
+  </div>
+</div>
+
+<div class="container-fluid tw-mt-2 tw-py-2">
+  <% if @raws.any? %>
+    <div class="row">
+      <% @raws.each do |raw| %>
+        <%= render "tile", record: record %>
+      <% end %>
+    </div>
+  <% elsif list_available? %>
+    <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
+      <div class="tw-container tw-mx-auto">
+        <p class="text-center tw-py-8">
+          Žiaľ, v tejto chvíli si nemôžeš pripraviť nič, pretože ti chýbajú potraviny, ale
+          <b><%= link_to "pozri si všetky možné jedlá", users_foods_path, class: "tw-underline" %></b>
+          a pridaj si suroviny, ktoré potrebuješ, do nákupného zoznamu.
+        </p>
+      </div>
+    </div>
+  <% else %>
+    <p class="text-center tw-py-8">Nie sú tu žiadne jedlá.</p>
+  <% end %>
+</div>
