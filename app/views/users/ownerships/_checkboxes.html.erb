@@ -1,26 +1,30 @@
 <div class="container-fluid py-2">
   <div class="row">
-    <% record.ingredients.includes(:raws).order(:category_id).uniq.group_by(&:raw_category).each do |category, ingredients| %>
+    <% food.ingredients.includes(:raws)
+           .order(:category_id)
+           .group_by(&:raw_category).each do |category, ingredients| %>
+
       <div class="col-md-6 col-lg-4 col-xl-3">
         <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
           <%= category&.name || "Všeobecné potraviny" %>
         </p>
         <% ingredients.each do |ingredient| %>
           <div class="tw-pt-2">
-            <% ingredient.raws.each.with_index do |raw, i| %>
-                <% alternative = i > 0 %>
+            <% ingredient.raws.uniq.each.with_index do |raw, i| %>
+              <% alternative = i > 0 %>
+              <% raw_ownership = @user_ownerships.find { |o| o.raw_id == raw.id } %>
 
                 <div class="md:tw-flex <%= 'pl-3' if alternative %>">
                   <label class="tw-block tw-my-0 tw-text-yellow-800 tw-text-sm">
                     <% if alternative %>
                       <span class="pr-2">alebo</span>
                     <% end %>
-                    <%= check_box_tag :raw, '1', @user_raws.ids.include?(raw.id),
+                    <%= check_box_tag :raw, '1', raw_ownership && !raw_ownership.need_buy?,
                                       class: "user-raw tw-leading-tight",
                                       id: "id-#{raw.id}",
                                       data: {
                                           raw_id: raw.id,
-                                          ownership_id: @user_ownerships.find { |o| o.raw_id == raw.id }&.id
+                                          ownership_id: raw_ownership&.id
                                       } %>
                     <%= raw.name %>
                   </label>
@@ -35,28 +39,51 @@
 
 <script type="text/javascript">
     $('.user-raw').change(function() {
-      var targetPath;
-      var method;
+      if (this.checked) { // user just checked the raw checkbox
+        var ownership_id = $(this).data("ownership-id");
 
-      if (this.checked) {
-        targetPath = "/users/ownerships";
-        method = "post";
+        if (ownership_id == null) {
+          $.ajax({
+            url: "/users/ownerships",
+            dataType: 'script',
+            type: "post",
+            contentType: 'application/json',
+            data: JSON.stringify(
+                {
+                  "ownership": { "raw_id": $(this).data("raw-id"), "need_buy": false },
+                  "food_id": "<%= @food.id %>"
+                })
+          });
+        } else {
+          $.ajax({
+            url: "/users/ownerships/" + $(this).data("ownership-id"),
+            dataType: 'script',
+            type: "put",
+            contentType: 'application/json',
+            data: JSON.stringify(
+                {
+                  "id": $(this).data("ownership-id"),
+                  "ownership": { "need_buy": false },
+                  "food_id": "<%= @food.id %>"
+                })
+          });
+        }
+
       } else {
-        targetPath = "/users/ownerships/" + $(this).data("ownership-id");
-        method = "delete";
+        $.ajax({
+          url: "/users/ownerships/" + $(this).data("ownership-id"),
+          dataType: 'script',
+          type: "put",
+          contentType: 'application/json',
+          data: JSON.stringify(
+              {
+                "id": $(this).data("ownership-id"),
+                "ownership": { "need_buy": true },
+                "food_id": "<%= @food.id %>"
+              })
+        });
       }
 
-      $.ajax({
-        url: targetPath,
-        dataType: 'script',
-        type: method,
-        contentType: 'application/json',
-        data: JSON.stringify(
-            {
-              "id": $(this).data("ownership-id"),
-              "raw_id": $(this).data("raw-id"),
-              "food_id": "<%= @record.id %>"
-            })
-      });
+
     });
 </script>

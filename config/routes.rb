@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :foods, only: [:index, :show]
-    resources :ownerships, only: [:create, :destroy]
+    resources :ownerships, only: [:create, :update, :destroy]
   end
 
 end

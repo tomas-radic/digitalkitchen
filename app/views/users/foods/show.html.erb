@@ -1,16 +1,16 @@
 <div class="container-fluid">
   <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
-    <%= @record.name %>
+    <%= @food.name %>
   </h1>
 </div>
 
 <%= content_tag :div, '', class: "cover-food md:tw-bg-fixed", style: "background-image: url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);" %>
 
 <div id="ownerships-wrapper">
-  <%= render "users/ownerships/checkboxes", record: @record %>
+  <%= render "users/ownerships/checkboxes", food: @food %>
 </div>
 
-<% @record.parts.includes(:raws).each do |part| %>
+<% @food.parts.includes(:raws).each do |part| %>
   <div class="tw-bg-gray-200 tw-px-2 text-justify tw-border-t-2 tw-border-white">
     <div class="tw-container tw-mx-auto tw-py-8 text-center">
       <h2 class="tw-text-4xl text-center tw-tracking-wide"><%= "#{part.position}. #{part.name}" %></h2>

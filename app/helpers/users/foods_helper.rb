@@ -18,7 +18,7 @@ module Users::FoodsHelper
 
   def food_index_description
     @description ||= if listing_available_foods?
-                       if @records.any?
+                       if @foods.any?
                          <<DESCRIPTION
 Jedlá zobrazené na tejto stránke si môžeš pripraviť hneď teraz, pretože máš na ne doma 
 všetky potrebné potraviny. Veľa šťastia :-)

@@ -1,15 +1,29 @@
 class Users::OwnershipsController < Users::BaseController
 
+  before_action :load_ownership, only: [:update, :destroy]
+
   def index
-    @records = current_user.ownerships
+    @ownerships = current_user.ownerships
     @raws = Raw.all
   end
 
   def create
-    current_user.ownerships.where(raw_id: params[:raw_id]).first_or_create
+    current_user.ownerships.create(whitelisted_params)
 
-    @record = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_raws = current_user.raws
+    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @user_raws = current_user.raws.holding
+    @user_ownerships = current_user.ownerships
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @ownership.update(whitelisted_params)
+
+    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @user_raws = current_user.raws.holding
     @user_ownerships = current_user.ownerships
 
     respond_to do |format|
@@ -18,14 +32,25 @@ class Users::OwnershipsController < Users::BaseController
   end
 
   def destroy
-    current_user.ownerships.find(params[:id]).destroy
+    @ownership.destroy
 
-    @record = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_raws = current_user.raws
+    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @user_raws = current_user.raws.holding
     @user_ownerships = current_user.ownerships
 
     respond_to do |format|
       format.js
     end
+  end
+
+
+  private
+
+  def whitelisted_params
+    params.require(:ownership).permit(:raw_id, :need_buy)
+  end
+
+  def load_ownership
+    @ownership = current_user.ownerships.find(params[:id])
   end
 end

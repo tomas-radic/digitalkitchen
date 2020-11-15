@@ -13,10 +13,10 @@
   </div>
 <% end %>
 <div class="container-fluid tw-mt-2 tw-py-2">
-  <% if @records.any? %>
+  <% if @foods.any? %>
     <div class="row">
-      <% @records.each do |record| %>
-        <%= render "tile", record: record %>
+      <% @foods.each do |food| %>
+        <%= render "tile", food: food %>
       <% end %>
     </div>
   <% elsif listing_available_foods? %>

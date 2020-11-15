@@ -16,7 +16,7 @@
   <% if @raws.any? %>
     <div class="row">
       <% @raws.each do |raw| %>
-        <%= render "tile", record: record %>
+        <%= render "tile", food: food %>
       <% end %>
     </div>
   <% elsif listing_available_foods? %>
