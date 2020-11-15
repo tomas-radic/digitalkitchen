@@ -1,0 +1,55 @@
+<div class="container-fluid py-2">
+  <div class="row">
+    <% record.raws.order(:category_id).uniq.group_by(&:category).each do |category, raws| %>
+      <div class="col-md-6 col-lg-4 col-xl-3">
+        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
+          <%= category&.name || "Všeobecné potraviny" %>
+        </p>
+        <% raws.each do |raw| %>
+          <div class="md:tw-flex">
+            <label class="tw-block tw-text-yellow-800">
+              <%= check_box_tag :raw, '1', @user_raws.ids.include?(raw.id),
+                                class: "user-raw tw-mr-2 tw-leading-tight",
+                                id: "id-#{raw.id}",
+                                data: {
+                                    raw_id: raw.id,
+                                    ownership_id: @user_ownerships.find { |o| o.raw_id == raw.id }&.id
+                                } %>
+              <span class="tw-text-sm">
+              <%= raw.name %>
+            </span>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('.user-raw').change(function() {
+      var targetPath;
+      var method;
+
+      if (this.checked) {
+        targetPath = "/users/ownerships";
+        method = "post";
+      } else {
+        targetPath = "/users/ownerships/" + $(this).data("ownership-id");
+        method = "delete";
+      }
+
+      $.ajax({
+        url: targetPath,
+        dataType: 'script',
+        type: method,
+        contentType: 'application/json',
+        data: JSON.stringify(
+            {
+              "id": $(this).data("ownership-id"),
+              "raw_id": $(this).data("raw-id"),
+              "food_id": "<%= @record.id %>"
+            })
+      });
+    });
+</script>

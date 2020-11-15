@@ -1,6 +1,6 @@
 class CreateOwnerships < ActiveRecord::Migration[6.0]
   def change
-    create_table :ownerships do |t|
+    create_table :ownerships, id: :uuid do |t|
       t.references :user, type: :uuid, null: false, foreign_key: { on_delete: :restrict }
       t.references :raw, type: :uuid, null: false, foreign_key: { on_delete: :restrict }
       t.boolean :need_buy, null: false, default: false

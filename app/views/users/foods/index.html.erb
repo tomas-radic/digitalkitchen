@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
-    <%= @heading %>
+    <%= food_index_heading %>
   </h1>
 </div>
-<% if @description %>
+<% if food_index_description %>
   <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
     <div class="tw-container tw-mx-auto">
       <p class="text-center tw-py-8">
-        <%= @description %>
+        <%= food_index_description %>
       </p>
     </div>
   </div>
@@ -19,7 +19,7 @@
         <%= render "tile", record: record %>
       <% end %>
     </div>
-  <% elsif list_available? %>
+  <% elsif listing_available_foods? %>
     <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
       <div class="tw-container tw-mx-auto">
         <p class="text-center tw-py-8">

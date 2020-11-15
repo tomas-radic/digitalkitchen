@@ -6,21 +6,8 @@
 
 <%= content_tag :div, '', class: "cover-food md:tw-bg-fixed", style: "background-image: url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);" %>
 
-<div class="container-fluid py-2">
-  <div class="row">
-    <% @record.raws.uniq.group_by(&:category).each do |category, raws| %>
-      <div class="col-md-6 col-lg-4 col-xl-3">
-        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
-          <%= category&.name || "Všeobecné suroviny" %>
-        </p>
-        <% raws.each do |raw| %>
-            <span id="raw-wrapper-<%= raw.id %>">
-              <%= render "users/ownerships/checkbox", raw: raw %>
-            </span>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+<div id="ownerships-wrapper">
+  <%= render "users/ownerships/checkboxes", record: @record %>
 </div>
 
 <% @record.parts.includes(:raws).each do |part| %>
@@ -40,27 +27,3 @@
 <% end %>
 
 
-<script type="text/javascript">
-  $(document).on('turbolinks:load', function() {
-
-    $('.user-raw').change(function() {
-      var targetPath = "<%= users_ownership_path %>";
-      var method = "delete";
-
-      if (this.checked) {
-        targetPath = "<%= users_ownerships_path %>";
-        method = "post";
-      }
-
-      $.ajax({
-        url: targetPath,
-        dataType: 'script',
-        type: method,
-        contentType: 'application/json',
-        data: JSON.stringify({ "raw_id": $(this).data("id"), "food_id": "<%= @record.id %>" }),
-      });
-    });
-
-  });
-
-</script>

@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
     t.index ["part_id"], name: "index_ingredients_on_part_id"
   end
 
-  create_table "ownerships", force: :cascade do |t|
+  create_table "ownerships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "raw_id", null: false
     t.boolean "need_buy", default: false, null: false

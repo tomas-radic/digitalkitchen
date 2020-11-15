@@ -6,11 +6,11 @@ class Users::OwnershipsController < Users::BaseController
   end
 
   def create
-    @raw = Raw.find(params[:raw_id])
-    current_user.ownerships.where(raw: @raw).first_or_create
+    current_user.ownerships.where(raw_id: params[:raw_id]).first_or_create
 
-    @user_raw_ids = current_user.raws.ids
-    @record_raw_ids = Food.find(params[:food_id]).raws.ids
+    @record = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @user_raws = current_user.raws
+    @user_ownerships = current_user.ownerships
 
     respond_to do |format|
       format.js
@@ -18,11 +18,11 @@ class Users::OwnershipsController < Users::BaseController
   end
 
   def destroy
-    @raw = Raw.find(params[:raw_id])
-    current_user.ownerships.find_by(raw: @raw)&.destroy
+    current_user.ownerships.find(params[:id]).destroy
 
-    @user_raw_ids = current_user.raws.ids
-    @record_raw_ids = Food.find(params[:food_id]).raws.ids
+    @record = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @user_raws = current_user.raws
+    @user_ownerships = current_user.ownerships
 
     respond_to do |format|
       format.js

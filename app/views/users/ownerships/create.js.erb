@@ -1,2 +1,2 @@
-$("#raw-wrapper-<%= @raw.id %>")
-    .html("<%= escape_javascript(render "users/ownerships/checkbox", raw: @raw) %>");
+$("#ownerships-wrapper")
+    .html("<%= escape_javascript(render 'users/ownerships/checkboxes', record: @record) %>");
