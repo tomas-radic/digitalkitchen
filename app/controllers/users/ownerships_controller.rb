@@ -11,8 +11,7 @@ class Users::OwnershipsController < Users::BaseController
     current_user.ownerships.create(whitelisted_params)
 
     @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_raws = current_user.raws.holding
-    @user_ownerships = current_user.ownerships
+    @user_ownerships = current_user.ownerships.holding
 
     respond_to do |format|
       format.js
@@ -23,8 +22,7 @@ class Users::OwnershipsController < Users::BaseController
     @ownership.update(whitelisted_params)
 
     @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_raws = current_user.raws.holding
-    @user_ownerships = current_user.ownerships
+    @user_ownerships = current_user.ownerships.holding
 
     respond_to do |format|
       format.js
@@ -35,8 +33,7 @@ class Users::OwnershipsController < Users::BaseController
     @ownership.destroy
 
     @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_raws = current_user.raws.holding
-    @user_ownerships = current_user.ownerships
+    @user_ownerships = current_user.ownerships.holding
 
     respond_to do |format|
       format.js

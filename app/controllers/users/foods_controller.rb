@@ -13,7 +13,6 @@ class Users::FoodsController < Users::BaseController
   end
 
   def show
-    @user_raws = current_user.raws
     @user_ownerships = current_user.ownerships.holding
   end
 
