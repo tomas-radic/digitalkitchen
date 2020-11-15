@@ -1,24 +1,31 @@
 <div class="container-fluid py-2">
   <div class="row">
-    <% record.raws.order(:category_id).uniq.group_by(&:raw_category).each do |category, raws| %>
+    <% record.ingredients.includes(:raws).order(:category_id).uniq.group_by(&:raw_category).each do |category, ingredients| %>
       <div class="col-md-6 col-lg-4 col-xl-3">
         <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
           <%= category&.name || "Všeobecné potraviny" %>
         </p>
-        <% raws.each do |raw| %>
-          <div class="md:tw-flex">
-            <label class="tw-block tw-text-yellow-800">
-              <%= check_box_tag :raw, '1', @user_raws.ids.include?(raw.id),
-                                class: "user-raw tw-mr-2 tw-leading-tight",
-                                id: "id-#{raw.id}",
-                                data: {
-                                    raw_id: raw.id,
-                                    ownership_id: @user_ownerships.find { |o| o.raw_id == raw.id }&.id
-                                } %>
-              <span class="tw-text-sm">
-              <%= raw.name %>
-            </span>
-            </label>
+        <% ingredients.each do |ingredient| %>
+          <div class="tw-pt-2">
+            <% ingredient.raws.each.with_index do |raw, i| %>
+                <% alternative = i > 0 %>
+
+                <div class="md:tw-flex <%= 'pl-3' if alternative %>">
+                  <label class="tw-block tw-my-0 tw-text-yellow-800 tw-text-sm">
+                    <% if alternative %>
+                      <span class="pr-2">alebo</span>
+                    <% end %>
+                    <%= check_box_tag :raw, '1', @user_raws.ids.include?(raw.id),
+                                      class: "user-raw tw-leading-tight",
+                                      id: "id-#{raw.id}",
+                                      data: {
+                                          raw_id: raw.id,
+                                          ownership_id: @user_ownerships.find { |o| o.raw_id == raw.id }&.id
+                                      } %>
+                    <%= raw.name %>
+                  </label>
+                </div>
+            <% end %>
           </div>
         <% end %>
       </div>
