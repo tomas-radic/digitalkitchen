@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :food do
     association :owner, factory: :user
-    association :category, factory: :food_category
+    association :food_category
 
     name { Faker::Food.dish }
 

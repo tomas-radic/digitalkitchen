@@ -43,14 +43,14 @@ end
 puts "\nCreating foods..."
 Food.create!(
     name: "Kung Pao",
-    category: FoodCategory.find_by!(name: "Ázijská kuchyňa"),
+    food_category: FoodCategory.find_by!(name: "Ázijská kuchyňa"),
     owner: User.all.sample,
     parts: [
         Part.new(
             name: "Príprava mäsa",
             position: 1,
             ingredients: [
-                Ingredient.new(raws: [Raw.find_by!(name: "kuracie prsia"), Raw.find_by!(name: "morčacie prsia")]),
+                Ingredient.new(raw_category: RawCategory.find_by!(name: "Mäso"), raws: [Raw.find_by!(name: "kuracie prsia"), Raw.find_by!(name: "morčacie prsia")]),
                 Ingredient.new(raws: [Raw.find_by!(name: "soľ")]),
                 Ingredient.new(raws: [Raw.find_by!(name: "vajcia")]),
                 Ingredient.new(raws: [Raw.find_by!(name: "škrobová múčka")])
@@ -74,7 +74,7 @@ Food.create!(
             name: "Dokončenie",
             position: 3,
             ingredients: [
-                Ingredient.new(raws: [Raw.find_by!(name: "chilli papričky")]),
+                Ingredient.new(raw_category: RawCategory.find_by!(name: "Zelenina"), raws: [Raw.find_by!(name: "chilli papričky")]),
                 Ingredient.new(raws: [Raw.find_by!(name: "arašidy")])
             ],
             description: "Na panvici opražiť obalené mäso, prihodiť chilli papričky a opražené aražidy. Zaliať pripravenou omáčkou a povariť. Podávať s ryžou, posypané sezamom."

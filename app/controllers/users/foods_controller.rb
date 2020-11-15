@@ -6,7 +6,7 @@ class Users::FoodsController < Users::BaseController
 
   def index
     @records = Pundit.policy_scope!(current_user, Food)
-                   .includes(:category, :raws)
+                   .includes(:food_category, :raws)
 
     apply_filter! if params[:filter]
     @records = @records.sample(1000)

@@ -1,6 +1,6 @@
 <div class="container-fluid py-2">
   <div class="row">
-    <% record.raws.order(:category_id).uniq.group_by(&:category).each do |category, raws| %>
+    <% record.raws.order(:category_id).uniq.group_by(&:raw_category).each do |category, raws| %>
       <div class="col-md-6 col-lg-4 col-xl-3">
         <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
           <%= category&.name || "Všeobecné potraviny" %>
