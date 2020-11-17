@@ -9,7 +9,7 @@ class Users::BaseController < ApplicationController
     if @ownership
       @ownership.update!(need_buy: !@ownership.need_buy)
     else
-      current_user.ownerships.create!(raw: raw, need_buy: false)
+      current_user.ownerships.create!(raw: @raw, need_buy: false)
     end
 
     @ownerships = current_user.ownerships

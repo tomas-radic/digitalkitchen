@@ -6,8 +6,8 @@ class Users::RawsController < Users::BaseController
   end
 
   def switch_ownership
-    raw = Raw.find(params[:raw_id])
-    @ownership = current_user.ownerships.find_by(raw: raw)
+    @raw = Raw.find(params[:raw_id])
+    @ownership = current_user.ownerships.find_by(raw: @raw)
 
     super
 

@@ -6,33 +6,9 @@ class Users::OwnershipsController < Users::BaseController
     @ownerships = current_user.ownerships
   end
 
-  def create
-    current_user.ownerships.create(whitelisted_params)
-
-    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_ownerships = current_user.ownerships.holding
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def update
-    @ownership.update(whitelisted_params)
-
-    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_ownerships = current_user.ownerships.holding
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def destroy
     @ownership.destroy
-
-    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
-    @user_ownerships = current_user.ownerships.holding
+    @ownerships = current_user.ownerships
 
     respond_to do |format|
       format.js
@@ -41,6 +17,7 @@ class Users::OwnershipsController < Users::BaseController
 
   def switch_ownership
     @ownership = current_user.ownerships.find(params[:id])
+    @raw = @ownership.raw
 
     super
 
