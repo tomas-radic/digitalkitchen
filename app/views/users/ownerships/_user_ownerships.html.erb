@@ -1,7 +1,7 @@
 <div class="container-fluid tw-py-2">
   <div class="row">
     <% ownerships.left_joins(raw: :raw_category)
-           .order("raws.name").includes(raw: :raw_category)
+           .order("categories.name, raws.name").includes(raw: :raw_category)
            .group_by { |o| o.raw.raw_category }.each do |category, category_ownerships| %>
 
       <div class="col-md-6 col-lg-4 col-xl-3 py-2">

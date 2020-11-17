@@ -1,18 +1,18 @@
 class Users::RawsController < Users::BaseController
 
   def index
-    @raws = Raw.all
+    @raws = Pundit.policy_scope!(current_user, Raw).distinct
     @ownerships = current_user.ownerships.to_a
   end
 
   def switch_ownership
-    @raw = Raw.find(params[:raw_id])
+    @raw = Pundit.policy_scope!(current_user, Raw).find(params[:raw_id])
     @ownership = current_user.ownerships.find_by(raw: @raw)
 
     super
 
     @ownerships = @ownerships.to_a
-    @raws = Raw.all
+    @raws = Pundit.policy_scope!(current_user, Raw).distinct
 
     respond_to do |format|
       format.js

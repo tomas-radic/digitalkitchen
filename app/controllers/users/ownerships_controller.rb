@@ -26,6 +26,19 @@ class Users::OwnershipsController < Users::BaseController
     end
   end
 
+  def add_all
+    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+
+    @food.raws.each do |raw|
+      current_user.ownerships.where(raw: raw).first_or_create!(need_buy: true)
+    end
+
+    @ownerships = current_user.ownerships.to_a
+
+    flash[:success] = "Potraviny boli pridané do nákupného zoznamu."
+    redirect_to users_food_path(@food)
+  end
+
   private
 
   def whitelisted_params
