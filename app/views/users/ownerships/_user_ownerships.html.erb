@@ -1,0 +1,40 @@
+<div class="container-fluid tw-py-2">
+  <div class="row">
+    <% ownerships.left_joins(raw: :raw_category)
+           .order("raws.name").includes(raw: :raw_category)
+           .group_by { |o| o.raw.raw_category }.each do |category, category_ownerships| %>
+
+      <div class="col-md-6 col-lg-4 col-xl-3 py-2">
+        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
+          <%= category&.name || "Všeobecné potraviny" %>
+        </p>
+        <% category_ownerships.each do |ownership| %>
+          <div class="tw-pt-2">
+            <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
+              <%= check_box_tag :raw, '1', !ownership.need_buy?,
+                                class: "user-raw tw-leading-tight",
+                                id: "id-#{ownership.id}",
+                                data: {
+                                    ownership_id: ownership.id
+                                } %>
+              <%= ownership.raw.name %>
+            </label>
+            <%= link_to users_ownership_path(ownership), class: "float-right", method: :delete, data: { confirm: "Zmazať?" } do %>
+              <%= image_tag "cancel.png", width: 15, height: 15 %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.user-raw').change(function() {
+    $.ajax({
+      url: "/users/ownerships/" + $(this).data("ownership-id") + "/switch",
+      dataType: 'script',
+      type: "post"
+    });
+  });
+</script>

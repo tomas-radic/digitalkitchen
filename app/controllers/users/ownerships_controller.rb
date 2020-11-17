@@ -4,7 +4,6 @@ class Users::OwnershipsController < Users::BaseController
 
   def index
     @ownerships = current_user.ownerships
-    @raws = Raw.all
   end
 
   def create
@@ -40,6 +39,15 @@ class Users::OwnershipsController < Users::BaseController
     end
   end
 
+  def switch_ownership
+    @ownership = current_user.ownerships.find(params[:id])
+
+    super
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
   private
 

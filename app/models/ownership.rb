@@ -7,6 +7,9 @@ class Ownership < ApplicationRecord
   belongs_to :raw
 
 
+  validates :raw_id, uniqueness: { scope: :user_id }
+
+
   scope :holding, -> { where(need_buy: false) }
   scope :need_buy, -> { where(need_buy: true) }
 

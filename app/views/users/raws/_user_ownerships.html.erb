@@ -1,0 +1,38 @@
+<div class="container-fluid tw-py-2">
+  <div class="row">
+    <% raws
+           .order(:name).includes(:raw_category)
+           .group_by(&:raw_category).each do |category, category_raws| %>
+
+      <div class="col-md-6 col-lg-4 col-xl-3 py-2">
+        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
+          <%= category&.name || "Všeobecné potraviny" %>
+        </p>
+        <% category_raws.each do |raw| %>
+          <% ownership = ownerships.find { |o| o.raw_id == raw.id } %>
+          <div class="tw-pt-2">
+            <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
+              <%= check_box_tag :raw, '1', ownership && !ownership.need_buy?,
+                                class: "user-raw tw-leading-tight",
+                                id: "id-#{raw.id}",
+                                data: {
+                                    raw_id: raw.id
+                                } %>
+              <%= raw.name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.user-raw').change(function() {
+    $.ajax({
+      url: "/users/raws/" + $(this).data("raw-id") + "/switch_ownership/",
+      dataType: 'script',
+      type: "post"
+    });
+  });
+</script>

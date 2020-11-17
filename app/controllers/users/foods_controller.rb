@@ -13,7 +13,22 @@ class Users::FoodsController < Users::BaseController
   end
 
   def show
-    @user_ownerships = current_user.ownerships.holding
+    @ownerships = current_user.ownerships.to_a
+  end
+
+
+  def switch_ownership
+    raw = Raw.find(params[:raw_id])
+    @ownership = current_user.ownerships.find_by(raw: raw)
+
+    super
+
+    @ownerships = @ownerships.to_a
+    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+
+    respond_to do |format|
+      format.js
+    end
   end
 
 
