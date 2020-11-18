@@ -3,7 +3,7 @@ class Users::OwnershipsController < Users::BaseController
   before_action :load_ownership, only: [:update, :destroy]
 
   def index
-    @ownerships = current_user.ownerships
+    @ownerships = current_user.ownerships.need_buy
   end
 
   def destroy
@@ -20,6 +20,8 @@ class Users::OwnershipsController < Users::BaseController
     @raw = @ownership.raw
 
     super
+
+    @ownerships = @ownerships.need_buy
 
     respond_to do |format|
       format.js
