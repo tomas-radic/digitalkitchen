@@ -50,4 +50,26 @@ DESCRIPTION
   def listing_owner_foods?
     params[:filter] == "mine"
   end
+
+
+  def food_raws(food)
+    <<QUERY
+select distinct * from raws
+join alternatives a2 on raws.id = a2.raw_id
+join ingredients i2 on a2.ingredient_id = i2.id
+where i2.id in (
+    select id from (
+                       select count(a.ingredient_id) as raw_count, i.id as id from alternatives a
+                                                                                       join ingredients i on a.ingredient_id = i.id
+                                                                                       join parts p on i.part_id = p.id
+                                                                                       join raws r on a.raw_id = r.id
+                       where p.food_id = '03cb6adc-244b-461c-a205-8b8e489c2f9e'
+                       group by a.ingredient_id, i.id
+                       order by raw_count
+                   ) as raw_counts
+    where raw_counts.raw_count = 1
+);
+QUERY
+
+  end
 end

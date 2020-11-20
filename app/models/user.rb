@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :raws_to_buy, -> { where("ownerships.need_buy is true") }, through: :ownerships, source: :raw
 
 
-  validates :email, :name,
+  validates :email, :nickname,
             presence: true,
             uniqueness: true
 end

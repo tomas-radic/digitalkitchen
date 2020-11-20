@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
   create_table "alternatives", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "ingredient_id", null: false
     t.uuid "raw_id", null: false
+    t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ingredient_id"], name: "index_alternatives_on_ingredient_id"
@@ -68,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
   create_table "parts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.uuid "food_id", null: false
-    t.integer "position", null: false
+    t.integer "position"
     t.string "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -86,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_124541) do
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", null: false
-    t.string "name", null: false
+    t.string "nickname", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

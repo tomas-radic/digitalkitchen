@@ -1,5 +1,7 @@
 class Part < ApplicationRecord
 
+  acts_as_list scope: :food
+
   belongs_to :food
   has_many :ingredients, dependent: :destroy
   has_many :raws, through: :ingredients
@@ -8,8 +10,8 @@ class Part < ApplicationRecord
   validates :name, :description,
             presence: true
   validates :position,
-            presence: true, uniqueness: { scope: :food }
+            uniqueness: { scope: :food }
 
 
-  acts_as_list scope: :food
+
 end
