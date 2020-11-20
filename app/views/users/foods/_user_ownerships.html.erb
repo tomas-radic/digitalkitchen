@@ -1,52 +1,61 @@
 <div class="container-fluid tw-py-2">
   <div class="row">
-    <% listed_raw_ids = [] %>
-    <% food.ingredients.includes(:raws)
-           .order(:category_id)
-           .group_by(&:raw_category).each do |category, ingredients| %>
+
+    <% arranged_raws.each do |category, raws| %>
 
       <div class="col-md-6 col-lg-4 col-xl-3">
         <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
-          <%= category&.name || "Všeobecné potraviny" %>
+          <%= category || "Všeobecné potraviny" %>
         </p>
-        <% ingredients.each do |ingredient| %>
-          <% skipped_raw = false %>
 
-          <% ingredient.raws.uniq.each.with_index do |raw, i| %>
-            <% if listed_raw_ids.include? raw.id %>
-              <% skipped_raw = true %>
-              <% next %>
-            <% end %>
-
-            <% listed_raw_ids << raw.id %>
-
-            <% alternative = !skipped_raw && i > 0 %>
-            <% ownership = ownerships.find { |o| o.raw_id == raw.id } %>
-
-            <div class="<%= 'tw-pt-2' unless alternative %>">
-              <div class="<%= 'pl-3' if alternative %>">
+        <% raws.each do |raw| %>
+          <% if raw.is_a? Hash %>
+            <% ownership = ownerships.find { |o| o.raw_id == raw["raw_id"] } %>
+            <div class="tw-pt-2">
                 <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
-                  <% if alternative %>
-                    <span class="pr-2">alebo</span>
-                  <% end %>
                   <%= check_box_tag :raw, '1', ownership && !ownership.need_buy?,
                                     class: "user-raw tw-leading-tight",
-                                    id: "id-#{raw.id}",
+                                    id: "id-#{raw['raw_id']}",
                                     data: {
-                                        raw_id: raw.id
+                                        raw_id: raw['raw_id']
                                     } %>
-                  <%= raw.name %>
+                  <%= raw['raw_name'] %>
+                  <%= "(voliteľne)" if raw['optional'] %>
                 </label>
-              </div>
             </div>
+          <% elsif raw.is_a? Array %>
+            <% raw.each.with_index do |r, i| %>
+              <% alternative = i > 0 %>
+              <% ownership = ownerships.find { |o| o.raw_id == r["raw_id"] } %>
 
-            <% skipped_raw = false %>
+              <div class="<%= 'tw-pt-2' unless alternative %>">
+                <div class="<%= 'pl-3' if alternative %>">
+                  <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
+                    <% if alternative %>
+                      <span class="pr-2">alebo</span>
+                    <% end %>
+                    <%= check_box_tag :raw, '1', ownership && !ownership.need_buy?,
+                                      class: "user-raw tw-leading-tight",
+                                      id: "id-#{r['raw_id']}",
+                                      data: {
+                                          raw_id: r['raw_id']
+                                      } %>
+                    <%= r['raw_name'] %>
+                    <%= "(voliteľne)" if r['optional'] %>
+                  </label>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>
     <% end %>
   </div>
-  <u><%= link_to "Pridať všetko do nákupného zoznamu", add_all_users_ownerships_path(food_id: @food.id), method: :post %></u>
+  <div class="tw-pt-2">
+    <u>
+      <%= link_to "Pridať všetko do nákupného zoznamu", add_all_users_ownerships_path(food_id: @food.id), method: :post %>
+    </u>
+  </div>
 </div>
 
 <script type="text/javascript">

@@ -1,4 +1,4 @@
-class AvailableFoods < ApplicationQuery
+class AvailableFoods < BaseQuery
 
   def initialize(user:, foods:)
     @user = user

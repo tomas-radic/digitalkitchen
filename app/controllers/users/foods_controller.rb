@@ -13,6 +13,7 @@ class Users::FoodsController < Users::BaseController
   end
 
   def show
+    @arranged_raws = ArrangedRaws.call(@food)
     @ownerships = current_user.ownerships.to_a
   end
 
@@ -25,6 +26,7 @@ class Users::FoodsController < Users::BaseController
 
     @ownerships = @ownerships.to_a
     @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @arranged_raws = ArrangedRaws.call(@food)
 
     respond_to do |format|
       format.js

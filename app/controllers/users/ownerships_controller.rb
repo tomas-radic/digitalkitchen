@@ -8,7 +8,7 @@ class Users::OwnershipsController < Users::BaseController
 
   def destroy
     @ownership.destroy
-    @ownerships = current_user.ownerships
+    @ownerships = current_user.ownerships.need_buy
 
     respond_to do |format|
       format.js
