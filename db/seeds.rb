@@ -46,9 +46,7 @@ ActiveRecord::Base.transaction do
           name: "Príprava mäsa",
           description: "Mäso nakrájaj na malé rezance, osoľ a obal vo vajíčkach zmiešaných so škrobovou múčkou."
       ).tap do |part|
-        part.ingredients.create!(
-            raw_category: RawCategory.where(name: "Mäsové výrobky").first_or_create!
-        ).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
 
           Alternative.create!(
               ingredient: ingredient,
@@ -93,7 +91,7 @@ ActiveRecord::Base.transaction do
           )
         end
 
-        part.ingredients.create!(raw_category: RawCategory.where(name: "Omáčky").first_or_create!).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "sojová omáčka")
@@ -133,7 +131,7 @@ ActiveRecord::Base.transaction do
           name: "Dokončenie",
           description: "Obalené mäso opraž na panvici, prihoď chilli papričky a opražené aražidy. Zalej to pripravenou omáčkou a chvíľu povar. Podávaj s ryžou, posypané sezamom."
       ).tap do |part|
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Zelenina")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "chilli papričky")
@@ -169,21 +167,21 @@ ActiveRecord::Base.transaction do
           name: "Príprava surovín",
           description: "Tu si pripravíš zeleninu a zálievku, ktorú využiješ neskôr. Papriku nakrájaj na podlhovasté slíže, cibuľu/šalotku a chilli papričky na pol/kolieska a ulož do misky. V druhej miske si priprav vo vode rozmiešanú škrobovú múčku."
       ).tap do |part|
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Zelenina")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "hrubá sladká paprika")
           )
         end
 
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Zelenina")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "chilli papričky")
           )
         end
 
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Zelenina")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "cibuľa")
@@ -207,7 +205,7 @@ ActiveRecord::Base.transaction do
           name: "Príprava mäsa",
           description: "Tu orestuješ a dochutíš mäso a zmiešaš s ostatným. Cesnak prelisuj a zmiešaj s olejom. Na woku, alebo panvici na ňom zľahka orestuj arašidy. Potom zvýš teplotu a prudšie v tom orestuj mäso, ktoré ku koncu podľa chuti osoľ a okoreň.\nPrilej škrobovú múčku zmiešanú s vodou nachystanú v miske a po chvíli aj nakrájanú zeleninu z druhej misky a chvíľu to spolu povar. Na konci do toho vmiešaj petržlenovú vňať a podávaj s ryžou."
       ).tap do |part|
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Mäsové výrobky")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "kuracie prsia")
@@ -219,7 +217,7 @@ ActiveRecord::Base.transaction do
           )
         end
 
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Zelenina")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "cesnak")
@@ -247,14 +245,14 @@ ActiveRecord::Base.transaction do
           )
         end
 
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Koreniny")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "čierne korenie")
           )
         end
 
-        part.ingredients.create!(raw_category: RawCategory.find_by!(name: "Bylinky")).tap do |ingredient|
+        part.ingredients.create!.tap do |ingredient|
           Alternative.create!(
               ingredient: ingredient,
               raw: Raw.find_by!(name: "petržlenová vňať")
