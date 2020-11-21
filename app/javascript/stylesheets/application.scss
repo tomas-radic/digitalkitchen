@@ -18,6 +18,15 @@ $font-family-base: 'Montserrat', sans-serif;
   height: 600px;
 }
 
+.display-1 {
+  font-size: 3rem;
+}
+@include media-breakpoint-up(md) {
+  .display-1 {
+    font-size: 6rem;
+  }
+}
+
 a {
   color: inherit;
 
