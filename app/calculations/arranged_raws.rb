@@ -36,9 +36,8 @@ where i2.id in (
                        group by a.ingredient_id, i.id
                        order by raw_count
                    ) as raw_counts
-    where raw_counts.raw_count = 1
-    order by i2.optional
-);
+    where raw_counts.raw_count = 1)
+order by optional;
 QUERY
 
     @single_raws ||= ActiveRecord::Base.connection.execute(query).group_by do |raw|
@@ -63,8 +62,8 @@ where ingredients.id in (
                        group by a.ingredient_id, i.id
                        order by raw_count
                    ) as raw_counts
-    where raw_counts.raw_count > 1
-);
+    where raw_counts.raw_count > 1)
+order by ingredients.optional;
 QUERY
 
     @raws_with_alternatives = {}
