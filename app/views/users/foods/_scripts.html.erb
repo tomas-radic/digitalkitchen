@@ -1,0 +1,22 @@
+<script type=text/javascript>
+  $( document ).on('turbolinks:load', function() {
+    $(function ($) {
+      $(".ios").iosCheckbox();
+    });
+
+    $("#available").change(function() {
+      var checked = $(this).next(".ios-ui-select").hasClass("checked");
+      var targetPath = "<%= users_foods_path %>" +
+          "?" +
+          $.param(
+              {
+                filter: {
+                  list: "<%= params.dig(:filter, :list) %>",
+                  available: checked
+                }
+              });
+
+      window.location.replace(targetPath);
+    });
+  });
+</script>

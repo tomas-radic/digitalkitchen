@@ -41,13 +41,30 @@ class Users::FoodsController < Users::BaseController
   end
 
   def apply_filter!
-    if listing_available_foods?
+    params[:filter] ||= {}
+
+    list_filter = params.dig(:filter, :list)
+
+    if list_filter == "mine"
+      @foods = @foods.where(owner: current_user)
+    elsif list_filter == "liked"
+      # TODO: filter user liked foods
+    end
+
+    if params.dig(:filter, :available) == "true"
       @foods = AvailableFoods.call(
           user: current_user,
           foods: @foods)
-    elsif listing_owner_foods?
-      @foods = @foods.where(owner: current_user)
     end
+
+    category_filter = params.dig(:filter, :category_id)
+
+    if category_filter
+      @foods = @foods.where(category_id: category_filter)
+    end
+
+    # params[:filter].delete_if { |key, value| value.blank? }
+    # params.delete(:filter) if params[:filter].blank?
   end
 
 end

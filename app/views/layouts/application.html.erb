@@ -15,7 +15,7 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <%= render "shared/flash_message" %>
+    <%= render "shared/flash_message" unless flash.blank? %>
     <%= yield %>
   </body>
 </html>

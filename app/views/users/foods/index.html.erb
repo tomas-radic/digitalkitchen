@@ -13,13 +13,20 @@
   </div>
 <% end %>
 <div class="container-fluid tw-mt-2 tw-py-2">
+  <div class="tw-pb-2">
+    <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
+<!--    <input type="checkbox" class="ios" id="available" checked="<%#=  ? 'checked' : 'false' %>"/>-->
+    <label class="tw-ml-2" for="available">
+      Len to, čo mám doma
+    </label>
+  </div>
   <% if @foods.any? %>
     <div class="row">
       <% @foods.each do |food| %>
         <%= render "users/foods/tile", food: food %>
       <% end %>
     </div>
-  <% elsif listing_available_foods? %>
+  <% elsif params.dig(:filter, :available) == "true" %>
     <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
       <div class="tw-container tw-mx-auto">
         <p class="text-center tw-py-8">
@@ -33,3 +40,5 @@
     <p class="text-center tw-py-8">Nie sú tu žiadne jedlá.</p>
   <% end %>
 </div>
+
+<%= render "users/foods/scripts" %>
