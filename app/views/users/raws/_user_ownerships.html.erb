@@ -32,7 +32,11 @@
     $.ajax({
       url: "/users/raws/" + $(this).data("raw-id") + "/switch_ownership/",
       dataType: 'script',
-      type: "post"
+      type: "post",
+      error: function() {
+        location.reload();
+        // $("#ownerships-wrapper .container-fluid").append("<div class='tw-text-red-500'>Došlo k chybe pri aktualizácii potravín. Reloadni túto stránku v browseri, prosím.</div>");
+      }
     });
   });
 </script>
