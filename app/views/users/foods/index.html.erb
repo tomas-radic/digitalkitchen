@@ -13,7 +13,7 @@
   </div>
 <% end %>
 <div class="container-fluid tw-mt-2 tw-py-2">
-  <div class="tw-pb-2">
+  <div class="tw-pb-2" id="available_switch">
     <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
 <!--    <input type="checkbox" class="ios" id="available" checked="<%#=  ? 'checked' : 'false' %>"/>-->
     <label class="tw-ml-2" for="available">

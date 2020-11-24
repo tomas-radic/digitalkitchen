@@ -5,7 +5,7 @@
 ActiveRecord::Base.transaction do
   # ----------------------- Users -----------------------
   puts "\nAdding users..."
-  User.where(email: "tomas.radic@gmail.com").first_or_create!(nickname: "dino")
+  User.where(email: "tomas.radic@gmail.com").first_or_create!(name: "dino")
 
 
   # ----------------------- Raws -----------------------

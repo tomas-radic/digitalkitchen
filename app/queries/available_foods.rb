@@ -6,11 +6,11 @@ class AvailableFoods < BaseQuery
   end
 
   def call
+    user_raws = @user.raws_having.to_a
+
     available_food_ids = @foods.map do |food|
-      food.id if food.ingredients.must_have.all? do |ingredient|
-        ingredient.raws.find do |raw|
-          @user.raws_having.include? raw
-        end
+      if food.ingredients.must_have.all? { |ingredient| (user_raws & ingredient.raws).any? }
+        food.id
       end
     end.compact
 
