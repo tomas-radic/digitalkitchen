@@ -6,8 +6,9 @@
 
 <p class="tw-bg-gray-200 tw-px-2 tw-py-8 text-center">
   Celkový počet zvolených jedál je <b class="dark-carrot"><%= @total_count %></b>.<br>
-  Zobrazuje sa náhodných <%= @limit %>.
+
   <% if @total_count > @limit %>
+    Zobrazuje sa náhodných <%= @limit %>.
     <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
   <% end %>
 </p>

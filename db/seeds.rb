@@ -6,6 +6,8 @@ ActiveRecord::Base.transaction do
   # ----------------------- Users -----------------------
   puts "\nAdding users..."
   User.where(email: "tomas.radic@gmail.com").first_or_create!(name: "dino", password: "asdfasdf")
+  User.where(email: "user1@gmail.com").first_or_create!(name: "user1", password: "asdfasdf")
+  User.where(email: "user2@gmail.com").first_or_create!(name: "user2", password: "asdfasdf")
 
 
   # ----------------------- Raws -----------------------
@@ -369,7 +371,7 @@ ActiveRecord::Base.transaction do
 
 
 
-  100.times do
+  40.times do
     name = Faker::Food.dish
 
     Food.create!(
