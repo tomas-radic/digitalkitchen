@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light-carrot">
-  <%= link_to users_foods_path(filter: { available: params.dig(:filter, :available) }), class: "navbar-brand" do %>
+  <%= link_to users_foods_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png", width: 30, height: 30, class: "d-inline-block align-top" %>
     <span class="pl-2">homeFOOD</span>
   <% end %>
@@ -10,58 +10,56 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Moje jedlá", users_foods_path(filter: { list: "mine", available: params.dig(:filter, :available) }), class: "nav-link" %>
-      </li>
+      <% if @categories.any? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="categories-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kategórie
+          </a>
+          <div class="dropdown-menu" aria-labelledby="categories-dropdown">
+            <% @categories.each do |category| %>
+              <%= link_to_foods label: category.name,
+                                list: category.id,
+                                css_classes: "dropdown-item" %>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to_foods label: "Moje jedlá",
+                            list: "mine",
+                            css_classes: "nav-link" %>
+        </li>
+      <% end %>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light dark-carrot my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </ul>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Špajza", users_raws_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Nákup", users_ownerships_path, class: "nav-link" %>
-      </li>
+
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Špajza", users_raws_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Nákup", users_ownerships_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="profile-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.name %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="profile-dropdown">
+            <%= link_to "Odhlásiť", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Prihlásiť sa", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
   </div>
 </nav>
-
-
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--  <a class="navbar-brand" href="#">Navbar</a>-->
-<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--    <span class="navbar-toggler-icon"></span>-->
-<!--  </button>-->
-
-<!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--    <ul class="navbar-nav mr-auto">-->
-<!--      <li class="nav-item active">-->
-<!--        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" href="#">Link</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item dropdown">-->
-<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--          Dropdown-->
-<!--        </a>-->
-<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-<!--          <a class="dropdown-item" href="#">Action</a>-->
-<!--          <a class="dropdown-item" href="#">Another action</a>-->
-<!--          <div class="dropdown-divider"></div>-->
-<!--          <a class="dropdown-item" href="#">Something else here</a>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link disabled" href="#">Disabled</a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--    <form class="form-inline my-2 my-lg-0">-->
-<!--      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</nav>-->

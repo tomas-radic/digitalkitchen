@@ -11,6 +11,6 @@ class Food < ApplicationRecord
   validates :name, presence: true
 
 
-  scope :for_all, -> { where(owner_private: false) }
+  scope :publicly_visible, -> { where(owner_private: false) }
 
 end

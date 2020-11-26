@@ -8,6 +8,7 @@ class Users::FoodsController < Users::BaseController
     @foods = Pundit.policy_scope!(current_user, Food)
                    .includes(:food_category, :raws)
 
+    @heading = "Všetky jedlá"
     apply_filter! if params[:filter]
     @total_count = @foods.count
     @limit = 30
@@ -47,22 +48,23 @@ class Users::FoodsController < Users::BaseController
 
     list_filter = params.dig(:filter, :list)
 
-    if list_filter == "mine"
+    category = FoodCategory.find_by(id: list_filter)
+
+    if category
+      @foods = @foods.where(food_category: category)
+      @heading = category.name
+    elsif list_filter == "mine"
       @foods = @foods.where(owner: current_user)
+      @heading = "Moje jedlá"
     elsif list_filter == "liked"
       # TODO: filter user liked foods
+      @heading = "Obľúbené jedlá"
     end
 
     if params.dig(:filter, :available) == "true"
       @foods = AvailableFoods.call(
           user: current_user,
           foods: @foods)
-    end
-
-    category_filter = params.dig(:filter, :category_id)
-
-    if category_filter
-      @foods = @foods.where(category_id: category_filter)
     end
 
     # params[:filter].delete_if { |key, value| value.blank? }

@@ -35,3 +35,16 @@ a {
     color: inherit;
   }
 }
+
+.center-form {
+  .form-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+@include media-breakpoint-up(sm) {
+  .center-form {
+    width: 300px;
+    margin: 0 auto;
+  }
+}

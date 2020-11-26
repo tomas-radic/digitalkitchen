@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
+    <%= @heading %>
+  </h1>
+</div>
+
+<p class="tw-bg-gray-200 tw-px-2 tw-py-8 text-center">
+  Celkový počet zvolených jedál je <b class="dark-carrot"><%= @total_count %></b>.<br>
+  Zobrazuje sa náhodných <%= @limit %>.
+  <% if @total_count > @limit %>
+    <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
+  <% end %>
+</p>
+
+<div class="container-fluid tw-mt-4">
+  <% if @foods.any? %>
+    <div class="row">
+      <% @foods.each do |food| %>
+        <%= render "foods/tile", food: food %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center tw-py-8">Nie sú tu žiadne jedlá.</p>
+  <% end %>
+</div>

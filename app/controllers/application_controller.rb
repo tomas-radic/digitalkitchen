@@ -1,9 +1,19 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  # TODO: TEMPORARY
-  helper_method :current_user
-  def current_user
-    User.first
+  before_action :load_categories
+
+  def after_sign_in_path_for(resource)
+    users_foods_path
+  end
+
+  def after_sign_out_path_for(resource)
+    foods_path
+  end
+
+  private
+
+  def load_categories
+    @categories = FoodCategory.all
   end
 end

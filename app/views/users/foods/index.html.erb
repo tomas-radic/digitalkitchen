@@ -1,50 +1,31 @@
 <div class="container-fluid">
   <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
-    <%= food_index_heading %>
+    <%= @heading %>
   </h1>
 </div>
-<% if food_index_description %>
-  <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
-    <div class="tw-container tw-mx-auto">
-      <p class="text-center tw-py-8">
-        <%= food_index_description %>
-      </p>
-    </div>
+
+<div class="tw-bg-gray-200 tw-px-2 tw-py-8 text-center">
+  <div id="available-switch">
+    <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
+    <label class="tw-ml-2" for="available">
+      Len to, čo mám doma
+    </label>
   </div>
-<% end %>
-<div class="container-fluid tw-mt-2 tw-py-2">
-  <div class="row tw-pb-4">
-    <div class="col">
-      <div id="available-switch">
-        <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
-        <label class="tw-ml-2" for="available">
-          Len to, čo mám doma
-        </label>
-      </div>
-    </div>
-    <div class="col">
-      <p>
-        Celkový počet zvolených jedál je <%= @total_count %>.
-        Zobrazuje sa náhodných <%= @limit %>.
-        <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
-      </p>
-    </div>
-  </div>
+  <p>
+    Celkový počet zvolených jedál je <b class="dark-carrot"><%= @total_count %></b>.<br>
+    Zobrazuje sa náhodných <%= @limit %>.
+    <% if @total_count > @limit %>
+      <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
+    <% end %>
+  </p>
+</div>
+
+<div class="container-fluid tw-mt-4">
   <% if @foods.any? %>
     <div class="row">
       <% @foods.each do |food| %>
         <%= render "users/foods/tile", food: food %>
       <% end %>
-    </div>
-  <% elsif params.dig(:filter, :available) == "true" %>
-    <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
-      <div class="tw-container tw-mx-auto">
-        <p class="text-center tw-py-8">
-          Žiaľ, v tejto chvíli si nemôžeš pripraviť nič, pretože ti chýbajú potraviny, ale
-          <b><%= link_to "pozri si všetky možné jedlá", users_foods_path, class: "tw-underline" %></b>
-          a pridaj si suroviny, ktoré potrebuješ, do nákupného zoznamu.
-        </p>
-      </div>
     </div>
   <% else %>
     <p class="text-center tw-py-8">Nie sú tu žiadne jedlá.</p>
