@@ -9,7 +9,9 @@ class Users::FoodsController < Users::BaseController
                    .includes(:food_category, :raws)
 
     apply_filter! if params[:filter]
-    @foods = @foods.sample(1000)
+    @total_count = @foods.count
+    @limit = 30
+    @foods = @foods.order("RANDOM()").limit(@limit)
   end
 
   def show

@@ -13,12 +13,22 @@
   </div>
 <% end %>
 <div class="container-fluid tw-mt-2 tw-py-2">
-  <div class="tw-pb-2" id="available_switch">
-    <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
-<!--    <input type="checkbox" class="ios" id="available" checked="<%#=  ? 'checked' : 'false' %>"/>-->
-    <label class="tw-ml-2" for="available">
-      Len to, čo mám doma
-    </label>
+  <div class="row tw-pb-4">
+    <div class="col">
+      <div id="available-switch">
+        <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
+        <label class="tw-ml-2" for="available">
+          Len to, čo mám doma
+        </label>
+      </div>
+    </div>
+    <div class="col">
+      <p>
+        Celkový počet zvolených jedál je <%= @total_count %>.
+        Zobrazuje sa náhodných <%= @limit %>.
+        <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
+      </p>
+    </div>
   </div>
   <% if @foods.any? %>
     <div class="row">

@@ -1,5 +1,6 @@
 <script type=text/javascript>
   $( document ).on('turbolinks:load', function() {
+
     $(function ($) {
       $(".ios").iosCheckbox();
     });
@@ -17,6 +18,10 @@
               });
 
       window.location.replace(targetPath);
+    });
+
+    $("#reload-foods-btn").click(function() {
+      location.reload();
     });
   });
 </script>
