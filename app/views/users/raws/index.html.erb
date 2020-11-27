@@ -7,7 +7,14 @@
 <div class="tw-bg-gray-200 tw-px-2 tw-py-8">
   <div class="tw-container tw-mx-auto">
     <p class="text-center tw-py-8">
-      TODO: text o spajzi...
+      Táto stránka zobrazuje všetky potraviny použité na prípravu jedál na tomto webe.
+      Zaškrtnuté potraviny máš doma, nezaškrtnuté doma nemáš. Podľa stavu potravín
+      na tejto stránke ti vieme
+      <u>
+        <%= link_to "zobraziť jedlá", users_foods_path(filter: { available: true }) %>
+      </u>
+      , ktoré si môžeš pripraviť z potravín,
+      ktoré máš teraz doma.
     </p>
   </div>
 </div>
