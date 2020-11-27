@@ -9,7 +9,7 @@
       <div class="tw-uppercase tw-tracking-wide tw-text-sm tw-text-indigo-600 tw-font-bold"><%= food.food_category.name %></div>
       <%= link_to food.name, food_path(food), class: "tw-block tw-mt-1 tw-text-lg tw-leading-tight tw-font-extrabold tw-text-gray-900 hover:tw-underline" %>
       <p class="tw-mt-2 tw-text-gray-600">
-        <%= food_about_text food %>
+        <%= food_about_text(food)[0...180] %>
       </p>
     </div>
   </div>
