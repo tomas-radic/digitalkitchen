@@ -20,8 +20,8 @@
           <% raws.each do |raw| %>
             <% if raw.is_a? Hash %>
               <div class="tw-pt-2 tw-my-0">
-                <%= raw['raw_name'] %>
-                <%= "(voliteľne)" if raw['optional'] %>
+                <%= raw[:raw_name] %>
+                <%= "(voliteľne)" if raw[:optional] %>
               </div>
             <% elsif raw.is_a? Array %>
               <% raw.each.with_index do |r, i| %>
@@ -32,8 +32,8 @@
                     <% if alternative %>
                       <span class="pr-2">alebo</span>
                     <% end %>
-                    <%= r['raw_name'] %>
-                    <%= "(voliteľne)" if r['optional'] %>
+                    <%= r[:raw_name] %>
+                    <%= "(voliteľne)" if r[:optional] %>
                   </div>
                 </div>
               <% end %>

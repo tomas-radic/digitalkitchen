@@ -6,6 +6,17 @@ class Users::OwnershipsController < Users::BaseController
     @ownerships = current_user.ownerships.need_buy
   end
 
+  def create
+    current_user.ownerships.where(whitelisted_params).first_or_create!
+
+    @raws = Pundit.policy_scope!(current_user, Raw).distinct
+    @ownerships = current_user.ownerships.to_a
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def destroy
     @ownership.destroy
     @ownerships = current_user.ownerships.need_buy

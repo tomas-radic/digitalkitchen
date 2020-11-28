@@ -11,23 +11,23 @@
         <div class="tw-text-yellow-800 tw-text-sm">
           <% raws.each do |raw| %>
             <% if raw.is_a? Hash %>
-              <% ownership = ownerships.find { |o| o.raw_id == raw["raw_id"] } %>
+              <% ownership = ownerships.find { |o| o.raw_id == raw[:raw_id] } %>
               <div class="tw-pt-2">
                   <label class="tw-my-0">
                     <%= check_box_tag :raw, '1', ownership && !ownership.need_buy?,
                                       class: "user-raw tw-leading-tight",
-                                      id: "id-#{raw['raw_id']}",
+                                      id: "id-#{raw[:raw_id]}",
                                       data: {
-                                          raw_id: raw['raw_id']
+                                          raw_id: raw[:raw_id]
                                       } %>
-                    <%= raw['raw_name'] %>
-                    <%= "(voliteľne)" if raw['optional'] %>
+                    <%= raw[:raw_name] %>
+                    <%= "(voliteľne)" if raw[:optional] %>
                   </label>
               </div>
             <% elsif raw.is_a? Array %>
               <% raw.each.with_index do |r, i| %>
                 <% alternative = i > 0 %>
-                <% ownership = ownerships.find { |o| o.raw_id == r["raw_id"] } %>
+                <% ownership = ownerships.find { |o| o.raw_id == r[:raw_id] } %>
 
                 <div class="<%= 'tw-pt-2' unless alternative %>">
                   <div class="<%= 'pl-3' if alternative %>">
@@ -37,12 +37,12 @@
                       <% end %>
                       <%= check_box_tag :raw, '1', ownership && !ownership.need_buy?,
                                         class: "user-raw tw-leading-tight",
-                                        id: "id-#{r['raw_id']}",
+                                        id: "id-#{r[:raw_id]}",
                                         data: {
-                                            raw_id: r['raw_id']
+                                            raw_id: r[:raw_id]
                                         } %>
-                      <%= r['raw_name'] %>
-                      <%= "(voliteľne)" if r['optional'] %>
+                      <%= r[:raw_name] %>
+                      <%= "(voliteľne)" if r[:optional] %>
                     </label>
                   </div>
                 </div>

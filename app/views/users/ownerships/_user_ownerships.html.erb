@@ -19,7 +19,7 @@
                                 } %>
               <%= ownership.raw.name %>
             </label>
-            <%= link_to users_ownership_path(ownership), class: "float-right", method: :delete, remote: true, data: { confirm: "Zmazať?" } do %>
+            <%= link_to users_ownership_path(ownership), class: "float-right", method: :delete, remote: true, data: { confirm: "Naozaj nechceš kúpiť #{ownership.raw.name}?" } do %>
               <%= image_tag "cancel.png", width: 15, height: 15 %>
             <% end %>
           </div>

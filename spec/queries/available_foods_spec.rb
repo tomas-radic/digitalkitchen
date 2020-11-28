@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe AvailableFoods, type: :model do
   subject { described_class.call(user: user, foods: Food.all) }
 
-  let!(:raw1) { create(:raw) }
-  let!(:raw2) { create(:raw) }
-  let!(:raw3) { create(:raw) }
-  let!(:raw4) { create(:raw) }
+  let!(:raw1) { create(:raw, name: "raw1") }
+  let!(:raw2) { create(:raw, name: "raw2") }
+  let!(:raw3) { create(:raw, name: "raw3") }
+  let!(:raw4) { create(:raw, name: "raw4") }
 
   let!(:user) { create(:user) }
 

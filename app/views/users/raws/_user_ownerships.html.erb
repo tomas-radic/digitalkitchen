@@ -20,6 +20,11 @@
                                 } %>
               <%= raw.name %>
             </label>
+            <% unless ownership %>
+              <%= link_to users_ownerships_path(ownership: { raw_id: raw.id, need_buy: true }), class: "float-right", method: :post, remote: true do %>
+                <%= image_tag "add.png", width: 15, height: 15 %>
+              <% end %>
+            <% end %>
           </div>
         <% end %>
       </div>
