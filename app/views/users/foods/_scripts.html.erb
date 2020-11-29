@@ -5,6 +5,7 @@
       $(".ios").iosCheckbox();
     });
 
+
     $("#available").change(function() {
       var checked = $(this).next(".ios-ui-select").hasClass("checked");
       var targetPath = "<%= users_foods_path %>" +
@@ -17,7 +18,13 @@
                 }
               });
 
-      window.location.replace(targetPath);
+      setTimeout(
+          function() {
+            window.location.replace(targetPath)
+          },
+          400
+      );
+
     });
 
     $("#reload-foods-btn").click(function() {
