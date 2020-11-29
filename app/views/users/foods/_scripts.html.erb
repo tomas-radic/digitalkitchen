@@ -18,7 +18,7 @@
                 }
               });
 
-      $("#page-description").addClass("loading-now");
+      $("#loader").addClass("loader");
       setTimeout(
           function() {
             window.location.replace(targetPath)
@@ -27,6 +27,7 @@
       );
 
     });
+
 
     $("#reload-foods-btn").click(function() {
       location.reload();
