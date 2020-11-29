@@ -48,3 +48,20 @@ a {
     margin: 0 auto;
   }
 }
+
+@keyframes loading {
+  from {
+    background-color: rgba(237, 242, 247, var(--bg-opacity));
+  }
+
+  to {
+    background-color: white;
+  }
+}
+
+.loading-now {
+  animation-duration: 1200ms;
+  animation-name: loading;
+  animation-iteration-count: 30;
+  animation-direction: alternate;
+}
