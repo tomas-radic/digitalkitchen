@@ -21,6 +21,7 @@ $font-family-base: 'Montserrat', sans-serif;
 
 .display-1 {
   font-size: 3rem;
+  overflow-x: scroll;
 }
 @include media-breakpoint-up(md) {
   .display-1 {
