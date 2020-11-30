@@ -5,7 +5,7 @@
 </div>
 
 <div id="loader" class="bg-light-carrot"></div>
-<div id="page-description" class="tw-bg-gray-200 tw-px-2 tw-py-8 text-center">
+<div id="page-description" class="tw-bg-gray-200 tw-px-2 py-4 text-center">
   <div id="available-switch">
     <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
     <label class="tw-ml-2" for="available">
