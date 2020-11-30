@@ -1,0 +1,147 @@
+{
+  "name": "Kung Pao",
+  "description": null,
+  "category": "Ázijská kuchyňa",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava mäsa",
+      "description": "Mäso nakrájaj na malé rezance, osoľ a obal vo vajíčkach zmiešaných so škrobovou múčkou.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "kuracie prsia",
+              "amount": null
+            },
+            {
+              "name": "morčacie prsia",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "vajcia",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "škrobová múčka",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Omáčka",
+      "description": "V miske zmiešaj kurací vývar, sojovú omáčku, trochu cukru, soli, víno a trochu škrobu.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "kurací vývar",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "sojová omáčka",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cukor",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "dezertné víno",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "škrobová múčka",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dokončenie",
+      "description": "Obalené mäso opraž na panvici, prihoď chilli papričky a opražené aražidy. Zalej to pripravenou omáčkou a chvíľu povar. Podávaj s ryžou, posypané sezamom.",
+      "ingredients": [
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "chilli papričky",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "arašidy",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "sezam",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
