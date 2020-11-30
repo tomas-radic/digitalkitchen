@@ -5,7 +5,7 @@ module FoodsHelper
   end
 
 
-  def link_to_foods(label:, list: nil, css_classes: nil)
+  def link_to_foods(label:, list: nil, css_classes: nil, &block)
     filter = { filter: { list: list } }
     path = if user_signed_in?
              users_foods_path(filter)
@@ -13,7 +13,12 @@ module FoodsHelper
              foods_path(filter)
            end
 
-    link_to label, path, class: css_classes
+    if block_given?
+      link_to path, class: css_classes, &block
+    else
+      link_to label, path, class: css_classes
+    end
+
   end
 
 end

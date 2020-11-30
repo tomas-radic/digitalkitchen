@@ -17,5 +17,14 @@
     <%= render "shared/navbar" %>
     <%= render "shared/flash_message" unless flash.blank? %>
     <%= yield %>
+
+    <script type="text/javascript">
+      $(document).on('turbolinks:load', function() {
+        $(".runs-spinner").click(function() {
+          $("#loader").addClass("loader");
+        });
+      });
+
+    </script>
   </body>
 </html>
