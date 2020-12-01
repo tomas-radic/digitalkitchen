@@ -3,7 +3,7 @@ class Users::OwnershipsController < Users::BaseController
   before_action :load_ownership, only: [:update, :destroy]
 
   def index
-    @ownerships = current_user.ownerships.need_buy
+    @ownerships = current_user.ownerships.need_buy.joins(:raw).order("raws.name")
   end
 
   def create
@@ -32,7 +32,7 @@ class Users::OwnershipsController < Users::BaseController
 
     super
 
-    @ownerships = @ownerships.need_buy
+    @ownerships = @ownerships.need_buy.joins(:raw).order("raws.name")
 
     respond_to do |format|
       format.js

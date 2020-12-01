@@ -1,7 +1,7 @@
 class Users::RawsController < Users::BaseController
 
   def index
-    @raws = Pundit.policy_scope!(current_user, Raw).distinct
+    @raws = Pundit.policy_scope!(current_user, Raw).distinct.order(:name)
     @ownerships = current_user.ownerships.to_a
   end
 
@@ -12,7 +12,7 @@ class Users::RawsController < Users::BaseController
     super
 
     @ownerships = @ownerships.to_a
-    @raws = Pundit.policy_scope!(current_user, Raw).distinct
+    @raws = Pundit.policy_scope!(current_user, Raw).distinct.order(:name)
 
     respond_to do |format|
       format.js

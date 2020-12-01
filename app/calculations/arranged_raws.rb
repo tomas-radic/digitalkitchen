@@ -73,9 +73,9 @@ class ArrangedRaws < BaseCalculation
     ingredient_ids = ActiveRecord::Base.connection.execute(ingredients_query.gsub("<operator>", "="))
     @single_ingredients = @food.ingredients
                               .where(id: ingredient_ids.map { |id| id["id"] })
-                              .order(:optional)
                               .joins(:raws)
-                              .includes(:raws).group_by do |ingredient|
+                              .includes(:raws)
+                              .order("ingredients.optional, raws.name").group_by do |ingredient|
       ingredient.raws.first.raw_category&.name
     end
   end
@@ -86,10 +86,10 @@ class ArrangedRaws < BaseCalculation
 
     ingredient_ids = ActiveRecord::Base.connection.execute(ingredients_query.gsub("<operator>", ">"))
     @alternative_ingredients = @food.ingredients
-                      .where(id: ingredient_ids.map { |id| id["id"] })
-                      .order(:optional)
-                      .joins(:raws)
-                      .includes(:raws).group_by do |ingredient|
+                                   .where(id: ingredient_ids.map { |id| id["id"] })
+                                   .joins(:raws)
+                                   .includes(:raws)
+                                   .order("ingredients.optional, raws.name").group_by do |ingredient|
       ingredient.alternatives.find_by(position: 1).raw.raw_category&.name
     end
   end
