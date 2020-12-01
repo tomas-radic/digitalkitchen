@@ -6,13 +6,15 @@ ActiveRecord::Base.transaction do
   # ----------------------- Users -----------------------
   puts "\nAdding users..."
   User.where(email: "tomas.radic@gmail.com").first_or_create!(name: "dino", password: "asdfasdf")
-  User.where(email: "user1@gmail.com").first_or_create!(name: "user1", password: "asdfasdf")
-  User.where(email: "user2@gmail.com").first_or_create!(name: "user2", password: "asdfasdf")
 
 
   # ------------------ Food Categories -----------------
   puts "\nAdding food categories..."
-  categories = ["Ázijská kuchyňa", "Talianska kuchyňa"]
+  categories = [
+      "Ázijská kuchyňa",
+      "Talianska kuchyňa"
+  ]
+
   categories.each do |name|
     FoodCategory.where(name: name).first_or_create!
   end
@@ -43,385 +45,55 @@ ActiveRecord::Base.transaction do
   end
 
 
-  # ----------------------- Foods -----------------------
-  # puts "\nAdding foods..."
-  # name = "Kung Pao"
-  # unless Food.find_by(name: name)
-  #   Food.create!(
-  #       name: name,
-  #       food_category: FoodCategory.where(name: "Ázijská kuchyňa").first_or_create!,
-  #       owner: User.all.sample
-  #   ).tap do |food|
-  #
-  #     food.parts.create!(
-  #         name: "Príprava mäsa",
-  #         description: "Mäso nakrájaj na malé rezance, osoľ a obal vo vajíčkach zmiešaných so škrobovou múčkou."
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "kuracie prsia")
-  #         )
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "morčacie prsia")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "soľ")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "vajcia")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "škrobová múčka")
-  #         )
-  #       end
-  #     end
-  #
-  #     food.parts.create!(
-  #         name: "Omáčka",
-  #         description: "V miske zmiešaj kurací vývar, sojovú omáčku, trochu cukru, soli, víno a trochu škrobu."
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "kurací vývar")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "sojová omáčka")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "cukor")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "soľ")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "dezertné víno")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw:Raw.find_by!(name: "škrobová múčka")
-  #         )
-  #       end
-  #     end
-  #
-  #     food.parts.create!(
-  #         name: "Dokončenie",
-  #         description: "Obalené mäso opraž na panvici, prihoď chilli papričky a opražené aražidy. Zalej to pripravenou omáčkou a chvíľu povar. Podávaj s ryžou, posypané sezamom."
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "chilli papričky")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "arašidy")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!(optional: true).tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "sezam")
-  #         )
-  #       end
-  #     end
-  #   end
-  # end
-  #
-  # name = "Čína"
-  # unless Food.find_by(name: name)
-  #   Food.create!(
-  #       name: name,
-  #       food_category: FoodCategory.where(name: "Ázijská kuchyňa").first_or_create!,
-  #       owner: User.all.sample
-  #   ).tap do |food|
-  #
-  #     food.parts.create!(
-  #         name: "Príprava surovín",
-  #         description: "Tu si pripravíš zeleninu a zálievku, ktorú využiješ neskôr. Papriku nakrájaj na podlhovasté slíže, cibuľu/šalotku a chilli papričky na pol/kolieska a ulož do misky. V druhej miske si priprav vo vode rozmiešanú škrobovú múčku."
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "hrubá sladká paprika")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "chilli papričky")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "cibuľa")
-  #         )
-  #
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "šalotka")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "škrobová múčka")
-  #         )
-  #       end
-  #     end
-  #
-  #     food.parts.create!(
-  #         name: "Príprava mäsa",
-  #         description: "Tu orestuješ a dochutíš mäso a zmiešaš s ostatným. Cesnak prelisuj a zmiešaj s olejom. Na woku, alebo panvici na ňom zľahka orestuj arašidy. Potom zvýš teplotu a prudšie v tom orestuj mäso, ktoré ku koncu podľa chuti osoľ a okoreň.\nPrilej škrobovú múčku zmiešanú s vodou nachystanú v miske a po chvíli aj nakrájanú zeleninu z druhej misky a chvíľu to spolu povar. Na konci do toho vmiešaj petržlenovú vňať a podávaj s ryžou."
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "kuracie prsia")
-  #         )
-  #
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "morčacie prsia")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "cesnak")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "arašidy")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "olej")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "soľ")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "čierne korenie")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "petržlenová vňať")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "ryža")
-  #         )
-  #       end
-  #     end
-  #   end
-  # end
-  #
-  #
-  # name = "Špagety Carbonara"
-  # unless Food.find_by(name: name)
-  #   Food.create!(
-  #       name: name,
-  #       food_category: FoodCategory.where(name: "Talianska kuchyňa").first_or_create!,
-  #       owner: User.all.sample
-  #   ).tap do |food|
-  #
-  #     food.parts.create!(
-  #         name: "Príprava omáčky",
-  #         description: "Tu si pripravíš omáčku, s ktorou nakoniec špagety zmiešaš. Na dve porcie budeš potrebovať dve vajíčka a dve žĺtka (bielka si môžeš odložiť na raňajkové účely :->). V hlbokom tanieri rozšlahaj dve vajíčka a dve žĺtka, zmiešaj so soľou a čerstvo podrveným čiernym korením. Do druhej misky si na jemno nastrúhaj syr (parmezán, alebo pecorino). Časť z tohto syra vmiešaj do rozšlahaných vajíčok a časť si nechaj na posyp hotového jedla. Množstvo syra na zmiešanie s vajíčkami si najlepšie vychytáš praxou, dovtedy použi zdravý odhad :->"
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "parmezán")
-  #         )
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "pecorino")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "vajcia")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "soľ")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "čierne korenie")
-  #         )
-  #       end
-  #     end
-  #
-  #     food.parts.create!(
-  #         name: "Základ",
-  #         description: "Tu si pripravíš špagetový základ tohto jedla. Cesnak nakrájaj na kolieska a slaninu/pancettu na malé kocky. Obe opraž vo väčšej panvici/nádobe na miernom ohni v minime oleja (olej niekedy nahradí aj tuk zo slaniny/pancetty). V tejto panvici budeš neskôr všetko zmiešavať. Medzitým uvar špagety podľa pokynov na obale a uvarené ich zmiešaj v panvici s cesnakom a slaninou/pancettou. Teraz zníž teplotu a počkaj kým panvica trochu vychladne. Potom do nej prilej obsah misky s vajíčkami a celé to zmiešaj. V tejto fáze reguluj teplotu tak, aby omáčka obalila špagety a pozvolna mierne hustla. Pozor na príliš vysoké teploty, menej je viac ;-) Hotové špagety až na tanieroch posyp zvyškom nastrúhaného syra."
-  #     ).tap do |part|
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "špagety")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "anglická slanina")
-  #         )
-  #
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "oravská slanina")
-  #         )
-  #
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "pancetta")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!.tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "cesnak")
-  #         )
-  #       end
-  #
-  #       part.ingredients.create!(optional: true).tap do |ingredient|
-  #         Alternative.create!(
-  #             ingredient: ingredient,
-  #             raw: Raw.find_by!(name: "olej")
-  #         )
-  #       end
-  #     end
-  #   end
-  # end
-  #
-  #
-  #
-  #
-  #
-  #
-  # # Random foods generator
-  # 5.times do
-  #   FoodCategory.where(name: Faker::Lorem.words(number: 1..2).join(' ')).first_or_create!
-  # end
-  # 40.times do
-  #   name = Faker::Food.dish
-  #
-  #   Food.create!(
-  #       name: name,
-  #       food_category: FoodCategory.all.sample,
-  #       owner: User.all.sample
-  #   ).tap do |food|
-  #
-  #     rand(1..3).times do
-  #       food.parts.create!(
-  #           name: Faker::Lorem.words(number: 1..3).join(' '),
-  #           description: Faker::Lorem.sentences(number: 5..20).join(' ')
-  #       ).tap do |part|
-  #
-  #         ingredients_count = rand(4..8)
-  #
-  #         ingredients_count.times do
-  #           optional = rand(1..10) > 8
-  #           part.ingredients.create!(optional: optional).tap do |ingredient|
-  #             n = rand(1..10)
-  #             alternatives_count = if n > 9
-  #                                    3
-  #                                  elsif n > 8
-  #                                    2
-  #                                  else
-  #                                    1
-  #                                  end
-  #
-  #             alternatives_count.times do
-  #               Alternative.create!(
-  #                   ingredient: ingredient,
-  #                   raw: Raw.all.sample
-  #               )
-  #             end
-  #           end
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+  # ------------------ Random foods generator ------------------
+  puts "\nAdding foods..."
+  foods_to_generate = 32
+
+  5.times do
+    FoodCategory.where(name: Faker::Lorem.words(number: 1..2).join(' ')).first_or_create!
+  end
+
+  foods_to_generate.times do
+    name = Faker::Food.dish
+
+    Food.create!(
+        name: name,
+        food_category: FoodCategory.all.sample,
+        owner: User.all.sample
+    ).tap do |food|
+
+      rand(1..3).times do
+        food.parts.create!(
+            name: Faker::Lorem.words(number: 1..3).join(' '),
+            description: Faker::Lorem.sentences(number: 5..20).join(' ')
+        ).tap do |part|
+
+          ingredients_count = rand(4..8)
+
+          ingredients_count.times do
+            optional = rand(1..10) > 8
+            part.ingredients.create!(optional: optional).tap do |ingredient|
+              n = rand(1..10)
+              alternatives_count = if n > 9
+                                     3
+                                   elsif n > 8
+                                     2
+                                   else
+                                     1
+                                   end
+
+              alternatives_count.times do
+                Alternative.create!(
+                    ingredient: ingredient,
+                    raw: Raw.all.sample
+                )
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 
 
   puts "\nDone."

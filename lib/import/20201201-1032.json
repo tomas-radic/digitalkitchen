@@ -1,0 +1,104 @@
+{
+  "name": "Špagety Carbonara",
+  "description": null,
+  "category": "Talianska kuchyňa",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava omáčky",
+      "description": "Tu si pripravíš omáčku, s ktorou nakoniec špagety zmiešaš. Na dve porcie budeš potrebovať dve vajíčka a dve žĺtka (bielka si môžeš odložiť na raňajkové účely :->). V hlbokom tanieri rozšlahaj dve vajíčka a dve žĺtka, zmiešaj so soľou a čerstvo podrveným čiernym korením. Do druhej misky si na jemno nastrúhaj syr (parmezán, alebo pecorino). Časť z tohto syra vmiešaj do rozšlahaných vajíčok a časť si nechaj na posyp hotového jedla. Množstvo syra na zmiešanie s vajíčkami si najlepšie vychytáš praxou, dovtedy použi zdravý odhad :->",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "parmezán",
+              "amount": null
+            },
+            {
+              "name": "pecorino",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "vajcia",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "čierne korenie",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Základ",
+      "description": "Tu si pripravíš špagetový základ tohto jedla. Cesnak nakrájaj na kolieska a slaninu/pancettu na malé kocky. Obe opraž vo väčšej panvici/nádobe na miernom ohni v minime oleja (olej niekedy nahradí aj tuk zo slaniny/pancetty). V tejto panvici budeš neskôr všetko zmiešavať. Medzitým uvar špagety podľa pokynov na obale a uvarené ich zmiešaj v panvici s cesnakom a slaninou/pancettou. Teraz zníž teplotu a počkaj kým panvica trochu vychladne. Potom do nej prilej obsah misky s vajíčkami a celé to zmiešaj. V tejto fáze reguluj teplotu tak, aby omáčka obalila špagety a pozvolna mierne hustla. Pozor na príliš vysoké teploty, menej je viac ;-) Hotové špagety až na tanieroch posyp zvyškom nastrúhaného syra.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "špagety",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "anglická slanina",
+              "amount": null
+            },
+            {
+              "name": "oravská slanina",
+              "amount": null
+            },
+            {
+              "name": "pancetta",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cesnak",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "olej",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

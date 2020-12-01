@@ -1,12 +1,58 @@
 {
-  "name": "Kung Pao",
+  "name": "Čína",
   "description": null,
   "category": "Ázijská kuchyňa",
   "owner": "tomas.radic@gmail.com",
   "parts": [
     {
+      "name": "Príprava surovín",
+      "description": "Tu si pripravíš zeleninu a zálievku - tie potom využiješ neskôr. Papriku nakrájaj na podlhovasté slíže, cibuľu/šalotku a chilli papričky na pol/kolieska a ulož do misky. V druhej miske si priprav vo vode rozmiešanú škrobovú múčku.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "hrubá sladká paprika",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "chilli papričky",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cibuľa",
+              "amount": null
+            },
+            {
+              "name": "šalotka",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "škrobová múčka",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Príprava mäsa",
-      "description": "Mäso nakrájaj na malé rezance, osoľ a obal vo vajíčkach zmiešaných so škrobovou múčkou.",
+      "description": "Tu orestuješ a dochutíš mäso a zmiešaš s ostatným. Cesnak prelisuj a zmiešaj s olejom. Na woku, alebo panvici na ňom zľahka orestuj arašidy. Potom zvýš teplotu a prudšie v tom orestuj mäso, ktoré ku koncu podľa chuti osoľ a okoreň.\\nPrilej škrobovú múčku zmiešanú s vodou nachystanú v miske a po chvíli aj nakrájanú zeleninu z druhej misky a chvíľu to spolu povar. Na konci do toho vmiešaj petržlenovú vňať a podávaj s ryžou.",
       "ingredients": [
         {
           "optional": false,
@@ -25,100 +71,7 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "soľ",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "vajcia",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "škrobová múčka",
-              "amount": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Omáčka",
-      "description": "V miske zmiešaj kurací vývar, sojovú omáčku, trochu cukru, soli, víno a trochu škrobu.",
-      "ingredients": [
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "kurací vývar",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "sojová omáčka",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "cukor",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "soľ",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": true,
-          "alternatives": [
-            {
-              "name": "dezertné víno",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "škrobová múčka",
-              "amount": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Dokončenie",
-      "description": "Obalené mäso opraž na panvici, prihoď chilli papričky a opražené arašidy. Zalej to pripravenou omáčkou a chvíľu povar. Podávaj s ryžou, posypané sezamom.",
-      "ingredients": [
-        {
-          "optional": true,
-          "alternatives": [
-            {
-              "name": "chilli papričky",
+              "name": "cesnak",
               "amount": null
             }
           ]
@@ -133,10 +86,37 @@
           ]
         },
         {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "olej",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "čierne korenie",
+              "amount": null
+            }
+          ]
+        },
+        {
           "optional": true,
           "alternatives": [
             {
-              "name": "sezam",
+              "name": "petržlenová vňať",
               "amount": null
             }
           ]
