@@ -34,6 +34,7 @@ namespace :data do
         ],
         "Mäsové výrobky" => [
             "anglická slanina",
+            "bravčová panenka",
             "kuracie prsia",
             "morčacie prsia",
             "oravská slanina",
@@ -50,6 +51,7 @@ namespace :data do
         "Zelenina" => [
             "baklažán",
             "bambusové výhonky",
+            "batáty",
             "cesnak",
             "cibuľa",
             "chilli papričky",
@@ -58,7 +60,8 @@ namespace :data do
             "hrubá sladká paprika",
             "šalotka",
             "šampióny",
-            "zázvor"
+            "zázvor",
+            "zemiaky"
         ],
         nil => [
             "arašidy",
@@ -68,8 +71,11 @@ namespace :data do
             "červená kari pasta",
             "dezertné víno",
             "kokosové mlieko",
+            "kukuričky v konzerve",
             "kurací vývar",
             "olej",
+            "olivový olej",
+            "paradajkový pretlak",
             "ryža",
             "sezam",
             "soľ",

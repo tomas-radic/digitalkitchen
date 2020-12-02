@@ -1,0 +1,107 @@
+{
+  "name": "Bravčové švejžužu",
+  "description": "Šťavnaté bravčové mäso v omáčke s kukuričkami.",
+  "category": "Európska kuchyňa",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava",
+      "description": "Cibuľu nakrájaj na pol/kolieska, cesnak na malé kolieska. Bravčovú panenku si nakrájaj na podlhovasté slíže. Čierne a zelené korenie podrv, chilli papričky nakrájaj na drobno. Na panvici/woku najprv opraž cibuľku, ku koncu pridaj aj cesnak. Zvýš teplotu a prihoď do panvice s opraženou cibuľkou panenku a prudšie ju opraž, ku koncu ju osoľ a okoreň rozdrveným čiernym a/alebo zeleným korením. Prilej do toho paradajkový pretlak a kukuričky a nadrobno nakrájané chilli papričky. Všetko rozmiešaj a nechaj chvíľu variť. Podávaj s pečenými zemiakmi, alebo batátmi.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "bravčová panenka",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "paradajkový pretlak",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "kukuričky v konzerve",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cesnak",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "chilli papričky",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "čierne korenie",
+              "amount": null
+            },
+            {
+              "name": "zelené korenie",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "olivový olej",
+              "amount": null
+            },
+            {
+              "name": "olej",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "zemiaky",
+              "amount": null
+            },
+            {
+              "name": "batáty",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
