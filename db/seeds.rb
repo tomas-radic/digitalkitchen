@@ -6,9 +6,11 @@ ActiveRecord::Base.transaction do
 
   # ------------------ Random foods generator ------------------
   puts "\nAdding random fake foods..."
-  foods_to_generate = 32
+  foods_to_generate = 200
 
-  ((foods_to_generate / 4) + 1).times do
+  categories_to_generate = (foods_to_generate / 20) + 1
+  categories_to_generate = 5 if categories_to_generate > 5
+  categories_to_generate.times do
     FoodCategory.where(name: Faker::Lorem.words(number: 1..2).join(' ')).first_or_create!
   end
 

@@ -70,7 +70,7 @@ class ArrangedRaws < BaseCalculation
   def single_ingredients
     return @single_ingredients if @single_ingredients
 
-    ingredient_ids = ActiveRecord::Base.connection.execute(ingredients_query.gsub("<operator>", "="))
+    ingredient_ids = ActiveRecord::Base.connection.execute(ingredients_query(filter: :single))
     @single_ingredients = @food.ingredients
                               .where(id: ingredient_ids.map { |id| id["id"] })
                               .joins(:raws)
@@ -84,7 +84,7 @@ class ArrangedRaws < BaseCalculation
   def alternative_ingredients
     return @alternative_ingredients if @alternative_ingredients
 
-    ingredient_ids = ActiveRecord::Base.connection.execute(ingredients_query.gsub("<operator>", ">"))
+    ingredient_ids = ActiveRecord::Base.connection.execute(ingredients_query(filter: :alternative))
     @alternative_ingredients = @food.ingredients
                                    .where(id: ingredient_ids.map { |id| id["id"] })
                                    .joins(:raws)
@@ -94,7 +94,14 @@ class ArrangedRaws < BaseCalculation
     end
   end
 
-  def ingredients_query
+  def ingredients_query(filter: :single)
+    return '' unless filter.in? [:single, :alternative]
+    operator = case filter
+               when :single
+                 '='
+               when :alternative
+                 '>'
+               end
     <<QUERY
 select id from (
                    select
@@ -107,7 +114,7 @@ select id from (
                    group by a.ingredient_id, i.id
                    order by raw_count
                ) as raw_counts
-where raw_counts.raw_count <operator> 1;
+where raw_counts.raw_count #{operator} 1;
 QUERY
   end
 end
