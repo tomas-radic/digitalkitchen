@@ -1,12 +1,12 @@
 {
-  "name": "Kung Pao",
+  "name": "Thajské červené kari",
   "description": null,
   "category": "Ázijská kuchyňa",
   "owner": "tomas.radic@gmail.com",
   "parts": [
     {
-      "name": "Príprava mäsa",
-      "description": "Na panvici si orestuj arašidy a odlož ich. Mäso nakrájaj na malé rezance, osoľ a obal vo vajíčkach zmiešaných so škrobovou múčkou.",
+      "name": "Príprava",
+      "description": "Zeleninu si nakrájaj, chilli papričky na malé kolieska/kúsky, ostatnú zeleninu a šampióny na väčšie kusy (podľa preferencie). Chilli papričky si nechaj bokom, ostatné zatiaľ ulož do misky na neskôr. Mäso nakrájaj na kúsky a ulož do druhej misky. Na panvici osmaž červenú kari pastu a prihoď k nej mäso, na vyššej teplote ho opraž. Potom ho zalej kokosovým mliekom a chvíľu ho v ňom povar. Pridaj všetku nakrájanú zeleninu a znova chvíľu povar. Na konci to dochuť rybacou omáčkou, citrónovou šťavou, alebo trávou, chilli papričkami a cukrom. Keď je to hotové vmiešaj do toho koriander. Podávaj s ryžou.",
       "ingredients": [
         {
           "optional": false,
@@ -25,7 +25,7 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "soľ",
+              "name": "červená kari pasta",
               "amount": null
             }
           ]
@@ -34,7 +34,7 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "vajcia",
+              "name": "kokosové mlieko",
               "amount": null
             }
           ]
@@ -43,22 +43,7 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "škrobová múčka",
-              "amount": null
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Omáčka",
-      "description": "V miske zmiešaj kurací vývar, sojovú omáčku, trochu cukru, soli, víno a trochu škrobovej múčky.",
-      "ingredients": [
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "kurací vývar",
+              "name": "rybacia omáčka",
               "amount": null
             }
           ]
@@ -67,25 +52,7 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "sojová omáčka",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "cukor",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "soľ",
+              "name": "hrubá červená paprika",
               "amount": null
             }
           ]
@@ -94,7 +61,7 @@
           "optional": true,
           "alternatives": [
             {
-              "name": "dezertné víno",
+              "name": "bambusové výhonky",
               "amount": null
             }
           ]
@@ -103,17 +70,11 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "škrobová múčka",
+              "name": "šampióny",
               "amount": null
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "Dokončenie",
-      "description": "Obalené mäso opraž na panvici, prihoď chilli papričky a opražené arašidy. Zalej to pripravenou omáčkou a chvíľu povar. Podávaj s ryžou, posypané sezamom.",
-      "ingredients": [
+        },
         {
           "optional": true,
           "alternatives": [
@@ -127,7 +88,42 @@
           "optional": false,
           "alternatives": [
             {
-              "name": "arašidy",
+              "name": "trstinový cukor",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "citrónová tráva",
+              "amount": null
+            },
+            {
+              "name": "citrónová šťava",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "zázvor",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cuketa",
+              "amount": null
+            },
+            {
+              "name": "baklažán",
               "amount": null
             }
           ]
@@ -136,7 +132,7 @@
           "optional": true,
           "alternatives": [
             {
-              "name": "sezam",
+              "name": "koriander",
               "amount": null
             }
           ]

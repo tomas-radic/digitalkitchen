@@ -20,7 +20,7 @@ class ImportFood < BaseService
         food = Food.create!(
             name: food_json["name"],
             description: food_json["description"],
-            food_category: FoodCategory.find_by!(name: food_json["category"]),
+            food_category: FoodCategory.where(name: food_json["category"]).first_or_create!,
             owner: User.find_by!(email: food_json["owner"]),
             owner_private: food_json["owner_private"] || false
         )
