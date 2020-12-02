@@ -6,7 +6,7 @@ namespace :import do
     file_path = Rails.root.join("lib", "import", "#{args[:food_json_id]}.json")
     result = ImportFood.call(file_path)
 
-    if result.is_a? Food
+    if result.is_a?(Food) && result.persisted?
       puts "Food created!\n#{Rails.application.routes.url_helpers.food_path(result)}"
     else
       puts "Error while creating food\n#{result}"
