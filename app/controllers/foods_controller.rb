@@ -17,7 +17,7 @@ class FoodsController < ApplicationController
 
   def show
     redirect_to users_food_path(@food) and return if user_signed_in?
-    
+
     @arranged_raws = ArrangedRaws.call(@food)
   end
 
