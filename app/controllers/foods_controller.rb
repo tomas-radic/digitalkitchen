@@ -3,6 +3,8 @@ class FoodsController < ApplicationController
   before_action :load_food, only: [:show]
 
   def index
+    redirect_to users_foods_path and return if user_signed_in?
+
     @foods = Food.publicly_visible
                  .includes(:food_category, :raws)
 
@@ -14,6 +16,8 @@ class FoodsController < ApplicationController
   end
 
   def show
+    redirect_to users_food_path(@food) and return if user_signed_in?
+    
     @arranged_raws = ArrangedRaws.call(@food)
   end
 
