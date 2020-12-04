@@ -53,6 +53,7 @@
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu" aria-labelledby="profile-dropdown">
+            <%= link_to "Profil", edit_users_profile_path(current_user), class: "nav-link" %>
             <%= link_to "Odhlásiť", destroy_user_session_path, method: :delete, class: "nav-link" %>
           </div>
         </li>

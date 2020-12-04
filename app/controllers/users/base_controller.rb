@@ -1,5 +1,7 @@
 class Users::BaseController < ApplicationController
 
+  before_action :authenticate_user!
+
   def switch_ownership
     if @ownership
       @ownership.update!(need_buy: !@ownership.need_buy)

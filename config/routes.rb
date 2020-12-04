@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: "sessions" }
   root to: "foods#index"
 
   resources :foods, only: [:index, :show]
@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :raws, only: [:index] do
       post "switch_ownership", action: :switch_ownership, as: :switch_ownership
     end
+
+    resources :users, only: [:edit, :update], path: :profile, as: :profile
   end
 
 end

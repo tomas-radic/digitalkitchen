@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
+    Profil
+  </h1>
+
+  <div class="center-form">
+    <%= form_for [:users, current_user], url: users_profile_path(current_user), method: :put do |f| %>
+
+
+      <div class="form-group mt-0">
+        <%= f.email_field :email,
+                          class: "form-control", disabled: true %>
+      </div>
+
+      <div class="form-group mt-0">
+        <%= f.text_field :name,
+                          autofocus: true,
+                          placeholder: "meno/nick",
+                          class: "form-control" %>
+      </div>
+
+
+      <hr>
+      <p class="lead text-center pt-4">Zmena hesla</p>
+      <div class="form-group">
+        <%= f.password_field :current_password,
+                             autocomplete: "off",
+                             placeholder: "súčasné heslo",
+                             class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password,
+                             placeholder: "nové heslo",
+                             class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation,
+                             placeholder: "nové heslo znova",
+                             class: "form-control" %>
+      </div>
+
+      <div class="actions text-center mb-2">
+        <%= f.submit "Potvrdiť", class: "btn btn-outline-dark dark-carrot mt-4" %>
+      </div>
+    <% end %>
+  </div>
+</div>
