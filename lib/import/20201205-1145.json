@@ -1,0 +1,112 @@
+{
+  "name": "Medová marináda",
+  "description": "Marináda vhodná na kuracie/hydinové mäso.",
+  "category": "Grill",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava",
+      "description": "4 lyžice sójovej, alebo worcesterovej omáčky, 3 lyžice rastlinného oleja, 3-4 lyžice medu, 5 rozmliaždených strúčikov cesnaku (alebo 2 lyžičky sušeného cesnaku), rozdrvené čierne korenie, soľ, 2 lyžičky citrónovej šťavy, bazalka, najemno nakrájané chilli papričky a 60ml whisky. Všetky prísady zmiešaj, nalož do nich mäso a nechaj niekoľko hodín v chladničke.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "sojová omáčka",
+              "amount": null
+            },
+            {
+              "name": "worcesterová omáčka",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "olej",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "med",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cesnak",
+              "amount": null
+            },
+            {
+              "name": "sušený cesnak",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "čierne korenie",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "citrónová šťava",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "bazalka",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "chilli papričky",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "whisky",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

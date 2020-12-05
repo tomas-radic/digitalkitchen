@@ -49,6 +49,12 @@ class ImportFood < BaseService
       error_message = e.message
     end
 
-    food || error_message
+    if food.persisted?
+      food
+    elsif food.errors.any?
+      food.errors.to_s
+    else
+      error_message
+    end
   end
 end

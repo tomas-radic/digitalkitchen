@@ -4,21 +4,24 @@ class Users::UsersController < Users::BaseController
   end
 
   def update
+    success_msg = "Profil bol úspešne upravený."
+    failure_msg = "Profil sa nepodarilo upraviť!"
+
     if changing_password?
       if current_user.update_with_password(whitelisted_params)
-        flash[:success] = "Profil bol úspešne upravený."
+        flash[:success] = success_msg
         bypass_sign_in(current_user)
         redirect_to root_path and return
       else
-        flash.now[:danger] = "Profil sa nepodarilo upraviť!"
+        flash.now[:danger] = failure_msg
         render :edit and return
       end
     end
     if current_user.update_without_password(whitelisted_params.except("current_password"))
-      flash[:success] = "Profil bol úspešne upravený."
+      flash[:success] = success_msg
       redirect_to root_path and return
     else
-      flash.now[:danger] = "Profil sa nepodarilo upraviť!"
+      flash.now[:danger] = failure_msg
       render :edit and return
     end
   end

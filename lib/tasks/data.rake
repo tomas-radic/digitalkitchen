@@ -24,6 +24,7 @@ namespace :data do
   task :raws => :environment do
     raws = {
         "Bylinky" => [
+            "bazalka",
             "koriander",
             "petržlenová vňať"
         ],
@@ -44,9 +45,13 @@ namespace :data do
             "parmezán",
             "pecorino"
         ],
+        "Nápoje" => [
+            "whisky"
+        ],
         "Omáčky" => [
             "rybacia omáčka",
-            "sojová omáčka"
+            "sojová omáčka",
+            "worcesterová omáčka"
         ],
         "Zelenina" => [
             "baklažán",
@@ -73,12 +78,14 @@ namespace :data do
             "kokosové mlieko",
             "kukuričky v konzerve",
             "kurací vývar",
+            "med",
             "olej",
             "olivový olej",
             "paradajkový pretlak",
             "ryža",
             "sezam",
             "soľ",
+            "sušený cesnak",
             "škrobová múčka",
             "špagety",
             "trstinový cukor",
