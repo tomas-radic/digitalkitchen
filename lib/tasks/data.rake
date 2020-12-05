@@ -42,10 +42,14 @@ namespace :data do
             "pancetta"
         ],
         "Mliečne výrobky" => [
+            "maslo",
             "parmezán",
             "pecorino"
         ],
         "Nápoje" => [
+            "pivo",
+            "sladké biele víno",
+            "suché biele víno",
             "whisky"
         ],
         "Omáčky" => [
@@ -57,15 +61,21 @@ namespace :data do
             "baklažán",
             "bambusové výhonky",
             "batáty",
+            "biela reďkovka",
             "cesnak",
             "cibuľa",
+            "cherry paradajky",
             "chilli papričky",
             "cuketa",
+            "červená reďkovka",
             "hrubá červená paprika",
             "hrubá sladká paprika",
+            "listový šalát",
+            "rukola",
             "šalotka",
             "šampióny",
             "zázvor",
+            "zeleninová paprika",
             "zemiaky"
         ],
         nil => [
