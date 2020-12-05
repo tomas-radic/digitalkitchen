@@ -30,10 +30,12 @@
         </div>
       <% end %>
     </div>
-    <div class="tw-pt-2 text-center">
-      <u>
-        <%= link_to "Vyčistiť zoznam", remove_all_users_ownerships_path, method: :post, data: { confirm: "Odstrániť všetko z nákupného zoznamu?" } %>
-      </u>
+    <div class="mt-4 text-center">
+      <%= link_to "Vyčistiť zoznam",
+                  remove_all_users_ownerships_path,
+                  method: :post,
+                  data: { confirm: "Odstrániť všetko z nákupného zoznamu?" },
+                  class: "btn btn-outline-dark dark-carrot" %>
     </div>
   <% else %>
     <p class="text-center tw-py-8">Nákupný zoznam je prázdny.</p>

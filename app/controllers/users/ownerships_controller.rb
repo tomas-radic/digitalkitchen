@@ -48,7 +48,7 @@ class Users::OwnershipsController < Users::BaseController
 
     @ownerships = current_user.ownerships.to_a
 
-    flash[:success] = "Potraviny boli pridané do nákupného zoznamu."
+    flash[:success] = "Potraviny boli pridané na nákupný zoznam."
     redirect_to users_food_path(@food)
   end
 

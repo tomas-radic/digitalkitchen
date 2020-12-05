@@ -53,10 +53,12 @@
       </div>
     <% end %>
   </div>
-  <div class="tw-pt-2">
-    <u>
-      <%= link_to "Pridať všetko do nákupného zoznamu", add_all_users_ownerships_path(food_id: @food.id), method: :post, data: { confirm: "Pridať chýbajúce potraviny pre toto jedlo na nákupný zoznam?" } %>
-    </u>
+  <div class="mt-4 text-center">
+    <%= link_to "Pridať všetko na nákupný zoznam",
+                add_all_users_ownerships_path(food_id: @food.id),
+                method: :post,
+                data: { confirm: "Pridať chýbajúce potraviny pre toto jedlo na nákupný zoznam?" },
+                class: "btn btn-outline-dark dark-carrot" %>
   </div>
 </div>
 
