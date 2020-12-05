@@ -1,13 +1,26 @@
 {
-  "name": "Medová marináda",
-  "description": "Marináda vhodná na kuracie/hydinové mäso.",
-  "category": "Grill",
+  "name": "Hydinové prsia v medovej marináde",
+  "description": "Jedlo vhodné na grilovanie v záhrade, alebo aj na liatinovej panvici.",
+  "category": "Grilovanie",
   "owner": "tomas.radic@gmail.com",
   "parts": [
     {
       "name": "Príprava",
-      "description": "4 lyžice sójovej, alebo worcesterovej omáčky, 3 lyžice rastlinného oleja, 3-4 lyžice medu, 5 rozmliaždených strúčikov cesnaku (alebo 2 lyžičky sušeného cesnaku), rozdrvené čierne korenie, soľ, 2 lyžičky citrónovej šťavy, bazalka, najemno nakrájané chilli papričky a 60ml whisky. Všetky prísady zmiešaj, nalož do nich mäso a nechaj niekoľko hodín v chladničke.",
+      "description": "Zmiešaj 4 lyžice sójovej, alebo worcesterovej omáčky, 3 lyžice rastlinného oleja, 3-4 lyžice medu, 5 rozmliaždených strúčikov cesnaku (alebo 2 lyžičky sušeného cesnaku), rozdrvené čierne korenie, soľ, 2 lyžičky citrónovej šťavy, bazalka, najemno nakrájané chilli papričky a 60ml whisky. Nalož do nich mäso a nechaj niekoľko hodín v chladničke v uzavretej nádobe. Potom namarinované mäso ogriluj, či už použiješ gril, alebo liatinovú panvicu. Počas grilovania mäso potieraj zvyškom marinády z nádoby, v ktorej sa marinovalo.",
       "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "kuracie prsia",
+              "amount": null
+            },
+            {
+              "name": "morčacie prsia",
+              "amount": null
+            }
+          ]
+        },
         {
           "optional": false,
           "alternatives": [

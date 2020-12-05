@@ -57,6 +57,9 @@ namespace :data do
             "sojová omáčka",
             "worcesterová omáčka"
         ],
+        "Pečivo" => [
+            "pečivo"
+        ],
         "Zelenina" => [
             "baklažán",
             "bambusové výhonky",

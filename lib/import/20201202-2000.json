@@ -6,7 +6,7 @@
   "parts": [
     {
       "name": "Príprava",
-      "description": "Cibuľu nakrájaj na pol/kolieska, cesnak na malé kolieska. Bravčovú panenku si nakrájaj na podlhovasté slíže. Čierne a zelené korenie podrv, chilli papričky nakrájaj na drobno. Na panvici/woku najprv opraž cibuľku, ku koncu pridaj aj cesnak. Zvýš teplotu a prihoď do panvice s opraženou cibuľkou panenku a prudšie ju opraž, ku koncu ju osoľ a okoreň rozdrveným čiernym a/alebo zeleným korením. Prilej do toho paradajkový pretlak a kukuričky a nadrobno nakrájané chilli papričky. Všetko rozmiešaj a nechaj chvíľu variť. Podávaj s pečenými zemiakmi, alebo batátmi.",
+      "description": "Cibuľu nakrájaj na pol/kolieska, cesnak na malé kolieska. Bravčovú panenku si nakrájaj na podlhovasté slíže. Čierne a zelené korenie podrv, chilli papričky nakrájaj na drobno. Na panvici/woku najprv opraž cibuľku, ku koncu pridaj aj cesnak. Zvýš teplotu a prihoď do panvice s opraženou cibuľkou panenku a prudšie ju opraž, ku koncu ju osoľ a okoreň rozdrveným čiernym a/alebo zeleným korením. Prilej do toho paradajkový pretlak a kukuričky a nadrobno nakrájané chilli papričky. Všetko rozmiešaj a nechaj chvíľu variť.",
       "ingredients": [
         {
           "optional": false,
@@ -93,19 +93,6 @@
             },
             {
               "name": "olej",
-              "amount": null
-            }
-          ]
-        },
-        {
-          "optional": false,
-          "alternatives": [
-            {
-              "name": "zemiaky",
-              "amount": null
-            },
-            {
-              "name": "batáty",
               "amount": null
             }
           ]
