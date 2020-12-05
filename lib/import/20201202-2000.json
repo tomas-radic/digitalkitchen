@@ -45,6 +45,15 @@
           ]
         },
         {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "cibuľa",
+              "amount": null
+            }
+          ]
+        },
+        {
           "optional": true,
           "alternatives": [
             {

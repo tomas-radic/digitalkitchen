@@ -1,7 +1,7 @@
 class Users::RawsController < Users::BaseController
 
   def index
-    @raws = Pundit.policy_scope!(current_user, Raw).distinct.order(:name)
+    @raws = Raw.all
     @ownerships = current_user.ownerships.to_a
   end
 
