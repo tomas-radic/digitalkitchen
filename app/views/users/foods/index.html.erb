@@ -13,12 +13,15 @@
     </label>
   </div>
   <p>
-    Celkový počet zvolených jedál je <b class="dark-carrot"><%= @total_count %></b>.<br>
+    Celkový počet zvolených jedál je <b class="dark-carrot tw-text-lg"><%= @total_count %></b><br>
 
     <% if @total_count > @limit %>
       Zobrazuje sa náhodných <%= @limit %>.
-      <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
+      <button class="btn btn-light btn-sm btn-outline-dark" id="reload-foods-btn">Zobraziť iné</button>
     <% end %>
+    <div>
+      <%= link_to "Pridať návrh", new_users_proposal_path, class: "btn btn-sm dark-carrot btn-outline-dark" %>
+    </div>
   </p>
 </div>
 

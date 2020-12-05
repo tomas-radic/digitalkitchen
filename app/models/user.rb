@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :raws, through: :ownerships
   has_many :raws_having, -> { where("ownerships.need_buy is false") }, through: :ownerships, source: :raw
   has_many :raws_to_buy, -> { where("ownerships.need_buy is true") }, through: :ownerships, source: :raw
+  has_many :proposals, dependent: :destroy
 
 
   validates :email, :name,

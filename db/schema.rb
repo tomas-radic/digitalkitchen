@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_172301) do
+ActiveRecord::Schema.define(version: 2020_12_05_165753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(version: 2020_11_26_172301) do
     t.boolean "owner_private", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "proposal_id"
     t.index ["category_id"], name: "index_foods_on_category_id"
     t.index ["owner_id"], name: "index_foods_on_owner_id"
+    t.index ["proposal_id"], name: "index_foods_on_proposal_id"
   end
 
   create_table "ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -72,6 +74,18 @@ ActiveRecord::Schema.define(version: 2020_11_26_172301) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_parts_on_food_id"
+  end
+
+  create_table "proposals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "owner_private", default: false, null: false
+    t.string "name", null: false
+    t.string "category"
+    t.string "ingredients", null: false
+    t.text "description", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
   create_table "raws", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -104,10 +118,12 @@ ActiveRecord::Schema.define(version: 2020_11_26_172301) do
   add_foreign_key "alternatives", "ingredients", on_delete: :restrict
   add_foreign_key "alternatives", "raws", on_delete: :restrict
   add_foreign_key "foods", "categories", on_delete: :restrict
+  add_foreign_key "foods", "proposals"
   add_foreign_key "foods", "users", column: "owner_id"
   add_foreign_key "ingredients", "parts", on_delete: :restrict
   add_foreign_key "ownerships", "raws", on_delete: :restrict
   add_foreign_key "ownerships", "users", on_delete: :restrict
   add_foreign_key "parts", "foods", on_delete: :restrict
+  add_foreign_key "proposals", "users", on_delete: :restrict
   add_foreign_key "raws", "categories"
 end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:edit, :update], path: :profile, as: :profile
+
+    resources :proposals, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
 end

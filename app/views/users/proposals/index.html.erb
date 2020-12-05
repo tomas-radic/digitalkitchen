@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <h1 class="h1 dark-carrot text-center display-1 tw-py-8">
+    Moje návrhy
+  </h1>
+</div>
+
+<div class="container-fluid tw-mt-4">
+  <% if @proposals.any? %>
+    <%= link_to "Podať návrh", new_users_proposal_path, class: "btn btn-outline-dark dark-carrot my-4" %>
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+          <% @proposals.each do |proposal| %>
+            <tr>
+              <th><%= proposal.name %></th>
+              <td><%= proposal.food ? "Spracovaný" : "Čakajúci od #{proposal.created_at.strftime("%-d. %-m. %Y")}" %></td>
+              <td>
+                <% if proposal.food %>
+                  <u><%= link_to "Zobraziť", users_food_path(proposal.food) %></u>
+                <% else %>
+                  <span class="px-1"><u><%= link_to "Upraviť", edit_users_proposal_path(proposal) %></u></span>
+                  <span class="px-1"><u><%= link_to "Zmazať", users_proposal_path(proposal),
+                                                    method: :delete,
+                                                    data: { confirm: "Naozaj zmazať tento návrh?" } %></u></span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-center tw-py-8">
+      Nepodal/a si zatiaľ žiadne návrhy.
+      <u><%= link_to "Podať návrh", new_users_proposal_path %></u>
+    </p>
+  <% end %>
+</div>
