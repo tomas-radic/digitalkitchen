@@ -45,6 +45,8 @@
   </div>
 </div>
 
+<%= render "foods/origin_info", food: @food %>
+
 <% @food.parts.includes(:raws).each do |part| %>
   <div class="tw-bg-gray-200 tw-px-2 text-justify tw-border-t-2 tw-border-white">
     <div class="tw-container tw-mx-auto tw-py-8 text-center">
