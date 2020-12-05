@@ -12,17 +12,17 @@
       Len to, čo mám doma
     </label>
   </div>
-  <p>
+  <div>
     Celkový počet zvolených jedál je <b class="dark-carrot tw-text-lg"><%= @total_count %></b><br>
 
     <% if @total_count > @limit %>
       Zobrazuje sa náhodných <%= @limit %>.
       <button class="btn btn-light btn-sm btn-outline-dark" id="reload-foods-btn">Zobraziť iné</button>
     <% end %>
-    <div>
+    <div class="py-1">
       <%= link_to "Pridať návrh", new_users_proposal_path, class: "btn btn-sm dark-carrot btn-outline-dark" %>
     </div>
-  </p>
+  </div>
 </div>
 
 <div class="container-fluid tw-mt-4">

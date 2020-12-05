@@ -4,14 +4,17 @@
   </h1>
 </div>
 
-<p id="page-description" class="tw-bg-gray-200 tw-px-2 py-4 text-center">
+<div id="page-description" class="tw-bg-gray-200 tw-px-2 py-4 text-center">
   Celkový počet zvolených jedál je <b class="dark-carrot tw-text-lg"><%= @total_count %></b>.<br>
 
   <% if @total_count > @limit %>
     Zobrazuje sa náhodných <%= @limit %>.
     <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
   <% end %>
-</p>
+  <div class="py-1">
+    <%= link_to "Pridať návrh", new_users_proposal_path, class: "btn btn-sm dark-carrot btn-outline-dark" %>
+  </div>
+</div>
 
 <div class="container-fluid tw-mt-4">
   <% if @foods.any? %>
