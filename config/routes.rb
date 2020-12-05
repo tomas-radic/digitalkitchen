@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :ownerships, only: [:index, :create, :destroy] do
       post "switch", action: :switch_ownership, as: :switch, on: :member
       post "add_all/:food_id", action: :add_all, as: :add_all, on: :collection
+      post "remove_all", on: :collection
     end
     resources :raws, only: [:index] do
       post "switch_ownership", action: :switch_ownership, as: :switch_ownership

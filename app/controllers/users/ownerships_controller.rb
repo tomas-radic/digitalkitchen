@@ -52,6 +52,13 @@ class Users::OwnershipsController < Users::BaseController
     redirect_to users_food_path(@food)
   end
 
+  def remove_all
+    current_user.ownerships.need_buy.destroy_all
+
+    flash[:success] = "Nákupný zoznam je prázdny"
+    redirect_to users_ownerships_path
+  end
+
   private
 
   def whitelisted_params
