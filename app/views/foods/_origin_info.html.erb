@@ -4,6 +4,6 @@
   </i>
   -
   <i class="px-2">
-    <%= link_to_foods label: food.food_category.name.downcase, list: food.category_id %>
+    <%= link_to food.food_category.name.downcase, foods_path(filter: { list: food.category_id }) %>
   </i>
 </p>

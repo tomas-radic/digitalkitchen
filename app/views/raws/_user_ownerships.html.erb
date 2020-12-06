@@ -1,0 +1,53 @@
+<div class="container-fluid tw-py-2">
+  <% if raws.any? %>
+    <div class="row">
+      <% raws
+             .includes(:raw_category)
+             .order("raws.name")
+             .group_by(&:raw_category)
+             .sort_by { |category, category_raws| category&.name || '' }.each do |category, category_raws| %>
+
+        <div class="col-md-6 col-lg-4 col-xl-3 py-2">
+          <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
+            <%= category&.name || "Všeobecné potraviny" %>
+          </p>
+          <% category_raws.each do |raw| %>
+            <% ownership = ownerships.find { |o| o.raw_id == raw.id } %>
+            <div class="tw-pt-2">
+              <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
+                <%= check_box_tag :raw, '1', ownership && !ownership.need_buy?,
+                                  class: "user-raw tw-leading-tight",
+                                  id: "id-#{raw.id}",
+                                  data: {
+                                      raw_id: raw.id
+                                  } %>
+                <%= raw.name %>
+              </label>
+              <% unless ownership %>
+                <%= link_to ownerships_path(ownership: { raw_id: raw.id, need_buy: true }), class: "float-right", method: :post, remote: true do %>
+                  <%= image_tag "add.png", width: 15, height: 15 %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center tw-py-8">V špajzi nič nie je, ... nie si náhodou v kúpelni?</p>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('.user-raw').change(function() {
+    $.ajax({
+      url: "/raws/" + $(this).data("raw-id") + "/switch_ownership/",
+      dataType: 'script',
+      type: "post",
+      error: function() {
+        location.reload();
+        // $("#ownerships-wrapper .container-fluid").append("<div class='tw-text-red-500'>Došlo k chybe pri aktualizácii potravín. Reloadni túto stránku v browseri, prosím.</div>");
+      }
+    });
+  });
+</script>

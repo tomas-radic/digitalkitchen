@@ -4,13 +4,29 @@
   </h1>
 </div>
 
+<div id="loader" class="bg-light-carrot"></div>
 <div id="page-description" class="tw-bg-gray-200 tw-px-2 py-4 text-center">
-  Celkový počet zvolených jedál je <b class="dark-carrot tw-text-lg"><%= @total_count %></b>.<br>
-
-  <% if @total_count > @limit %>
-    Zobrazuje sa náhodných <%= @limit %>.
-    <button class="btn btn-light btn-sm" id="reload-foods-btn">Zobraziť iné</button>
+  <% if user_signed_in? %>
+    <div id="available-switch">
+      <%= check_box_tag :available, "1", params.dig(:filter, :available) == "true", class: "ios" %>
+      <label class="tw-ml-2" for="available">
+        Len to, čo mám doma
+      </label>
+    </div>
   <% end %>
+  <div>
+    Celkový počet zvolených jedál je <b class="dark-carrot tw-text-lg"><%= @total_count %></b><br>
+
+    <% if @total_count > @limit %>
+      Zobrazuje sa náhodných <%= @limit %>.
+      <button class="btn btn-light btn-sm btn-outline-dark" id="reload-foods-btn">Zobraziť iné</button>
+    <% end %>
+    <% if user_signed_in? %>
+      <div class="py-1">
+        <%= link_to "Pridať návrh", new_proposal_path, class: "btn btn-sm dark-carrot btn-outline-dark" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <div class="container-fluid tw-mt-4">
@@ -24,3 +40,5 @@
     <p class="text-center tw-py-8">Nie sú tu žiadne jedlá.</p>
   <% end %>
 </div>
+
+<%= render "foods/scripts" %>

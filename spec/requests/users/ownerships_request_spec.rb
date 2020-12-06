@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe "Users::Ownerships", type: :request do
+RSpec.describe "Ownerships", type: :request do
 
 end

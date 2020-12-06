@@ -1,0 +1,6 @@
+class BaseController < ApplicationController
+
+
+
+
+end

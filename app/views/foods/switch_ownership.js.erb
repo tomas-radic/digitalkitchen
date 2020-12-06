@@ -1,0 +1,2 @@
+$("#ownerships-wrapper")
+    .html("<%= escape_javascript(render "foods/user_ownerships", ownerships: @ownerships, food: @food, arranged_raws: @arranged_raws) %>");

@@ -1,2 +1,0 @@
-module Users::ProposalsHelper
-end

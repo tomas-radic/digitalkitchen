@@ -7,43 +7,56 @@
 <%= content_tag :div, '', class: "cover-food md:tw-bg-fixed", style: "background-image: url(https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);" %>
 
 <div class="container-fluid tw-py-2">
-  <div class="row">
 
-    <% @arranged_raws.each do |category, raws| %>
+  <% if user_signed_in? %>
+    <div id="ownerships-wrapper">
+      <%= render "foods/user_ownerships",
+                 ownerships: @ownerships,
+                 food: @food,
+                 arranged_raws: @arranged_raws %>
+    </div>
+  <% else %>
 
-      <div class="col-md-6 col-lg-4 col-xl-3 py-2">
-        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
-          <%= category || "Všeobecné potraviny" %>
-        </p>
+    <div class="row">
+      <% @arranged_raws.each do |category, raws| %>
 
-        <div class="tw-text-yellow-800 tw-text-sm">
-          <% raws.each do |raw| %>
-            <% if raw.is_a? Hash %>
-              <div class="tw-pt-2 tw-my-0">
-                <%= raw[:raw_name] %>
-                <%= "(voliteľne)" if raw[:optional] %>
-              </div>
-            <% elsif raw.is_a? Array %>
-              <% raw.each.with_index do |r, i| %>
-                <% alternative = i > 0 %>
+        <div class="col-md-6 col-lg-4 col-xl-3 py-2">
+          <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
+            <%= category || "Všeobecné potraviny" %>
+          </p>
 
-                <div class="<%= 'tw-pt-2' unless alternative %>">
-                  <div class="<%= 'pl-3 tw-my-0 ' if alternative %>">
-                    <% if alternative %>
-                      <span class="pr-2">alebo</span>
-                    <% end %>
-                    <%= r[:raw_name] %>
-                    <%= "(voliteľne)" if r[:optional] %>
-                  </div>
+          <div class="tw-text-yellow-800 tw-text-sm">
+            <% raws.each do |raw| %>
+              <% if raw.is_a? Hash %>
+                <div class="tw-pt-2 tw-my-0">
+                  <%= raw[:raw_name] %>
+                  <%= "(voliteľne)" if raw[:optional] %>
                 </div>
+              <% elsif raw.is_a? Array %>
+                <% raw.each.with_index do |r, i| %>
+                  <% alternative = i > 0 %>
+
+                  <div class="<%= 'tw-pt-2' unless alternative %>">
+                    <div class="<%= 'pl-3 tw-my-0 ' if alternative %>">
+                      <% if alternative %>
+                        <span class="pr-2">alebo</span>
+                      <% end %>
+                      <%= r[:raw_name] %>
+                      <%= "(voliteľne)" if r[:optional] %>
+                    </div>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
 </div>
+
 
 <%= render "foods/origin_info", food: @food %>
 
