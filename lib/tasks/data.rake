@@ -87,7 +87,6 @@ namespace :data do
             "citrónová tráva",
             "cukor",
             "červená kari pasta",
-            "dezertné víno",
             "kokosové mlieko",
             "kukuričky v konzerve",
             "kurací vývar",

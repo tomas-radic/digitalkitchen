@@ -10,7 +10,7 @@ class OwnershipsController < ApplicationController
   def create
     current_user.ownerships.where(whitelisted_params).first_or_create!
 
-    @raws = Pundit.policy_scope!(current_user, Raw).distinct
+    @raws = Raw.all
     @ownerships = current_user.ownerships.to_a
 
     respond_to do |format|
@@ -41,7 +41,7 @@ class OwnershipsController < ApplicationController
   end
 
   def add_all
-    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @food = policy_scope(Food).find(params[:food_id])
 
     @food.raws.each do |raw|
       current_user.ownerships.where(raw: raw).first_or_create!(need_buy: true)

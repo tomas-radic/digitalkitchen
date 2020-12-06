@@ -7,8 +7,8 @@ class FoodsController < ApplicationController
   before_action :load_food, only: [:show]
 
   def index
-    @foods = Pundit.policy_scope!(current_user, Food)
-                   .includes(:food_category, :raws)
+    @foods = policy_scope(Food)
+                 .includes(:food_category, :raws)
 
     @heading = "Všetky jedlá"
     apply_filter! if params[:filter]
@@ -30,7 +30,7 @@ class FoodsController < ApplicationController
     super
 
     @ownerships = @ownerships.to_a
-    @food = Pundit.policy_scope!(current_user, Food).find(params[:food_id])
+    @food = policy_scope(Food).find(params[:food_id])
     @arranged_raws = ArrangedRaws.call(@food)
 
     respond_to do |format|
@@ -42,7 +42,7 @@ class FoodsController < ApplicationController
   private
 
   def load_food
-    @food = Pundit.policy_scope!(current_user, Food).find(params[:id])
+    @food = policy_scope(Food).find(params[:id])
   end
 
   def apply_filter!

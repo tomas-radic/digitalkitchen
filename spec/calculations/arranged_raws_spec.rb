@@ -67,7 +67,6 @@ describe ArrangedRaws, type: :model do
 
   it "Returns hash describing raws in categories needed for given food" do
     result = subject
-# binding.pry
 
     expect(result).to be_a(Hash)
     expect(result.length).to eq(3)
