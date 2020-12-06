@@ -12,7 +12,7 @@
         <tbody>
           <% @proposals.each do |proposal| %>
             <tr>
-              <th><%= proposal.name %></th>
+              <th><u><%= link_to proposal.name, edit_proposal_path(proposal) %></u></th>
               <td><%= proposal.food ? "Spracovaný" : "Čakajúci od #{proposal.created_at.strftime("%-d. %-m. %Y")}" %></td>
               <td>
                 <% if proposal.food %>
