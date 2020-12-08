@@ -6,7 +6,9 @@
       <% end %>
     </div>
     <div class="tw-mt-4 md:tw-mt-0 md:tw-ml-6">
-      <div class="tw-uppercase tw-tracking-wide tw-text-sm tw-text-indigo-600 tw-font-bold"><%= food.food_category.name %></div>
+      <div class="tw-uppercase tw-tracking-wide tw-text-sm tw-text-indigo-600 tw-font-bold">
+        <%= link_to food.food_category.name, foods_path(filter: { list: food.food_category.id }) %>
+      </div>
       <%= link_to food.name, food_path(food), class: "tw-block tw-mt-1 tw-text-lg tw-leading-tight tw-font-extrabold tw-text-gray-900 hover:tw-underline" %>
       <p class="tw-mt-2 tw-text-gray-600">
         <%= food_about_text(food)[0...180] %>

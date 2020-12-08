@@ -71,7 +71,6 @@ namespace :data do
             "chilli papričky",
             "cuketa",
             "červená reďkovka",
-            "hrubá červená paprika",
             "hrubá sladká paprika",
             "listový šalát",
             "rukola",
