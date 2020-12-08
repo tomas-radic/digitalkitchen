@@ -28,12 +28,9 @@ class OwnershipsController < ApplicationController
   end
 
   def switch_ownership
-    @ownership = current_user.ownerships.find(params[:id])
-    @raw = @ownership.raw
-
-    super
-
-    @ownerships = @ownerships.need_buy.joins(:raw).order("raws.name")
+    ownership = current_user.ownerships.find(params[:id])
+    ownership.update!(need_buy: !ownership.need_buy)
+    @ownerships = current_user.ownerships.need_buy.joins(:raw).order("raws.name")
 
     respond_to do |format|
       format.js

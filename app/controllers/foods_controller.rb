@@ -24,12 +24,16 @@ class FoodsController < ApplicationController
 
 
   def switch_ownership
-    @raw = Raw.find(params[:raw_id])
-    @ownership = current_user.ownerships.find_by(raw: @raw)
+    raw = Raw.find(params[:raw_id])
+    ownership = current_user.ownerships.find_by(raw: raw)
 
-    super
+    if ownership
+      ownership.update!(need_buy: !ownership.need_buy)
+    else
+      current_user.ownerships.create!(raw: raw, need_buy: false)
+    end
 
-    @ownerships = @ownerships.to_a
+    @ownerships = current_user.ownerships.to_a
     @food = policy_scope(Food).find(params[:food_id])
     @arranged_raws = ArrangedRaws.call(@food)
 
