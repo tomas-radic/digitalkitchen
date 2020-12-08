@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
-  has_many :foods, dependent: :nullify
+  has_many :foods, dependent: :nullify, foreign_key: :owner_id
   has_many :ownerships, dependent: :destroy
   has_many :raws, through: :ownerships
   has_many :raws_having, -> { where("ownerships.need_buy is false") }, through: :ownerships, source: :raw
