@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :food_category do
-    name { Faker::Lorem.word }
+    name { SecureRandom.hex }
     type { "FoodCategory" }
   end
 
   factory :raw_category do
-    name { Faker::Lorem.word }
+    name { SecureRandom.hex }
     type { "RawCategory" }
   end
 end

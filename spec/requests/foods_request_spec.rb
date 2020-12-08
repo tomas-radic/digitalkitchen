@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Foods", type: :request do
+
+  include_examples "coexisting_data"
+
+
   describe "/foods" do
     subject { get foods_path }
 
@@ -51,5 +55,17 @@ RSpec.describe "Foods", type: :request do
         end
       end
     end
+  end
+
+
+  describe "/foods/:food_id/switch_ownership/:raw_id" do
+    subject { post food_switch_ownership_path(food_id: food.id, raw_id: raw.id), xhr: true }
+
+    let!(:user) { create(:user) }
+    let!(:food) { create(:food) }
+    let!(:raw) { create(:raw) }
+    let!(:template) { :switch_ownership }
+
+    it_behaves_like "authenticated_requests"
   end
 end
