@@ -13,6 +13,10 @@ RSpec.describe "Foods", type: :request do
 
       expect(response).to render_template(:index)
     end
+
+    context "With filter" do
+      pending "Add some examples"
+    end
   end
 
 
@@ -67,5 +71,16 @@ RSpec.describe "Foods", type: :request do
     let!(:template) { :switch_ownership }
 
     it_behaves_like "authenticated_requests"
+
+    context "When food is inaccessible to user" do
+      before do
+        food.update(owner_private: true)
+        sign_in user
+      end
+
+      it "Raises error" do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 end

@@ -24,6 +24,7 @@ class FoodsController < ApplicationController
 
 
   def switch_ownership
+    @food = policy_scope(Food).find(params[:food_id])
     raw = Raw.find(params[:raw_id])
     ownership = current_user.ownerships.find_by(raw: raw)
 
@@ -34,7 +35,6 @@ class FoodsController < ApplicationController
     end
 
     @ownerships = current_user.ownerships.to_a
-    @food = policy_scope(Food).find(params[:food_id])
     @arranged_raws = ArrangedRaws.call(@food)
 
     respond_to do |format|
