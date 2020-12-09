@@ -1,0 +1,6 @@
+Celkový počet zvolených jedál je <b class="dark-carrot tw-text-lg"><%= @total_count %></b><br>
+
+<% if @total_count > @limit %>
+  Zobrazuje sa náhodných <%= @limit %>.
+  <button class="reload-foods-btn btn btn-light btn-sm btn-outline-dark">Zobraziť iné</button>
+<% end %>
