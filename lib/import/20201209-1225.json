@@ -1,0 +1,50 @@
+{
+  "name": "Pečené zemiaky",
+  "description": null,
+  "category": "Prílohy",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava",
+      "description": "Ošúpané a umyté zemiaky nakrájaj na cca 1cm hrubé kolieska, alebo iné tvary a var ich 15 minút v slanej vode. Potom ich prepláchni, umiestni na plech. Nakrájaj na ne tenké plátky masla a posyp rascou. Peč ich v rúre na 180-200 stupňov, kým nie sú zlatisté, cca 20-30 minút.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "zemiaky",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "maslo",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "rasca celá",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

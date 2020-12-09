@@ -30,7 +30,7 @@ namespace :data do
         ],
         "Koreniny" => [
             "čierne korenie",
-            "rasca",
+            "rasca celá",
             "zelené korenie"
         ],
         "Mäsové výrobky" => [

@@ -1,0 +1,50 @@
+{
+  "name": "Ryža",
+  "description": null,
+  "category": "Prílohy",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava",
+      "description": "Vo vriacej osolenej vode uvar svoju obľúbenú ryžu podľa času uvedeného na krabici. Ak chceš, primiešaj do nej podrvené čierne korenie a/alebo celú rascu.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "ryža",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "soľ",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "čierne korenie",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": true,
+          "alternatives": [
+            {
+              "name": "rasca celá",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
