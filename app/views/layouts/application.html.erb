@@ -13,10 +13,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <%= render "shared/navbar" %>
     <%= render "shared/flash_message" unless flash.blank? %>
-    <%= yield %>
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/footer" %>
 
     <script type="text/javascript">
       $(document).on('turbolinks:load', function() {

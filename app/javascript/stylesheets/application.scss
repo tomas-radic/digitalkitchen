@@ -11,6 +11,17 @@ $font-family-base: 'Montserrat', sans-serif;
 @import "iosCheckbox";
 
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* Or flex-grow: 1;*/
+}
+
+
 .cover-food {
   background-repeat: no-repeat;
   background-position: center center;
@@ -48,6 +59,10 @@ a {
     width: 300px;
     margin: 0 auto;
   }
+}
+
+.h-center {
+  margin: 0 auto;
 }
 
 

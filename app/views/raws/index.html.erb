@@ -11,7 +11,9 @@
   na tejto stránke ti vieme
   <%= link_to "zobraziť jedlá", foods_path(filter: { available: true }), class: "tw-underline runs-spinner" %>,
   ktoré si môžeš pripraviť z potravín,
-  ktoré máš teraz doma.
+  ktoré máš teraz doma. Tlačítkom
+  <%= image_tag "add.png", width: 15, height: 15, class: "tw-inline-block" %>
+  pridáš potravinu na nákupný zoznam.
 </p>
 
 <div id="ownerships-wrapper">
