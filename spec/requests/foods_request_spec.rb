@@ -70,7 +70,7 @@ RSpec.describe "Foods", type: :request do
     let!(:raw) { create(:raw) }
     let!(:template) { :switch_ownership }
 
-    it_behaves_like "authenticated_requests"
+    it_behaves_like "authenticated_xhr_requests"
 
     context "When food is inaccessible to user" do
       before do
