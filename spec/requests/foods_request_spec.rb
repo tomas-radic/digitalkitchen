@@ -5,7 +5,7 @@ RSpec.describe "Foods", type: :request do
   include_examples "coexisting_data"
 
 
-  describe "/foods" do
+  describe "GET /foods" do
     subject { get foods_path }
 
     it "Renders index template" do
@@ -20,7 +20,7 @@ RSpec.describe "Foods", type: :request do
   end
 
 
-  describe "/foods/:id" do
+  describe "GET /foods/:id" do
     subject { get food_path(food) }
 
     let!(:food) { create(:food) }
@@ -62,7 +62,7 @@ RSpec.describe "Foods", type: :request do
   end
 
 
-  describe "/foods/:food_id/switch_ownership/:raw_id" do
+  describe "POST /foods/:food_id/switch_ownership/:raw_id" do
     subject { post food_switch_ownership_path(food_id: food.id, raw_id: raw.id), xhr: true }
 
     let!(:user) { create(:user) }

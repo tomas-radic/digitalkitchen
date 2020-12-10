@@ -1,4 +1,4 @@
-shared_examples "authenticated_requests_rendering" do
+shared_examples "authenticated_template_requests" do
   context "With user signed in" do
     before { sign_in user }
 
@@ -18,7 +18,7 @@ shared_examples "authenticated_requests_rendering" do
   end
 end
 
-shared_examples "authenticated_requests_redirected" do
+shared_examples "authenticated_redirected_requests" do
   context "With user signed in" do
     before { sign_in user }
 

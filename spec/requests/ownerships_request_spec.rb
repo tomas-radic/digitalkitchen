@@ -11,7 +11,7 @@ RSpec.describe "Ownerships", type: :request do
     subject { get ownerships_path }
 
     let(:template) { :index }
-    it_behaves_like "authenticated_requests_rendering"
+    it_behaves_like "authenticated_template_requests"
   end
 
 
@@ -51,7 +51,7 @@ RSpec.describe "Ownerships", type: :request do
     let!(:food) { create(:food) }
     let(:redirect_path) { food_path(food) }
 
-    it_behaves_like "authenticated_requests_redirected"
+    it_behaves_like "authenticated_redirected_requests"
   end
 
 
@@ -60,6 +60,6 @@ RSpec.describe "Ownerships", type: :request do
 
     let(:redirect_path) { ownerships_path }
 
-    it_behaves_like "authenticated_requests_redirected"
+    it_behaves_like "authenticated_redirected_requests"
   end
 end

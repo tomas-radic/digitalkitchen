@@ -4,7 +4,6 @@ FactoryBot.define do
 
     name { Faker::Food.dish }
     ingredients { Faker::Lorem.words(number: rand(3..5)).join("\n") }
-    description { Faker::Lorem.sentences(number: rand(4..7).join(' ')) }
-    status { "open" }
+    description { Faker::Lorem.sentences(number: rand(4..7)).join(' ') }
   end
 end
