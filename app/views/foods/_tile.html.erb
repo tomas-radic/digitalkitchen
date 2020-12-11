@@ -2,7 +2,7 @@
   <div class="md:tw-flex">
     <div class="md:tw-flex-shrink-0">
       <%= link_to food_path(food) do %>
-        <img class="tw-rounded-lg md:tw-w-56" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80" height="299" alt="">
+        <%= image_tag food.cloud_photo_url, height: 299, class: "tw-rounded-lg md:tw-w-56" %>
       <% end %>
     </div>
     <div class="tw-mt-4 md:tw-mt-0 md:tw-ml-6">

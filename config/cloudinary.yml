@@ -1,0 +1,18 @@
+development:
+  cloud_name: diftw8ib1
+  api_key: '798517331177498'
+  api_secret: mpk0_0tNbkVUBaQfGfQh_JVynVg
+  enhance_image_tag: true
+  static_file_support: false
+test:
+  cloud_name: diftw8ib1
+  api_key: '798517331177498'
+  api_secret: mpk0_0tNbkVUBaQfGfQh_JVynVg
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: diftw8ib1
+  api_key: '798517331177498'
+  api_secret: mpk0_0tNbkVUBaQfGfQh_JVynVg
+  enhance_image_tag: true
+  static_file_support: true

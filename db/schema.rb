@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_165753) do
+ActiveRecord::Schema.define(version: 2020_12_11_111544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 2020_12_05_165753) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "proposal_id"
+    t.string "photo_asset_id"
+    t.string "photo_public_id"
+    t.string "photo_url"
+    t.string "photo_file_name"
     t.index ["category_id"], name: "index_foods_on_category_id"
     t.index ["owner_id"], name: "index_foods_on_owner_id"
     t.index ["proposal_id"], name: "index_foods_on_proposal_id"
@@ -85,6 +89,10 @@ ActiveRecord::Schema.define(version: 2020_12_05_165753) do
     t.uuid "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "photo_asset_id"
+    t.string "photo_public_id"
+    t.string "photo_url"
+    t.string "photo_file_name"
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 

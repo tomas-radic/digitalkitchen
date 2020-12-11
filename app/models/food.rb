@@ -1,5 +1,7 @@
 class Food < ApplicationRecord
 
+  include CloudPhoto
+
   belongs_to :owner, class_name: "User", optional: true
   belongs_to :food_category, foreign_key: :category_id
   belongs_to :proposal, optional: true

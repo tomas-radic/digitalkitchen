@@ -34,6 +34,7 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 4.0.1'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -64,4 +65,4 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'acts_as_list'
 gem 'devise'
 gem 'pundit'
-gem 'faker'
+gem 'cloudinary'

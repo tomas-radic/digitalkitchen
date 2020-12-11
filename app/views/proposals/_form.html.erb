@@ -42,6 +42,20 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="custom-file">
+        <%= f.file_field :photo, accept: 'image/png,image/jpeg' %>
+        <br>
+        <p class="tw-text-sm">Súbory väčšie ako 4MB nebudú spracované.</p>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <% if @proposal.photo_url.present? %>
+        <%= image_tag @proposal.cloud_photo_url, height: 299, class: "tw-rounded-lg md:tw-w-56" %>
+      <% end %>
+    </div>
+  </div>
 
   <div class="actions text-center mb-2">
     <%= f.submit "Odoslať", class: "btn btn-outline-dark dark-carrot mt-4" %>
