@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-md-5">
       <div class="form-group mt-0">
-        <%= f.label :name, "Názov jedla *" %>
+        <%= label_with_error form: f, attr_name: :name, text: "Názov jedla *" %>
         <%= f.text_field :name, class: "form-control", placeholder: "napr. Kung Pao", autofocus: true %>
       </div>
     </div>
@@ -31,13 +31,13 @@
   <div class="row">
     <div class="col-md-5">
       <div class="form-group mt-0">
-        <%= f.label :ingredients, "Potrebné suroviny *" %>
+        <%= label_with_error form: f, attr_name: :ingredients, text: "Potrebné suroviny *" %>
         <%= f.text_area :ingredients, rows: 10, class: "form-control" %>
       </div>
     </div>
     <div class="col-md-7">
       <div class="form-group mt-0">
-        <%= f.label :description, "Popis prípravy *" %>
+        <%= label_with_error form: f, attr_name: :description, text: "Popis prípravy *" %>
         <%= f.text_area :description, rows: 10, class: "form-control" %>
       </div>
     </div>
@@ -47,12 +47,14 @@
       <div class="custom-file">
         <%= f.file_field :photo, accept: 'image/png,image/jpeg' %>
         <br>
-        <p class="tw-text-sm">Súbory väčšie ako 4MB nebudú spracované.</p>
+        <%= label_with_error form: f, attr_name: :photo, text: "Súbory väčšie ako 4MB nebudú spracované.", css_classes: "tw-text-sm" %>
       </div>
     </div>
     <div class="col-md-7">
       <% if @proposal.photo_url.present? %>
         <%= image_tag @proposal.cloud_photo_url, height: 299, class: "tw-rounded-lg md:tw-w-56" %>
+        <%= check_box_tag :remove_photo, '1' %>
+        <%= label_tag :remove_photo, "Odstrániť fotku pri uložení" %>
       <% end %>
     </div>
   </div>

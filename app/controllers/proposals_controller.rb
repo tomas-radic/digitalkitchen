@@ -37,7 +37,13 @@ class ProposalsController < ApplicationController
     @proposal = current_user.proposals.find(params[:id])
 
     if @proposal.update(whitelisted_params)
-      @proposal.update_photo params[:proposal][:photo] if params[:proposal][:photo]
+
+      if params[:proposal][:photo]
+        @proposal.update_photo params[:proposal][:photo]
+      elsif params[:remove_photo] == '1'
+        @proposal.remove_photo
+      end
+
       flash[:success] = "Návrh bol upravený."
       redirect_to foods_path
     else
@@ -49,7 +55,7 @@ class ProposalsController < ApplicationController
 
   def destroy
     @proposal = current_user.proposals.find(params[:id])
-    @proposal.remove_photo
+    @proposal.remove_photo if @proposal.photo_public_id
     @proposal.destroy
     flash[:success] = "Návrh bol vymazaný."
     redirect_to foods_path
@@ -59,7 +65,8 @@ class ProposalsController < ApplicationController
   private
 
   def whitelisted_params
-    params.require(:proposal).permit(:name, :category, :ingredients, :description, :owner_private)
+    params.require(:proposal).permit(:name, :category, :ingredients, :description,
+                                     :owner_private, :photo)
   end
 
 end

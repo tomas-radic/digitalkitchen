@@ -18,7 +18,9 @@ module CloudPhoto
 
 
   def remove_photo
-    remove_result = Cloudinary::Uploader.destroy(self.photo_public_id, invalidate: true)
+    remove_result = Cloudinary::Uploader.destroy(
+        self.photo_public_id,
+        invalidate: true)
 
     self.update(
         photo_asset_id: nil,
@@ -29,6 +31,13 @@ module CloudPhoto
 
 
   def cloud_photo_url
-    self.photo_url.presence || "https://res.cloudinary.com/diftw8ib1/image/upload/v1607612263/homefood/sample_food_ihenrq.jpg"
+    self.photo_url.presence || "https://res.cloudinary.com/diftw8ib1/image/upload/v1607611209/samples/food/fish-vegetables.jpg"
+        # [
+        #     "https://res.cloudinary.com/diftw8ib1/image/upload/v1607612263/homefood/sample_food_ihenrq.jpg",
+        #     "https://res.cloudinary.com/diftw8ib1/image/upload/v1607611217/samples/food/spices.jpg",
+        #     "https://res.cloudinary.com/diftw8ib1/image/upload/v1607611210/samples/food/pot-mussels.jpg",
+        #     "https://res.cloudinary.com/diftw8ib1/image/upload/v1607611209/samples/food/fish-vegetables.jpg",
+        #     "https://res.cloudinary.com/diftw8ib1/image/upload/v1607611208/samples/food/dessert.jpg"
+        # ].sample
   end
 end
