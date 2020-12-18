@@ -23,7 +23,7 @@
               <%= raw.name %>
             </label>
             <% unless ownership %>
-              <%= link_to ownerships_path(ownership: { raw_id: raw.id }), class: "float-right", method: :post, remote: true do %>
+              <%= link_to create_ownership_raws_path(ownership: { raw_id: raw.id }), class: "float-right", method: :post, remote: true do %>
                 <%= image_tag "add.png", width: 15, height: 15 %>
               <% end %>
             <% end %>

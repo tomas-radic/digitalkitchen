@@ -51,4 +51,17 @@ RSpec.describe "Raws", type: :request do
     it_behaves_like "authenticated_xhr_requests"
   end
 
+
+  describe "POST /raws/create_ownership" do
+    subject { post create_ownership_raws_path, params: { ownership: { raw_id: raw.id, need_buy: false } }, xhr: true }
+
+    let!(:raw) { create(:raw) }
+    let(:template) { :create_ownership }
+
+    it_behaves_like "authenticated_xhr_requests"
+  end
+
+
+
+
 end

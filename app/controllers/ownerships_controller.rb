@@ -7,18 +7,6 @@ class OwnershipsController < ApplicationController
     @ownerships = current_user.ownerships.need_buy.joins(:raw).order("raws.name")
   end
 
-  def create # xhr from raws/index - move to raws_controller
-    @raws = Raw.regular
-    raw = @raws.find(params[:ownership][:raw_id])
-    current_user.ownerships.where(raw: raw, need_buy: true).first_or_create!
-
-    @ownerships = current_user.ownerships.to_a
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def destroy
     if @ownership.raw.is_onetime?
       ActiveRecord::Base.transaction do

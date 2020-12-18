@@ -15,16 +15,6 @@ RSpec.describe "Ownerships", type: :request do
   end
 
 
-  describe "POST /ownerships" do
-    subject { post ownerships_path, params: { ownership: { raw_id: raw.id, need_buy: false } }, xhr: true }
-
-    let!(:raw) { create(:raw) }
-    let(:template) { :create }
-
-    it_behaves_like "authenticated_xhr_requests"
-  end
-
-
   describe "DELETE /ownerships/:id" do
     subject { delete ownership_path(ownership), xhr: true }
 

@@ -37,4 +37,17 @@ class RawsController < ApplicationController
       format.js
     end
   end
+
+
+  def create_ownership
+    @raws = Raw.regular
+    raw = @raws.find(params[:ownership][:raw_id])
+    current_user.ownerships.where(raw: raw, need_buy: true).first_or_create!
+
+    @ownerships = current_user.ownerships.to_a
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end
