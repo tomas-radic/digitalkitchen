@@ -1,46 +1,44 @@
-<div class="container-fluid tw-py-2">
-  <% if ownerships.any? %>
-    <div class="row">
-      <% ownerships.left_joins(raw: :raw_category)
-             .includes(raw: :raw_category)
-             .order("raws.name")
-             .group_by { |o| o.raw.raw_category }
-             .sort_by { |category, category_ownerships| category&.name || '' }.each do |category, category_ownerships| %>
+<% if ownerships.any? %>
+  <div class="row">
+    <% ownerships.left_joins(raw: :raw_category)
+           .includes(raw: :raw_category)
+           .order("raws.name")
+           .group_by { |o| o.raw.raw_category }
+           .sort_by { |category, category_ownerships| category&.name || '' }.each do |category, category_ownerships| %>
 
-        <div class="col-md-6 col-lg-4 col-xl-3 py-2">
-          <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
-            <%= category&.name || "Všeobecné potraviny" %>
-          </p>
-          <% category_ownerships.each do |ownership| %>
-            <div class="tw-pt-2">
-              <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
-                <%= check_box_tag :raw, '1', !ownership.need_buy?,
-                                  class: "user-raw tw-leading-tight",
-                                  id: "id-#{ownership.id}",
-                                  data: {
-                                      ownership_id: ownership.id
-                                  } %>
-                <%= ownership.raw.name %>
-              </label>
-              <%= link_to ownership_path(ownership), class: "float-right", method: :delete, remote: true, data: { confirm: "Naozaj nechceš kúpiť #{ownership.raw.name}?" } do %>
-                <%= image_tag "cancel.png", width: 15, height: 15 %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class="mt-4 text-center">
-      <%= link_to "Vyčistiť zoznam",
-                  remove_all_ownerships_path,
-                  method: :post,
-                  data: { confirm: "Odstrániť všetko z nákupného zoznamu?" },
-                  class: "btn btn-outline-dark dark-carrot" %>
-    </div>
-  <% else %>
-    <p class="text-center tw-py-8">Nákupný zoznam je prázdny.</p>
-  <% end %>
-</div>
+      <div class="col-md-6 col-lg-4 col-xl-3 py-2">
+        <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
+          <%= category&.name || "Všeobecné" %>
+        </p>
+        <% category_ownerships.each do |ownership| %>
+          <div class="tw-pt-2">
+            <label class="tw-my-0 tw-text-yellow-800 tw-text-sm">
+              <%= check_box_tag :raw, '1', !ownership.need_buy?,
+                                class: "user-raw tw-leading-tight",
+                                id: "id-#{ownership.id}",
+                                data: {
+                                    ownership_id: ownership.id
+                                } %>
+              <%= ownership.raw.name %>
+            </label>
+            <%= link_to ownership_path(ownership), class: "float-right", method: :delete, remote: true, data: { confirm: "Naozaj nechceš kúpiť #{ownership.raw.name}?" } do %>
+              <%= image_tag "cancel.png", width: 15, height: 15 %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mt-4 text-center">
+    <%= link_to "Vyčistiť zoznam",
+                remove_all_ownerships_path,
+                method: :post,
+                data: { confirm: "Odstrániť všetko z nákupného zoznamu?" },
+                class: "btn btn-outline-dark dark-carrot" %>
+  </div>
+<% else %>
+  <p class="text-center tw-py-8">Nákupný zoznam je prázdny.</p>
+<% end %>
 
 
 <script type="text/javascript">
@@ -49,6 +47,7 @@
       url: "/ownerships/" + $(this).data("ownership-id") + "/switch",
       dataType: 'script',
       type: "post",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       error: function() {
         location.reload();
         // $("#ownerships-wrapper .container-fluid").append("<div class='tw-text-red-500'>Došlo k chybe pri aktualizácii potravín. Reloadni túto stránku v browseri, prosím.</div>");

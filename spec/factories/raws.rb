@@ -1,5 +1,9 @@
 FactoryBot.define do
   factory :raw do
-    name { Faker::Food.ingredient }
+    name { SecureRandom.hex }
+
+    trait :onetime do
+      is_onetime { true }
+    end
   end
 end

@@ -17,6 +17,31 @@ RSpec.describe "Raws", type: :request do
   end
 
 
+  describe "POST /raws" do
+    subject { post raws_path, params: params, xhr: true }
+
+    let(:template) { :create }
+    let(:params) do
+      { raw: { name: "name", category_id: "abc" } }
+    end
+
+    it_behaves_like "authenticated_xhr_requests"
+
+    context "With authenticated user" do
+      before { sign_in user }
+
+      it "Calls service object with correct parameters" do
+        expect(CreateUserRaw).to receive(:call).with(
+            params[:raw][:name],
+            category_id: params[:raw][:category_id],
+            user: user)
+
+        subject
+      end
+    end
+  end
+
+
   describe "POST /raws/:raw_id/switch_ownership" do
     subject { post raw_switch_ownership_path(raw_id: raw.id), xhr: true }
 

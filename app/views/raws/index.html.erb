@@ -16,6 +16,12 @@
   pridáš potravinu na nákupný zoznam.
 </p>
 
-<div id="ownerships-wrapper">
-  <%= render "raws/user_ownerships", ownerships: @ownerships, raws: @raws %>
+<%= render "raws/add_raw_button" %>
+
+<div class="container-fluid tw-py-2">
+  <div id="ownerships-wrapper">
+    <%= render "raws/user_ownerships", ownerships: @ownerships, raws: @raws %>
+  </div>
 </div>
+
+<%= render "raws/onetime_raw_modal", submit_path: raws_path %>

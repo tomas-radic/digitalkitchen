@@ -46,7 +46,7 @@ ActiveRecord::Base.transaction do
               alternatives_count.times do
                 Alternative.create!(
                     ingredient: ingredient,
-                    raw: Raw.all.sample
+                    raw: Raw.regular.sample
                 )
               end
             end

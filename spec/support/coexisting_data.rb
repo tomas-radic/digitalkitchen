@@ -1,7 +1,7 @@
 shared_examples "coexisting_data" do
   describe "Coexisting data" do
 
-    let!(:user1) do
+    let!(:coexisting_user1) do
       create(:user, foods: [
           create(:food, parts: [
               build(:part, position: 1,
@@ -32,7 +32,7 @@ shared_examples "coexisting_data" do
       ])
     end
 
-    let!(:user2) do
+    let!(:coexisting_user2) do
       create(:user, foods: [
           create(:food, parts: [
               build(:part, position: 1,

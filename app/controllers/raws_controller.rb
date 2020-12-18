@@ -3,12 +3,26 @@ class RawsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @raws = Raw.all
+    @raws = Raw.regular
     @ownerships = current_user.ownerships.to_a
   end
 
+
+  def create
+    @raw = CreateUserRaw.call(
+        params[:raw][:name],
+        category_id: params[:raw][:category_id],
+        user: current_user)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def switch_ownership
-    raw = Raw.find(params[:raw_id])
+    @raws = Raw.regular
+    raw = @raws.find(params[:raw_id])
     ownership = current_user.ownerships.find_by(raw: raw)
 
     if ownership
@@ -18,11 +32,9 @@ class RawsController < ApplicationController
     end
 
     @ownerships = current_user.ownerships.to_a
-    @raws = Raw.all
 
     respond_to do |format|
       format.js
     end
   end
-
 end

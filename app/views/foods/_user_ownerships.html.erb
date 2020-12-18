@@ -3,7 +3,7 @@
 
     <div class="col-md-6 col-lg-4 col-xl-3 py-2">
       <p class="tw-text-l text-center dark-carrot tw-border-b tw-border-yellow-800 mb-1">
-        <%= category || "Všeobecné potraviny" %>
+        <%= category || "Všeobecné" %>
       </p>
 
       <div class="tw-text-yellow-800 tw-text-sm">
@@ -67,6 +67,7 @@
       url: "/foods/" + "<%= food.id %>" + "/switch_ownership/" + $(this).data("raw-id"),
       dataType: 'script',
       type: "post",
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       error: function() {
         location.reload();
         // $("#ownerships-wrapper .container-fluid").append("<div class='tw-text-red-500'>Došlo k chybe pri aktualizácii potravín. Reloadni túto stránku v browseri, prosím.</div>");

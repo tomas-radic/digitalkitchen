@@ -112,8 +112,9 @@ namespace :data do
                    end
 
         raw_names.each do |raw_name|
-          raw = Raw.where(name: raw_name).first_or_create!
-          category.raws << raw if category
+          Raw.regular
+              .where(name: raw_name, raw_category: category)
+              .first_or_create!
         end
       end
     end

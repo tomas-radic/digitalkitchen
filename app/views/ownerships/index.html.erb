@@ -9,7 +9,12 @@
   a momentálne ich doma nemáš.
 </p>
 
-<div id="ownerships-wrapper">
-  <%= render "ownerships/user_ownerships", ownerships: @ownerships %>
+<%= render "raws/add_raw_button" %>
+
+<div class="container-fluid tw-py-2">
+  <div id="ownerships-wrapper">
+    <%= render "ownerships/user_ownerships", ownerships: @ownerships %>
+  </div>
 </div>
 
+<%= render "raws/onetime_raw_modal", submit_path: create_user_raw_ownerships_path %>

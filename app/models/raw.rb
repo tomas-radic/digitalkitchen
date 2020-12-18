@@ -7,6 +7,10 @@ class Raw < ApplicationRecord
   has_many :parts, through: :ingredients
 
 
-  validates :name,
-            presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: { scope: :is_onetime }, unless: -> { is_onetime? }
+
+
+  scope :regular, -> { where(is_onetime: false) }
+  scope :onetime, -> { where(is_onetime: true) }
 end

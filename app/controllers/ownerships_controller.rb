@@ -8,9 +8,10 @@ class OwnershipsController < ApplicationController
   end
 
   def create
-    current_user.ownerships.where(whitelisted_params).first_or_create!
+    @raws = Raw.regular
+    raw = @raws.find(params[:ownership][:raw_id])
+    current_user.ownerships.where(raw: raw, need_buy: true).first_or_create!
 
-    @raws = Raw.all
     @ownerships = current_user.ownerships.to_a
 
     respond_to do |format|
@@ -19,7 +20,16 @@ class OwnershipsController < ApplicationController
   end
 
   def destroy
-    @ownership.destroy
+    if @ownership.raw.is_onetime?
+      ActiveRecord::Base.transaction do
+        raw = @ownership.raw
+        @ownership.destroy!
+        raw.destroy!
+      end
+    else
+      @ownership.destroy
+    end
+
     @ownerships = current_user.ownerships.need_buy
 
     respond_to do |format|
@@ -29,8 +39,18 @@ class OwnershipsController < ApplicationController
 
   def switch_ownership
     ownership = current_user.ownerships.find(params[:id])
-    ownership.update!(need_buy: !ownership.need_buy)
-    @ownerships = current_user.ownerships.need_buy.joins(:raw).order("raws.name")
+
+    if ownership.raw.is_onetime?
+      ActiveRecord::Base.transaction do
+        raw = ownership.raw
+        ownership.destroy!
+        raw.destroy!
+      end
+    else
+      ownership.update!(need_buy: !ownership.need_buy)
+    end
+
+    set_user_ownerships
 
     respond_to do |format|
       format.js
@@ -57,13 +77,26 @@ class OwnershipsController < ApplicationController
     redirect_to ownerships_path
   end
 
-  private
+  def create_user_raw
+    CreateUserRaw.call(
+        params[:raw][:name],
+        category_id: params[:raw][:category_id],
+        user: current_user)
 
-  def whitelisted_params
-    params.require(:ownership).permit(:raw_id, :need_buy)
+    set_user_ownerships
+
+    respond_to do |format|
+      format.js
+    end
   end
+
+  private
 
   def load_ownership
     @ownership = current_user.ownerships.find(params[:id])
+  end
+
+  def set_user_ownerships
+    @ownerships = current_user.ownerships.need_buy.joins(:raw).order("raws.name")
   end
 end
