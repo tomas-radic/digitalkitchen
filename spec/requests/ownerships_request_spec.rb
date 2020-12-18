@@ -28,10 +28,21 @@ RSpec.describe "Ownerships", type: :request do
   describe "DELETE /ownerships/:id" do
     subject { delete ownership_path(ownership), xhr: true }
 
-    let(:ownership) { create(:ownership, user: user) }
+    let!(:ownership) { create(:ownership, user: user) }
     let(:template) { :destroy }
 
     it_behaves_like "authenticated_xhr_requests"
+
+    context "With ownership of onetime raw" do
+      let!(:ownership) { create(:ownership, user: user, raw: create(:raw, :onetime, name: "onetime raw")) }
+
+      before { sign_in user }
+
+      it "Destroys the owned raw and the ownership itself" do
+        expect { subject }.to change { Ownership.count }.by(-1)
+        expect(Raw.find_by(name: "onetime raw")).to be_nil
+      end
+    end
   end
 
 
@@ -42,6 +53,17 @@ RSpec.describe "Ownerships", type: :request do
     let(:template) { :switch_ownership }
 
     it_behaves_like "authenticated_xhr_requests"
+
+    context "With ownership of onetime raw" do
+      let!(:ownership) { create(:ownership, user: user, raw: create(:raw, :onetime, name: "onetime raw")) }
+
+      before { sign_in user }
+
+      it "Destroys the owned raw and the ownership itself" do
+        expect { subject }.to change { Ownership.count }.by(-1)
+        expect(Raw.find_by(name: "onetime raw")).to be_nil
+      end
+    end
   end
 
 

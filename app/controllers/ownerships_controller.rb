@@ -7,7 +7,7 @@ class OwnershipsController < ApplicationController
     @ownerships = current_user.ownerships.need_buy.joins(:raw).order("raws.name")
   end
 
-  def create
+  def create # xhr from raws/index - move to raws_controller
     @raws = Raw.regular
     raw = @raws.find(params[:ownership][:raw_id])
     current_user.ownerships.where(raw: raw, need_buy: true).first_or_create!
