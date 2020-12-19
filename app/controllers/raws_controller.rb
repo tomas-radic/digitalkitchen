@@ -14,6 +14,9 @@ class RawsController < ApplicationController
         category_id: params[:raw][:category_id],
         user: current_user)
 
+    @raws = Raw.regular
+    @ownerships = current_user.ownerships.to_a
+
     respond_to do |format|
       format.js
     end
