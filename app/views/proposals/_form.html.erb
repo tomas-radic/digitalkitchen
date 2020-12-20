@@ -4,12 +4,12 @@
     <div class="form-check form-check-inline py-2">
       *
       <span class="px-2">
-        <%= f.radio_button :owner_private, @proposal.persisted? ? false : nil, class: "form-check-input", id: "owner-private-false", required: true %>
+        <%= f.radio_button :owner_private, false, class: "form-check-input", id: "owner-private-false", required: true %>
         <label class="form-check-label" for="owner-private-false">Pre všetkých</label>
       </span>
 
       <span class="px-2">
-        <%= f.radio_button :owner_private, @proposal.persisted? ? true : nil, class: "form-check-input", id: "owner-private-true" %>
+        <%= f.radio_button :owner_private, true, class: "form-check-input", id: "owner-private-true" %>
         <label class="form-check-label" for="owner-private-true">Iba pre mňa</label>
       </span>
     </div>
