@@ -33,7 +33,7 @@ class ImportFood < BaseService
           )
 
           json_ingredients = json_part["ingredients"]
-          json_ingredients.each do |json_ingredient|
+          json_ingredients.sort_by { |i| i["position"] }.each do |json_ingredient|
             ingredient = part.ingredients.create!(optional: json_ingredient["optional"])
 
             json_alternatives = json_ingredient["alternatives"]
