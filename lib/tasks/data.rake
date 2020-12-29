@@ -60,7 +60,7 @@ namespace :data do
         "Pečivo" => [
             "pečivo"
         ],
-        "Zelenina" => [
+        "Zelenina a ovocie" => [
             "baklažán",
             "bambusové výhonky",
             "batáty",
@@ -73,6 +73,7 @@ namespace :data do
             "červená reďkovka",
             "hrubá sladká paprika",
             "listový šalát",
+            "pomaranče",
             "rukola",
             "šalotka",
             "šampióny",
@@ -86,6 +87,8 @@ namespace :data do
             "citrónová tráva",
             "cukor",
             "červená kari pasta",
+            "hladká múka",
+            "kakao",
             "kokosové mlieko",
             "kukuričky v konzerve",
             "kurací vývar",
@@ -93,6 +96,8 @@ namespace :data do
             "olej",
             "olivový olej",
             "paradajkový pretlak",
+            "práškový cukor",
+            "prášok do pečiva",
             "ryža",
             "sezam",
             "soľ",

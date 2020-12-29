@@ -40,7 +40,7 @@ class ImportFood < BaseService
             json_alternatives.each do |json_alternative|
               ingredient.alternatives.create!(raw: Raw.regular.find_by!(name: json_alternative["name"]))
             end
-          end
+          end if json_ingredients
         end
 
 

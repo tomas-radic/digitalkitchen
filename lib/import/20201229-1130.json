@@ -1,0 +1,81 @@
+{
+  "name": "Pomarančové cookies",
+  "description": null,
+  "category": "Koláčiky",
+  "owner": "tomas.radic@gmail.com",
+  "parts": [
+    {
+      "name": "Príprava cesta",
+      "description": "Najprv si priprav pomaranče. Dobre ich umy, odrhni kefkou a pár krát prelej vriacou vodou, aby sa zbavili chemického ošetrenia. Oranžovú časť kôry najemno nastrúhaj.\n\nPotom si priprav cesto, do misky daj:\n50g hladkej múky\n25g kakaa\n70g práškového cukru\n25g masla\n1 vajce\n3 lyžičky najemno nastrúhanej pomarančovej kôry\n1 lyžičku pomarančovej šťavy\npol lyžičky prášku do pečiva\n\nMetličkovým miešačom všetko rozmiešaj na cesto, toto cesto sa bude dosť lepiť. Zabal ho do potravinovej fólie a na 2 hodiny ulož do chladničky.",
+      "ingredients": [
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "hladká múka",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "kakao",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "práškový cukor",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "maslo",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "vajcia",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "pomaranče",
+              "amount": null
+            }
+          ]
+        },
+        {
+          "optional": false,
+          "alternatives": [
+            {
+              "name": "prášok do pečiva",
+              "amount": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pečenie",
+      "description": "Plech, na ktorom budeš cookies piecť si vystel papierom na pečenie. Potom vychladené cesto rozdel na 25 malých častí, každú z nich obal v práškovom cukre a ulož na plech. Ukladaj ich ďalej od seba, pri pečení sa zväčšia. Daj ich piecť do vyhriatej rúry zhora/zdola na 190 stupňov na 9 minút. Keď ich vyberieš z rúry a nebudú už veľmi horúce, prelož ich na rošt, kde vychladnú. V uzavretej nádobe vydržia niekoľko dní, no ... v praxi sa dá o tom dosť pochybovať :->"
+    }
+  ]
+}
