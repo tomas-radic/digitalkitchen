@@ -12,9 +12,9 @@ class FoodsController < ApplicationController
 
     @heading = "Všetky jedlá"
     apply_filter! if params[:filter]
-    @total_count = @foods.count
     @limit = 30
     @foods = @foods.order("RANDOM()").limit(@limit)
+    @total_count = @foods.count
   end
 
   def show
@@ -52,27 +52,39 @@ class FoodsController < ApplicationController
   def apply_filter!
     params[:filter] ||= {}
 
-    list_filter = params.dig(:filter, :list)
+    search_filter = params.dig(:filter, :search)
 
-    category = FoodCategory.find_by(id: list_filter)
+    if search_filter
+      # -- NOTE: unaccent search --
+      # Ruby: I18n.transliterate("Hé les mecs!")
+      # SQL: select name from foods where unaccent(name) ilike '%marina%';
 
-    if category
-      @foods = @foods.where(food_category: category)
-      @heading = category.name
-    elsif user_signed_in?
-      if list_filter == "mine"
-        @foods = @foods.where(owner: current_user)
-        @heading = "Moje jedlá"
-      elsif list_filter == "liked"
-        # TODO: filter user liked foods
-        @heading = "Obľúbené jedlá"
+      search_filter = I18n.transliterate(search_filter).split(/\s+/).map(&:downcase)
+      @foods = @foods.where("unaccent(lower(foods.name)) ~* ?", search_filter.join('|')) # (any of values divided by pipe)
+      @heading = "Výsledky hľadania"
+    else
+      list_filter = params.dig(:filter, :list)
+
+      category = FoodCategory.find_by(id: list_filter)
+
+      if category
+        @foods = @foods.where(food_category: category)
+        @heading = category.name
+      elsif user_signed_in?
+        if list_filter == "mine"
+          @foods = @foods.where(owner: current_user)
+          @heading = "Moje jedlá"
+        elsif list_filter == "liked"
+          # TODO: filter user liked foods
+          @heading = "Obľúbené jedlá"
+        end
       end
-    end
 
-    if user_signed_in? && params.dig(:filter, :available) == "true"
-      @foods = AvailableFoods.call(
-          user: current_user,
-          foods: @foods)
+      if user_signed_in? && params.dig(:filter, :available) == "true"
+        @foods = AvailableFoods.call(
+            user: current_user,
+            foods: @foods)
+      end
     end
 
     # params[:filter].delete_if { |key, value| value.blank? }
