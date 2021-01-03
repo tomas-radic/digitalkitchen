@@ -117,9 +117,11 @@ namespace :data do
                    end
 
         raw_names.each do |raw_name|
-          Raw.regular
-              .where(name: raw_name, raw_category: category)
+          raw = Raw.regular
+              .where(name: raw_name)
               .first_or_create!
+
+          raw.raw_category = category
         end
       end
     end

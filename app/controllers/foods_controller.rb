@@ -13,7 +13,7 @@ class FoodsController < ApplicationController
     @heading = "Všetky jedlá"
     apply_filter! if params[:filter]
     @limit = 30
-    @foods = @foods.order("RANDOM()").limit(@limit)
+    @foods = @foods.order("RANDOM()").limit(@limit).reorder(created_at: :desc)
     @total_count = @foods.count
   end
 
