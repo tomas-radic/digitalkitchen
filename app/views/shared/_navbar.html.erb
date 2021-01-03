@@ -34,6 +34,14 @@
                       class: "nav-link" %>
         </li>
       <% end %>
+      <%= form_with url: foods_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |form| %>
+        <div class="input-group">
+          <%= form.text_field 'filter[search]', value: params[:filter] ? params[:filter][:search] : '', class: "form-control", type: :search %>
+          <div class="input-group-append">
+            <%= form.submit octicon("search", height: 16), class: "btn btn-outline-light dark-carrot" %>
+          </div>
+        </div>
+      <% end %>
 <!--      <form class="form-inline my-2 my-lg-0">-->
 <!--        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
 <!--        <button class="btn btn-outline-light dark-carrot my-2 my-sm-0" type="submit">Search</button>-->
