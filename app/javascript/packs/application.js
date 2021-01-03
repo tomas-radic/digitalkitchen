@@ -12,6 +12,8 @@ require("jquery")
 require("bootstrap")
 require("packs/iosCheckbox.min")
 
+import "@fortawesome/fontawesome-free/js/all";
+
 // import jquery from 'jquery';
 // window.$ = window.jquery = jquery;
 
