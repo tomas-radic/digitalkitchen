@@ -67,6 +67,8 @@ namespace :data do
             "biela reďkovka",
             "cesnak",
             "cibuľa",
+            "citrónová šťava",
+            "citrónová tráva",
             "cherry paradajky",
             "chilli papričky",
             "cuketa",
@@ -83,8 +85,6 @@ namespace :data do
         ],
         nil => [
             "arašidy",
-            "citrónová šťava",
-            "citrónová tráva",
             "cukor",
             "červená kari pasta",
             "hladká múka",
