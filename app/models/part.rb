@@ -13,5 +13,5 @@ class Part < ApplicationRecord
             uniqueness: { scope: :food }
 
 
-
+  scope :sorted, -> { order(:position) }
 end

@@ -1,0 +1,47 @@
+<%= form_with model: [:administration , @food], local: true do |f| %>
+  <%= hidden_field_tag :heading, @heading %>
+
+  <div class="container-fluid">
+    <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
+      <%= @heading %>
+    </h1>
+
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= label_with_error form: f, attr_name: :name, text: "Názov jedla *" %>
+          <%= f.text_field :name, class: "form-control", autofocus: true %>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="form-group">
+          <%= label_with_error form: f, attr_name: :description, text: "Popis" %>
+          <%= f.text_area :description, class: "form-control", rows: 3 %>
+        </div>
+      </div>
+    </div>
+
+
+
+    <section class="tw-pt-8">
+      Postup
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+          <% @food.parts.sorted.each do |part| %>
+            <tr>
+              <th><%= part.position %></th>
+              <th class="tw-underline"><%= link_to part.name, edit_administration_part_path(part) %></th>
+            </tr>
+          <% end %>
+          </table>
+      </div>
+    </section>
+
+    <section class="actions text-center mb-2">
+      <%= f.submit "Odoslať", class: "btn btn-outline-dark dark-carrot mt-4" %>
+    </section>
+
+  </div>
+<% end %>

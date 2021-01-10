@@ -1,0 +1,2 @@
+module Administration::PartsHelper
+end

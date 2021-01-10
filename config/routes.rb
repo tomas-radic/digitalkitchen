@@ -24,4 +24,14 @@ Rails.application.routes.draw do
 
   resources :proposals, only: [:index, :new, :create, :edit, :update, :destroy]
 
+
+  namespace :administration do
+    resources :foods do
+      post "import", on: :collection
+    end
+
+    resources :parts, only: [:edit, :update]
+    resources :users, only: [:index]
+    resources :proposals, only: [:index]
+  end
 end

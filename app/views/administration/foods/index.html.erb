@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
+    Zoznam jedál
+  </h1>
+
+  <div class="tw-px-1 tw-mb-6 tw-border rounded-sm sm:tw-inline-block">
+    <%= form_with url: import_administration_foods_path, multipart: true do %>
+      <p class="tw-py-2 tw-text-center">Import JSON</p>
+      <hr>
+      <div class="tw-py-2">
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import", class: "btn btn-sm dark-carrot btn-outline-dark tw-float-right sm:tw-float-none" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+        <% @foods.includes(:owner).each do |food| %>
+          <tr>
+            <th class="tw-underline"><%= link_to food.name, edit_administration_food_path(food) %></th>
+            <td><%= short_date(food.created_at) %></td>
+            <td><%= food.owner.email %></td>
+          </tr>
+        <% end %>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light tw-bg-red-500">
+
+  <%= link_to foods_path, class: "navbar-brand" do %>
+    <%= image_tag "logo.png", width: 30, height: 30, class: "d-inline-block align-top" %>
+    <%= content_tag(:span, class: "pl-2") do %>
+      homeFOOD
+    <% end %>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Jedlá",
+                    administration_foods_path,
+                    class: "nav-link" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Užívatelia",
+                    administration_users_path,
+                    class: "nav-link" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Návrhy",
+                    administration_proposals_path,
+                    class: "nav-link" %>
+      </li>
+
+      <%#= form_with url: foods_path, method: :get, local: true, class: "form-inline my-2 my-lg-0" do |form| %>
+<!--        <div class="input-group">-->
+          <%#= form.text_field 'filter[search]', value: params[:filter] ? params[:filter][:search] : '', class: "form-control", type: :search %>
+<!--          <div class="input-group-append">-->
+            <%#= form.button type: "submit", class: "btn btn-outline-light dark-carrot" do %>
+              <%#= fa_icon("search") %>
+            <%# end %>
+<!--          </div>-->
+<!--        </div>-->
+      <%# end %>
+    </ul>
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <%= link_to "Odhlásiť",
+                    destroy_user_session_path,
+                    method: :delete,
+                    class: "nav-link" %>
+      </li>
+    </ul>
+
+  </div>
+</nav>
