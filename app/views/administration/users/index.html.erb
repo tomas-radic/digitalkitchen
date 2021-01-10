@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
+    Zoznam užívateľov
+  </h1>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th><%= user.name %></th>
+          <th><%= user.email %></th>
+          <th><%= short_time(user.last_sign_in_at) %></th>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+
+</div>

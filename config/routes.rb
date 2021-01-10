@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       post "import", on: :collection
     end
 
+    resources :raws
     resources :parts, only: [:edit, :update]
     resources :users, only: [:index]
     resources :proposals, only: [:index]
