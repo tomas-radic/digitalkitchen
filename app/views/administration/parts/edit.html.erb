@@ -1,39 +1,46 @@
-<%= form_with model: [:administration , @part], local: true do |f| %>
-  <%= hidden_field_tag :heading, @heading %>
+<div class="container-fluid">
+  <%= render "administration/parts/form" %>
 
-  <div class="container-fluid">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item tw-underline">
-          <%= link_to @part.food.name, edit_administration_food_path(@part.food) %>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page"><%= @heading %></li>
-      </ol>
-    </nav>
-
-    <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
-      <%= @heading %>
-    </h1>
-
-    <div class="row">
-      <div class="col-lg-5">
-        <div class="form-group">
-          <%= label_with_error form: f, attr_name: :name, text: "Názov *" %>
-          <%= f.text_field :name, class: "form-control", autofocus: true %>
-        </div>
-      </div>
-
-      <div class="col-lg-7">
-        <div class="form-group">
-          <%= label_with_error form: f, attr_name: :description, text: "Popis" %>
-          <%= f.text_area :description, class: "form-control", rows: 10 %>
-        </div>
-      </div>
+  <section class="tw-pt-8">
+    Ingrediencie
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+        <% @part.ingredients.includes(:raws).order("alternatives.position").order("raws.name").each do |ingredient| %>
+          <tr>
+            <td>
+              <%= link_to "x", administration_ingredient_path(ingredient), method: :delete %>
+            </td>
+            <td>
+              <% ingredient.raws.each.with_index do |raw, idx| %>
+                <% if idx == 0 %>
+                  <%= raw.name %>
+                <% else %>
+                  <br>
+                  <span class="tw-pl-2">alebo <%= raw.name %></span>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= form_with model: [:administration, Alternative.new], local: true do %>
+                <%= hidden_field_tag :ingredient_id, ingredient.id %>
+                <%= select_tag :raw_id, options_for_select(@raws.select { |r| !r.id.in? ingredient.raws.ids }.map { |r| [r.name, r.id] }), include_blank: "+alternatíva" %>
+                <%= submit_tag "Uložiť" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="3">
+            <%= form_with model: [:administration, Ingredient.new], local: true do %>
+              <%= hidden_field_tag :part_id, @part.id %>
+              <%= select_tag :raw_id, options_for_select(@raws.map { |r| [r.name, r.id] }), include_blank: "+pridať" %>
+              <%= submit_tag "Uložiť" %>
+            <% end %>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-
-    <section class="actions text-center mb-2">
-      <%= f.submit "Odoslať", class: "btn btn-outline-dark dark-carrot mt-4" %>
-    </section>
-
-  </div>
-<% end %>
+  </section>
+</div>

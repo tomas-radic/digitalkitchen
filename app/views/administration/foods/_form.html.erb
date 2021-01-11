@@ -1,0 +1,67 @@
+<%= form_with model: [:administration , @food], local: true do |f| %>
+  <%= hidden_field_tag :heading, @heading %>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item tw-underline">
+        <%= link_to "Jedlá", administration_foods_path %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @heading %></li>
+    </ol>
+  </nav>
+
+  <% if action_name == "edit" %>
+    <div class="tw-text-red-500 tw-text-center">
+      <%= link_to "Zmazať",
+                  administration_food_path(@food),
+                  method: :delete,
+                  data: { confirm: "Naozaj zmazať toto jedlo?" } %>
+    </div>
+  <% end %>
+
+  <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
+    <%= @heading %>
+  </h1>
+
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="form-group">
+        <%= label_with_error form: f, attr_name: :owner, text: "Vlastník *" %>
+        <%= f.select :owner_id,
+                     options_for_select(User.all.map { |u| [u.email, u.id] }, @food.owner_id),
+                     { include_blank: "Žiadny" },
+                     { class: "form-control" } %>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="form-group">
+        <%= label_with_error form: f, attr_name: :food_category, text: "Kategória *" %>
+        <%= f.select :category_id,
+                     options_for_select(FoodCategory.all.map { |c| [c.name, c.id] }, @food.category_id),
+                     { include_blank: "Žiadna" },
+                     { class: "form-control" } %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="form-group">
+        <%= label_with_error form: f, attr_name: :name, text: "Názov jedla *" %>
+        <%= f.text_field :name, class: "form-control", autofocus: true %>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="form-group">
+        <%= label_with_error form: f, attr_name: :description, text: "Popis" %>
+        <%= f.text_area :description, class: "form-control", rows: 3 %>
+      </div>
+    </div>
+  </div>
+
+  <section class="actions text-center mb-2 pt-4">
+    <%= f.submit "Uložiť", class: "btn btn-outline-dark dark-carrot" %>
+  </section>
+<% end %>

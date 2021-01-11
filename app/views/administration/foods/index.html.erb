@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
-    Zoznam jedál
+    Jedlá
   </h1>
 
   <div class="tw-px-1 tw-mb-6 tw-border rounded-sm sm:tw-inline-block">
@@ -24,6 +24,9 @@
             <td><%= food.owner.email %></td>
           </tr>
         <% end %>
+        <tr>
+          <td colspan="3"><%= link_to "+", new_administration_food_path %></td>
+        </tr>
     </table>
   </div>
 

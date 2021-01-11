@@ -1,0 +1,2 @@
+module Administration::AlternativesHelper
+end

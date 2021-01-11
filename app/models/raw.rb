@@ -13,4 +13,5 @@ class Raw < ApplicationRecord
 
   scope :regular, -> { where(is_onetime: false) }
   scope :onetime, -> { where(is_onetime: true) }
+  scope :sorted, -> { order(:name) }
 end

@@ -5,6 +5,26 @@ class Administration::FoodsController < Administration::BaseController
   end
 
 
+  def new
+    @food = Food.new
+    @heading = "Nové jedlo"
+  end
+
+
+  def create
+    @food = Food.new(whitelisted_params)
+
+    if @food.save
+      flash[:success] = "Zmeny boli uložené."
+      redirect_to edit_administration_food_path(@food)
+    else
+      @heading = "Nové jedlo"
+      flash.now[:danger] = "Zmeny sa nepodarilo uložiť. Možno chýbajú *požadované informácie."
+      render :new
+    end
+  end
+
+
   def edit
     @food = Food.find(params[:id])
     @heading = params[:heading] || @food.name
@@ -16,12 +36,20 @@ class Administration::FoodsController < Administration::BaseController
 
     if @food.update(whitelisted_params)
       flash[:success] = "Zmeny boli uložené."
-      redirect_to administration_foods_path
+      redirect_to edit_administration_food_path(@food)
     else
       @heading = params[:heading]
       flash.now[:danger] = "Zmeny sa nepodarilo uložiť. Možno chýbajú *požadované informácie."
       render :edit
     end
+  end
+
+
+  def destroy
+    Food.find(params[:id]).destroy
+    flash[:success] = "Jedlo bolo odstránené úspešne."
+
+    redirect_to administration_foods_path
   end
 
 
@@ -81,7 +109,7 @@ class Administration::FoodsController < Administration::BaseController
   private
 
   def whitelisted_params
-    params.require(:food).permit(:name, :description)
+    params.require(:food).permit(:name, :description, :owner_id, :category_id)
   end
 
 end
