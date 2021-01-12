@@ -17,16 +17,16 @@
   <div class="table-responsive">
     <table class="table">
       <tbody>
+        <tr>
+          <td colspan="3"><%= link_to "+", new_administration_food_path %></td>
+        </tr>
         <% @foods.includes(:owner).each do |food| %>
           <tr>
-            <th class="tw-underline"><%= link_to food.name, edit_administration_food_path(food) %></th>
+            <td class="tw-underline"><%= link_to food.name, edit_administration_food_path(food) %></td>
             <td><%= short_date(food.created_at) %></td>
             <td><%= food.owner.email %></td>
           </tr>
         <% end %>
-        <tr>
-          <td colspan="3"><%= link_to "+", new_administration_food_path %></td>
-        </tr>
     </table>
   </div>
 

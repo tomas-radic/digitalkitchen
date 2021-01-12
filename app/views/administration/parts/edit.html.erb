@@ -1,46 +1,48 @@
 <div class="container-fluid">
   <%= render "administration/parts/form" %>
+</div>
 
-  <section class="tw-pt-8">
-    Ingrediencie
+<section class="tw-flex tw-flex-grow tw-items-end">
+  <div class="tw-pt-8 tw-p-1 tw-bg-red-200 tw-w-full">
+    <p>Ingrediencie</p>
     <div class="table-responsive">
       <table class="table">
         <tbody>
-        <% @part.ingredients.includes(:raws).order("alternatives.position").order("raws.name").each do |ingredient| %>
           <tr>
-            <td>
-              <%= link_to "x", administration_ingredient_path(ingredient), method: :delete %>
-            </td>
-            <td>
-              <% ingredient.raws.each.with_index do |raw, idx| %>
-                <% if idx == 0 %>
-                  <%= raw.name %>
-                <% else %>
-                  <br>
-                  <span class="tw-pl-2">alebo <%= raw.name %></span>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <%= form_with model: [:administration, Alternative.new], local: true do %>
-                <%= hidden_field_tag :ingredient_id, ingredient.id %>
-                <%= select_tag :raw_id, options_for_select(@raws.select { |r| !r.id.in? ingredient.raws.ids }.map { |r| [r.name, r.id] }), include_blank: "+alternatíva" %>
+            <td colspan="3">
+              <%= form_with model: [:administration, Ingredient.new], local: true do %>
+                <%= hidden_field_tag :part_id, @part.id %>
+                <%= select_tag :raw_id, options_for_select(@raws.map { |r| [r.name, r.id] }), include_blank: "+pridať" %>
                 <%= submit_tag "Uložiť" %>
               <% end %>
             </td>
           </tr>
-        <% end %>
-        <tr>
-          <td colspan="3">
-            <%= form_with model: [:administration, Ingredient.new], local: true do %>
-              <%= hidden_field_tag :part_id, @part.id %>
-              <%= select_tag :raw_id, options_for_select(@raws.map { |r| [r.name, r.id] }), include_blank: "+pridať" %>
-              <%= submit_tag "Uložiť" %>
-            <% end %>
-          </td>
-        </tr>
+          <% @part.ingredients.includes(:raws).order("alternatives.position").order("raws.name").each do |ingredient| %>
+            <tr>
+              <td>
+                <%= link_to "x", administration_ingredient_path(ingredient), method: :delete %>
+              </td>
+              <td>
+                <% ingredient.raws.each.with_index do |raw, idx| %>
+                  <% if idx == 0 %>
+                    <%= raw.name %>
+                  <% else %>
+                    <br>
+                    <span class="tw-pl-2">alebo <%= raw.name %></span>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <%= form_with model: [:administration, Alternative.new], local: true do %>
+                  <%= hidden_field_tag :ingredient_id, ingredient.id %>
+                  <%= select_tag :raw_id, options_for_select(@raws.select { |r| !r.id.in? ingredient.raws.ids }.map { |r| [r.name, r.id] }), include_blank: "+alternatíva" %>
+                  <%= submit_tag "Uložiť" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
-  </section>
-</div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <%= render "administration/raws/form" %>
+</div>
+
+<section class="tw-flex tw-flex-grow tw-items-end">
+  <div class="tw-pt-8 tw-p-1 tw-bg-red-200 tw-w-full">
+    <p class="tw-pb-2">Použité v jedlách</p>
+    <% if @parts.any? %>
+      <ul>
+        <% @parts.each do |part| %>
+          <li>
+            <%= link_to part.food.name, edit_administration_food_path(part.food), class: "tw-underline" %>
+            /
+            <%= link_to part.name, edit_administration_part_path(part), class: "tw-underline" %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Nie je.</p>
+    <% end %>
+  </div>
+</section>

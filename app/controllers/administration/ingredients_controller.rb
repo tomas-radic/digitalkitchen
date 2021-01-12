@@ -1,11 +1,15 @@
 class Administration::IngredientsController < Administration::BaseController
 
   def create
-    part = Part.find(params[:part_id])
-    raw = Raw.find(params[:raw_id])
-    Alternative.create(raw: raw, ingredient: Ingredient.new(part: part))
+    part = Part.find_by(id: params[:part_id])
+    raw = Raw.find_by(id: params[:raw_id])
 
-    flash[:success] = "Ingrediencia bola pridaná úspešne."
+    if Alternative.create(raw: raw, ingredient: Ingredient.new(part: part))
+      flash[:success] = "Ingrediencia bola pridaná úspešne."
+    else
+      flash[:danger] = "Ingrediencia nebola pridaná."
+    end
+
     redirect_to edit_administration_part_path(part)
   end
 

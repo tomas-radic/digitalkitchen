@@ -4,14 +4,17 @@
   </h1>
 
   <div class="row">
-    <% @raws.group_by { |r| r.raw_category&.name }.each do |category, raws| %>
+    <% @raws.group_by { |r| r.raw_category }.each do |category, raws| %>
       <div class="col-md-6 col-lg-4 col-xl-3">
         <h2 class="tw-text-xl tw-text-center tw-font-bold tw-pt-6">
-          <%= category || "Všeobecné" %>
+          <%= category&.name || "Všeobecné" %>
         </h2>
-        <ul>
+        <ul class="tw-text-center tw-leading-6">
+          <li>
+            <%= link_to "+", new_administration_raw_path(category_id: category&.id), class: "hover:tw-underline" %>
+          </li>
           <% raws.each do |raw| %>
-            <li class="tw-text-center tw-leading-6">
+            <li>
               <%= link_to raw.name, edit_administration_raw_path(raw), class: "tw-underline" %>
             </li>
           <% end %>

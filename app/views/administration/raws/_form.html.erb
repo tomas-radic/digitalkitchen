@@ -1,18 +1,23 @@
-<%= form_with model: [:administration , @part], local: true do |f| %>
+<%= form_with model: [:administration , @raw], local: true do |f| %>
   <%= hidden_field_tag :heading, @heading %>
-  <%= hidden_field_tag :food_id, @part.food.id %>
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item tw-underline">
-        <%= link_to "Jedlá", administration_foods_path %>
-      </li>
-      <li class="breadcrumb-item tw-underline">
-        <%= link_to @part.food.name, edit_administration_food_path(@part.food) %>
+        <%= link_to "Suroviny", administration_raws_path %>
       </li>
       <li class="breadcrumb-item active" aria-current="page"><%= @heading %></li>
     </ol>
   </nav>
+
+  <% if action_name == "edit" && @parts.blank? %>
+    <div class="tw-text-red-500 tw-text-center">
+      <%= link_to "Zmazať",
+                  administration_raw_path(@raw),
+                  method: :delete,
+                  data: { confirm: "Naozaj zmazať túto surovinu?" } %>
+    </div>
+  <% end %>
 
   <h1 class="h1 tw-text-red-500 text-center display-3 tw-py-8">
     <%= @heading %>
@@ -28,8 +33,11 @@
 
     <div class="col-lg-7">
       <div class="form-group">
-        <%= label_with_error form: f, attr_name: :description, text: "Popis *" %>
-        <%= f.text_area :description, class: "form-control", rows: 10 %>
+        <%= f.label :category_id, "Kategória" %>
+        <%= f.select :category_id,
+                     options_for_select(RawCategory.all.map { |c| [c.name, c.id] }, @raw.category_id),
+                     { include_blank: "Žiadna" },
+                     { class: "form-control" } %>
       </div>
     </div>
   </div>

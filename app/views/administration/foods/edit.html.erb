@@ -1,11 +1,16 @@
 <div class="container-fluid">
   <%= render "administration/foods/form" %>
+</div>
 
-  <section class="tw-pt-8">
-    Postup
+<section class="tw-flex tw-flex-grow tw-items-end">
+  <div class="tw-pt-8 tw-p-1 tw-bg-red-200 tw-w-full">
+    <p>Postup</p>
     <div class="table-responsive">
       <table class="table">
         <tbody>
+          <tr>
+            <td colspan="3"><%= link_to "+", new_administration_part_path(food_id: @food.id) %></td>
+          </tr>
           <% @food.parts.sorted.each do |part| %>
             <tr>
               <td><%= part.position %></td>
@@ -13,11 +18,8 @@
               <td><%= link_to "x", administration_part_path(part), method: :delete, data: { confirm: "Naozaj vymazať túto fázu prípravy?" } %></td>
             </tr>
           <% end %>
-          <tr>
-            <td colspan="3"><%= link_to "+", new_administration_part_path(food_id: @food.id) %></td>
-          </tr>
         </tbody>
       </table>
     </div>
-  </section>
-</div>
+  </div>
+</section>
