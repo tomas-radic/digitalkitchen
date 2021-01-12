@@ -4,7 +4,7 @@ class Administration::IngredientsController < Administration::BaseController
     part = Part.find_by(id: params[:part_id])
     raw = Raw.find_by(id: params[:raw_id])
 
-    if Alternative.create(raw: raw, ingredient: Ingredient.new(part: part))
+    if Alternative.create(raw: raw, ingredient: Ingredient.new(part: part, optional: params[:optional] == "1"))
       flash[:success] = "Ingrediencia bola pridaná úspešne."
     else
       flash[:danger] = "Ingrediencia nebola pridaná."

@@ -13,6 +13,13 @@
               <%= form_with model: [:administration, Ingredient.new], local: true do %>
                 <%= hidden_field_tag :part_id, @part.id %>
                 <%= select_tag :raw_id, options_for_select(@raws.map { |r| [r.name, r.id] }), include_blank: "+pridať" %>
+                <div class="form-check form-check-inline">
+                  <%= check_box_tag :optional, "1", false, class: "form-check-input" %>
+                  <label class="form-check-label" for="optional">
+                    voliteľne
+                  </label>
+                </div>
+
                 <%= submit_tag "Uložiť" %>
               <% end %>
             </td>
@@ -30,6 +37,7 @@
                     <br>
                     <span class="tw-pl-2">alebo <%= raw.name %></span>
                   <% end %>
+                  <%= "(voliteľne)" if ingredient.optional %>
                 <% end %>
               </td>
               <td>
