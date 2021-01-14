@@ -13,22 +13,24 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="flex flex-col min-h-screen">
-    <%= render "shared/navbar" %>
-    <%= render "shared/flash_message" unless flash.blank? %>
-    <main class="flex-grow">
-      <%= yield %>
-    </main>
+  <body class="tw-flex tw-flex-col tw-min-h-screen">
+    <div class="fix-wrapper">
+      <%= render "shared/navbar" %>
+      <%= render "shared/flash_message" unless flash.blank? %>
+      <main class="tw-flex-grow">
+        <%= yield %>
+      </main>
 
-    <%= render "shared/footer" %>
+      <%= render "shared/footer" %>
 
-    <script type="text/javascript">
-      $(document).on('turbolinks:load', function() {
-        $(".runs-spinner").click(function() {
-          $("#loader").addClass("loader");
+      <script type="text/javascript">
+        $(document).on('turbolinks:load', function() {
+          $(".runs-spinner").click(function() {
+            $("#loader").addClass("loader");
+          });
         });
-      });
 
-    </script>
+      </script>
+    </div>
   </body>
 </html>

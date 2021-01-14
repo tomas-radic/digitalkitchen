@@ -14,11 +14,13 @@
   </head>
 
   <body>
-    <%= render "administration/shared/navbar" %>
-    <%= render "shared/flash_message" unless flash.blank? %>
-  <!--  <main class="flex-grow">-->
-      <%= yield %>
-  <!--  </main>-->
+    <div class="fix-wrapper">
+      <%= render "administration/shared/navbar" %>
+      <%= render "shared/flash_message" unless flash.blank? %>
+    <!--  <main class="flex-grow">-->
+        <%= yield %>
+    <!--  </main>-->
+    </div>
 
   </body>
 </html>

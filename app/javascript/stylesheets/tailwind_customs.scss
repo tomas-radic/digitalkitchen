@@ -1,0 +1,9 @@
+@layer components {
+  section.admin-associations {
+    @apply tw-flex tw-flex-grow tw-items-end;
+
+    div.bottom-table {
+      @apply tw-bg-red-200 tw-pt-8 tw-p-1 tw-w-full;
+    }
+  }
+}

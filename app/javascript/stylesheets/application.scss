@@ -7,6 +7,7 @@ $font-family-base: 'Montserrat', sans-serif;
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "tailwind_customs";
 @import "colors";
 @import "iosCheckbox";
 @import '@fortawesome/fontawesome-free';
@@ -16,6 +17,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+
+  .fix-wrapper {
+    overflow-x: hidden;
+  }
 }
 
 main {
