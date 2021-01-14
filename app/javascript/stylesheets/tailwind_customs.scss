@@ -4,6 +4,10 @@
 
     div.bottom-table {
       @apply tw-bg-red-200 tw-pt-8 tw-p-1 tw-w-full;
+
+      .table td {
+        border: none;
+      }
     }
   }
 }
