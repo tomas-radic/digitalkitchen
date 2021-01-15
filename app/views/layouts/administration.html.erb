@@ -14,10 +14,8 @@
   </head>
 
   <body>
-    <div class="fix-wrapper">
-      <%= render "administration/shared/navbar" %>
-      <%= render "shared/flash_message" unless flash.blank? %>
-      <%= yield %>
-    </div>
+    <%= render "administration/shared/navbar" %>
+    <%= render "shared/flash_message" unless flash.blank? %>
+    <%= yield %>
   </body>
 </html>
