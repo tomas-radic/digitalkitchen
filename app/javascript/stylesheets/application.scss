@@ -43,7 +43,7 @@ main {
 
 .display-1 {
   font-size: 3rem;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 @include media-breakpoint-up(md) {
   .display-1 {
