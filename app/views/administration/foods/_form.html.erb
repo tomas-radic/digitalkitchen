@@ -68,6 +68,23 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-5">
+      <div class="custom-file">
+        <%= f.file_field :photo, accept: 'image/png,image/jpeg' %>
+        <br>
+        <%= label_with_error form: f, attr_name: :photo, text: "Súbory väčšie ako 4MB nebudú spracované.", css_classes: "tw-text-sm" %>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <% if @food.photo_url.present? %>
+        <%= image_tag @food.cloud_photo_url, height: 299, class: "tw-rounded-lg md:tw-w-56" %>
+        <%= check_box_tag :remove_photo, '1' %>
+        <%= label_tag :remove_photo, "Odstrániť fotku pri uložení" %>
+      <% end %>
+    </div>
+  </div>
+
   <section class="actions text-center mb-2 pt-4">
     <%= f.submit "Uložiť", class: "btn btn-outline-dark dark-carrot" %>
   </section>

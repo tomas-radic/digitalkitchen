@@ -1,6 +1,6 @@
 class Proposal < ApplicationRecord
   # extend Enumerize
-  include CloudPhoto
+  # include CloudPhoto
 
   # enumerize :status, with: %i(pending closed)
 

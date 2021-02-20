@@ -22,7 +22,10 @@
         </tr>
         <% @foods.includes(:owner).each do |food| %>
           <tr>
-            <td class="tw-underline"><%= link_to food.name, edit_administration_food_path(food) %></td>
+            <td>
+              <%= "* " if food.owner_private? %>
+              <span class="tw-underline"><%= link_to food.name, edit_administration_food_path(food) %></span>
+            </td>
             <td><%= short_date(food.created_at) %></td>
             <td><%= food.owner.email %></td>
           </tr>

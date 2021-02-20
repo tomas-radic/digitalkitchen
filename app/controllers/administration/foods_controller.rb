@@ -1,7 +1,7 @@
 class Administration::FoodsController < Administration::BaseController
 
   def index
-    @foods = Food.sorted
+    @foods = Food.order(:owner_private).order(created_at: :desc)
   end
 
 
@@ -15,6 +15,7 @@ class Administration::FoodsController < Administration::BaseController
     @food = Food.new(whitelisted_params)
 
     if @food.save
+      @proposal.update_photo params[:food][:photo] if params[:food][:photo]
       flash[:success] = "Zmeny boli uložené."
       redirect_to edit_administration_food_path(@food)
     else
@@ -35,6 +36,13 @@ class Administration::FoodsController < Administration::BaseController
     @food = Food.find(params[:id])
 
     if @food.update(whitelisted_params)
+
+      if params[:food][:photo]
+        @food.update_photo params[:food][:photo]
+      elsif params[:remove_photo] == '1'
+        @food.remove_photo
+      end
+
       flash[:success] = "Zmeny boli uložené."
       redirect_to edit_administration_food_path(@food)
     else
@@ -46,7 +54,9 @@ class Administration::FoodsController < Administration::BaseController
 
 
   def destroy
-    Food.find(params[:id]).destroy
+    @food = Food.find(params[:id])
+    @food.remove_photo if @food.photo_public_id
+    @food.destroy
     flash[:success] = "Jedlo bolo odstránené úspešne."
 
     redirect_to administration_foods_path
