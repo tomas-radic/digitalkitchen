@@ -109,7 +109,7 @@ class Administration::FoodsController < Administration::BaseController
   private
 
   def whitelisted_params
-    params.require(:food).permit(:name, :description, :owner_id, :category_id)
+    params.require(:food).permit(:name, :description, :owner_id, :category_id, :owner_private)
   end
 
 end

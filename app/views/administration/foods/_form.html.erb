@@ -23,6 +23,13 @@
     <%= @heading %>
   </h1>
 
+  <div class="tw-flex tw-justify-center tw-py-4">
+    <div class="form-check form-check-inline">
+      <%= f.check_box :owner_private, { class: "form-check-input" }, 1, 0 %>
+      <%= f.label :owner_private, "súkromný recept", class: "form-check-label" %>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-lg-5">
       <div class="form-group">
