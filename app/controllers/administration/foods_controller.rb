@@ -15,7 +15,7 @@ class Administration::FoodsController < Administration::BaseController
     @food = Food.new(whitelisted_params)
 
     if @food.save
-      @proposal.update_photo params[:food][:photo] if params[:food][:photo]
+      @food.update_photo params[:food][:photo] if params[:food][:photo]
       flash[:success] = "Zmeny boli uložené."
       redirect_to edit_administration_food_path(@food)
     else
