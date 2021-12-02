@@ -24,7 +24,7 @@ class Administration::PartsController < Administration::BaseController
   def edit
     @part = Part.find(params[:id])
     @heading = params[:heading] || @part.name
-    @raws = Raw.sorted
+    @raws = Raw.sorted.where(is_onetime: false)
   end
 
 
@@ -36,7 +36,7 @@ class Administration::PartsController < Administration::BaseController
       redirect_to edit_administration_part_path(@part)
     else
       @heading = params[:heading]
-      @raws = Raw.sorted
+      @raws = Raw.sorted.where(is_onetime: false)
       flash.now[:danger] = "Zmeny sa nepodarilo uložiť. Možno chýbajú *požadované informácie."
       render :edit
     end
